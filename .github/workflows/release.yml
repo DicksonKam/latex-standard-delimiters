@@ -35,4 +35,4 @@ jobs:
           GH_REPO: ${{ github.repository }}
           RELEASE_TAG: ${{ github.ref_name }}
         run: |
-          gh release create "$RELEASE_TAG" --verify-tag --draft --title "$RELEASE_TAG" --notes-file RELEASE-NOTES.md main.js manifest.json styles.css SHA256SUMS.txt "latex-standard-delimiters-$RELEASE_TAG.zip"
+          gh release create "$RELEASE_TAG" --verify-tag --draft --prerelease --title "$RELEASE_TAG" --notes-file RELEASE-NOTES.md main.js manifest.json styles.css SHA256SUMS.txt "latex-standard-delimiters-$RELEASE_TAG.zip"

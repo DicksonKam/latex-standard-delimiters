@@ -6,7 +6,7 @@ Render `\(...\)` and `\[...\]` without rewriting Markdown. Reading View uses Obs
 
 ## Installation
 
-Extract its latex-standard-delimiters folder into your vault's .obsidian/plugins folder. main.js, manifest.json and styles.css must be directly inside that folder. Reload Obsidian and enable LaTeX Standard Delimiters under Community plugins. This plugin requires Obsidian 1.13.7 or newer; earlier versions have not been tested.
+Create `.obsidian/plugins/latex-standard-delimiters/` inside your vault. Download the three assets `main.js`, `manifest.json`, and `styles.css` from one release, or extract the release ZIP into that folder. The three files must be directly inside the plugin folder. Reload Obsidian and enable LaTeX Standard Delimiters under Community plugins. This plugin requires Obsidian 1.13.7 or newer; earlier versions have not been tested.
 
 For updates before Community Plugins listing, use [BRAT](https://github.com/TfTHacker/obsidian42-brat) 1.1.0 or newer with `DicksonKam/latex-standard-delimiters`. Alternatively, download `main.js`, `manifest.json`, and `styles.css` from the same GitHub release and replace those three plugin files. Keep your existing `data.json` preferences. A manual installation does not update automatically.
 
