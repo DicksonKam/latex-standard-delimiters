@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-09-26T21:30:34.163Z",
+  "scope": "Actual Minimal stylesheet in desktop document at 360px editor width; no real mobile or touch keyboard certification",
+  "observations": [
+    {
+      "mode": "theme-light",
+      "theme": "Minimal stylesheet",
+      "tokenColor": "rgb(213, 118, 63)",
+      "background": "rgba(0, 0, 0, 0)",
+      "previewWidth": 315,
+      "mathWidth": 3919
+    },
+    {
+      "mode": "theme-dark",
+      "theme": "Minimal stylesheet",
+      "tokenColor": "rgb(213, 118, 63)",
+      "background": "rgba(0, 0, 0, 0)",
+      "previewWidth": 315,
+      "mathWidth": 3919
+    }
+  ],
+  "mainJsSha256": "b2b28b223b972769963cafb20ff620f9d9b2e44b7b08d5c853ef6f5db176a539",
+  "results": [
+    {
+      "name": "theme-light: Minimal source tokens visible",
+      "passed": true
+    },
+    {
+      "name": "theme-light: narrow preview remains contained",
+      "passed": true
+    },
+    {
+      "name": "theme-light: long math scrolls in narrow preview",
+      "passed": true
+    },
+    {
+      "name": "theme-dark: Minimal source tokens visible",
+      "passed": true
+    },
+    {
+      "name": "theme-dark: narrow preview remains contained",
+      "passed": true
+    },
+    {
+      "name": "theme-dark: long math scrolls in narrow preview",
+      "passed": true
+    },
+    {
+      "name": "Narrow layout and theme changes preserve source",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-09-26T21:30:31.503Z",
+  "scope": "Built-in Vim key handling with synthetic keyboard events; manual keyboard check still recommended",
+  "mainJsSha256": "b2b28b223b972769963cafb20ff620f9d9b2e44b7b08d5c853ef6f5db176a539",
+  "results": [
+    {
+      "name": "Vim mode enabled in disposable vault",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Vim j enters display source",
+      "passed": true,
+      "detail": "6"
+    },
+    {
+      "name": "Vim navigation reveals source text",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Vim k enters preceding display source",
+      "passed": true,
+      "detail": "6"
+    },
+    {
+      "name": "Vim counted motion retains logical lines",
+      "passed": true,
+      "detail": "34"
+    },
+    {
+      "name": "Vim normal mode suppresses editing previews",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Vim insert/normal transition preserves source",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

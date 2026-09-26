@@ -1,0 +1,61 @@
+{
+  "timestamp": "2026-09-26T21:30:20.631Z",
+  "mainJsSha256": "b2b28b223b972769963cafb20ff620f9d9b2e44b7b08d5c853ef6f5db176a539",
+  "results": [
+    {
+      "name": "Two panes keep independent editing previews",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Long equation overflows inside preview",
+      "passed": true,
+      "detail": "3919/445"
+    },
+    {
+      "name": "Long preview uses local horizontal scrolling",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Preview can scroll horizontally",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Long preview remains within pane",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Scrolling preview preserves caret and source",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Leaving second equation keeps first preview",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Math elements use own CSS namespace",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Malformed preview shows MathJax error",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Repeated reload leaves one active preview",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Both panes retain exact note source",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

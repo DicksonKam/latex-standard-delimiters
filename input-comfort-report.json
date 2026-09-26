@@ -1,0 +1,35 @@
+{
+  "timestamp": "2026-09-26T21:30:16.470Z",
+  "mainJsSha256": "b2b28b223b972769963cafb20ff620f9d9b2e44b7b08d5c853ef6f5db176a539",
+  "scope": "Synthetic pointer events and composing guard on desktop; not real mobile or IME verification",
+  "results": [
+    {
+      "name": "Synthetic touch tap reveals source",
+      "passed": true
+    },
+    {
+      "name": "Synthetic swipe does not reveal source",
+      "passed": true
+    },
+    {
+      "name": "Swipe returning to start does not reveal source",
+      "passed": true
+    },
+    {
+      "name": "Cancelled touch does not reveal source",
+      "passed": true
+    },
+    {
+      "name": "Long press does not force source entry",
+      "passed": true
+    },
+    {
+      "name": "Composition guard ignores equation mouse entry",
+      "passed": true
+    },
+    {
+      "name": "All input checks preserve source",
+      "passed": true
+    }
+  ]
+}

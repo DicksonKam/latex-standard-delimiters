@@ -1,0 +1,40 @@
+{
+  "version": "0.3.0",
+  "results": [
+    {
+      "name": "inline preview shown while source visible",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "display preview shown while source visible",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Preview updates as inline source changes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Preview updates as display source changes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Editing preview disappears outside formula",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Restored source exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Source mode has no editing previews",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

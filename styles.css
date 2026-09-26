@@ -1,0 +1,74 @@
+.lsd-math-inline {
+  display: inline;
+}
+
+.lsd-math-inline > .MathJax {
+  display: inline-block;
+  margin: 0;
+}
+
+.lsd-math-block {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.cm-editor .lsd-math-block {
+  padding: 0.5em 0;
+}
+
+/* An underscore hidden inside a math widget must not start Markdown emphasis. */
+.cm-editor .cm-em.lsd-math-emphasis-spill,
+.cm-editor .cm-strong.lsd-math-emphasis-spill,
+.cm-editor .cm-em .lsd-math-emphasis-spill,
+.cm-editor .cm-strong .lsd-math-emphasis-spill {
+  font-style: normal;
+  font-weight: inherit;
+  color: var(--text-normal);
+}
+
+.cm-editor .cm-em.lsd-math-source,
+.cm-editor .cm-strong.lsd-math-source,
+.cm-editor .cm-em .lsd-math-source,
+.cm-editor .cm-strong .lsd-math-source,
+.cm-editor .lsd-math-source .cm-em,
+.cm-editor .lsd-math-source .cm-strong {
+  font-style: normal;
+  font-weight: inherit;
+  color: var(--text-normal);
+}
+
+.lsd-math-source-marker {
+  color: var(--text-normal);
+}
+
+/* Token colors follow Obsidian theme variables unless overridden in settings. */
+.cm-editor .lsd-token-command { color: var(--lsd-command, var(--color-blue, #668ee8)) !important; }
+.cm-editor .lsd-token-brace { color: var(--lsd-brace, var(--color-purple, #aa80dd)) !important; }
+.cm-editor .lsd-token-number { color: var(--lsd-number, var(--color-orange, #d99a50)) !important; }
+.cm-editor .lsd-token-operator { color: var(--lsd-operator, var(--color-red, #d96b6b)) !important; }
+.cm-editor .lsd-token-delimiter { color: var(--lsd-delimiter, var(--text-accent)) !important; }
+.cm-editor .lsd-token-comment { color: var(--lsd-comment, var(--text-muted)) !important; }
+.cm-editor .lsd-brace-match { background: var(--text-selection); outline: 1px solid var(--text-accent); border-radius: 2px; }
+.cm-editor .lsd-brace-unmatched { text-decoration: underline wavy var(--color-red); }
+
+.lsd-render-error { text-decoration: underline dotted var(--color-red); }
+
+.lsd-editing-preview {
+  border-left: 2px solid var(--text-accent);
+  background: var(--background-secondary);
+  margin: 0.25em 0 0.5em;
+  padding: 0.5em;
+}
+
+/* Keep long previews scrollable within narrow panes and touch screens. */
+.lsd-editing-preview {
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+.lsd-editing-preview mjx-container {
+  min-width: min-content;
+}
