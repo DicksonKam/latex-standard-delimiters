@@ -23,3 +23,9 @@ The first synthetic composition harness left CodeMirror composing after blur wit
 Remaining limits: real iOS/Android and OS IME evidence is outstanding; synthetic desktop events and narrow panes are not mobile certification. MOBILE-CHECKLIST.md gives real-device procedures. SwiftLaTeX checks initialize the embedded engine using an offline package endpoint and verify coexistence; full TeX/PDF/SVG compilation is not tested. Quick Latex shortcuts are not extended to standard delimiters. Vim normal-mode source visibility uses a host DOM convention, not a guaranteed public API; arbitrary mappings/macros need further tests. Inline math remains single-line, and list/callout-prefixed multiline displays remain unsupported in Live Preview. Color highlighting is a tokenizer, not a TeX compiler. Exporters bypassing Obsidian's DOM do not automatically support the syntax.
 
 See COMPATIBILITY.md, PLATFORM-AUDIT.md and TYPING-INTEGRATION.md for boundaries. Actual-app evidence was collected before GitHub publication. Replacement of other plugins and universal stability certification are not claimed.
+
+## Beta installation and recovery
+
+BRAT 1.3.0 installed public 0.3.0 in a separate clean vault. An actual BRAT upgrade to public 0.3.1 preserved nondefault colors, preview preference, rendering mode and both fixture notes. A deliberate broken local bundle failed to load while BRAT remained usable; selecting public 0.3.0 recovered the plugin with preferences/source intact, and selecting Latest restored 0.3.1. See brat-update-report.json and brat-recovery-report.json. This tests load-failure recovery, not arbitrary application crashes.
+
+Community eligibility remains unresolved: current directory policy requires qualifying approval for this derivative. COMMUNITY-SUBMISSION.md records the policy and remaining gates. This beta is not a submitted or approved Community plugin.

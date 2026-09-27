@@ -8,7 +8,7 @@ Render `\(...\)` and `\[...\]` without rewriting Markdown. Reading View uses Obs
 
 Create `.obsidian/plugins/latex-standard-delimiters/` inside your vault. Download the three assets `main.js`, `manifest.json`, and `styles.css` from one release, or extract the release ZIP into that folder. The three files must be directly inside the plugin folder. Reload Obsidian and enable LaTeX Standard Delimiters under Community plugins. This plugin requires Obsidian 1.13.7 or newer; earlier versions have not been tested.
 
-For updates before Community Plugins listing, use [BRAT](https://github.com/TfTHacker/obsidian42-brat) 1.1.0 or newer with `DicksonKam/latex-standard-delimiters`. Alternatively, download `main.js`, `manifest.json`, and `styles.css` from the same GitHub release and replace those three plugin files. Keep your existing `data.json` preferences. A manual installation does not update automatically.
+For updates before Community Plugins listing, use [BRAT](https://github.com/TfTHacker/obsidian42-brat) 1.1.0 or newer with `DicksonKam/latex-standard-delimiters`. Alternatively, download `main.js`, `manifest.json`, and `styles.css` from the same GitHub release and replace those three plugin files. Keep your existing `data.json` preferences. A manual installation does not update automatically. See [Updates and recovery](UPDATING.md) for the tested BRAT update/rollback path.
 
 ## Editing
 
@@ -26,7 +26,7 @@ Extended MathJax supplies shared macros/configuration and remains compatible in 
 
 ## Platform and source preservation
 
-One codebase targets desktop and mobile, with isDesktopOnly=false. Production uses host/browser APIs, no Node or Electron imports, no note-write APIs, no telemetry and no remote rendering service. It saves only its own preferences. Real iOS/Android evidence is outstanding; desktop pointer events and narrow panes are not mobile certification. See PLATFORM-AUDIT.md and MOBILE-CHECKLIST.md.
+One codebase targets desktop and mobile, with isDesktopOnly=false. Production uses host/browser APIs, no Node or Electron imports, no note-write APIs, no telemetry and no remote rendering service. It saves only its own preferences. Real iOS/Android evidence is outstanding; desktop pointer events and narrow panes are not mobile certification. See PLATFORM-AUDIT.md, MOBILE-CHECKLIST.md and [Mobile beta test](MOBILE-QUICK-TEST.md).
 
 CSS uses the plugin's own lsd-math namespace. Theme variables supply default token colors; settings allow six-digit hex overrides. Exporters that bypass Obsidian's rendered DOM do not automatically gain support.
 

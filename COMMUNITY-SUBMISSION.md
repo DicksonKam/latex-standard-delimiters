@@ -24,9 +24,19 @@ Overview: Write or paste equations with standard LaTeX inline and display delimi
 - README with accurate installation/update instructions, examples and screenshots.
 - Root manifest and published release tag agree; main.js, manifest.json and styles.css are downloadable release assets.
 - Latest checks pass and actual-app reports identify the exact candidate hashes and host version.
-- Clean BRAT install, version upgrade, preference persistence and recovery evidence.
+- Clean BRAT install, version upgrade, preference persistence and recovery evidence: checked on macOS/Obsidian 1.13.7 with BRAT 1.3.0; see brat-update-report.json and brat-recovery-report.json.
 - Real iOS and Android checks or an explicitly agreed change to platform scope; current mobile evidence remains outstanding.
-- Review current developer policies and submission requirements; record remaining issues.
+- Current developer policies and submission requirements reviewed September 27, 2026. Fork approval remains a submission blocker; see the policy review below.
 - Check plugin ID uniqueness in the current directory.
 
 When ready, the owner signs in with an Obsidian account at community.obsidian.md, links GitHub ownership and adds the plugin. The directory reads the default branch manifest and performs automated review. This work prepares the package; it does not create/link accounts or submit a listing.
+
+## Policy review and unresolved eligibility
+
+Primary sources checked September 27, 2026: [Developer policies](https://docs.obsidian.md/community-directory/developer-policies) and [Submission requirements](https://docs.obsidian.md/community-directory/submission-requirements-for-plugins).
+
+This repository retains code derived from Andreas Burger’s LaTeX Delimiter Renderer. Its MIT license permits the derivative, but the Community directory has an additional fork eligibility requirement: public written approval from the original author, or the documented inactive/unreachable-author process. No approval evidence has been collected. Do not submit until this is resolved. Attribution must remain regardless. No author outreach has been performed.
+
+Production review found no Node/Electron imports, remote rendering service, telemetry, ads, self-updater or note-write API. Settings use host persistence; BRAT is a separate optional installer. The manifest description is below 250 characters and ends with a period, minimum app version matches the tested host, and there are no sample commands or funding links. MIT license and upstream attribution are present. These checks do not constitute directory approval or a complete security certification.
+
+Remaining gates: fork eligibility, real mobile evidence, actual screenshots and final ID/name uniqueness verification in the current directory. GitHub beta distribution can continue while these remain open.
