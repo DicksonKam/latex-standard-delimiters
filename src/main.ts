@@ -10,7 +10,7 @@ import {
   Plugin,
   Notice,
   PluginSettingTab,
-  Setting,
+  type SettingDefinitionItem,
   renderMath
 } from "obsidian";
 import { syntaxTree } from "@codemirror/language";
@@ -711,36 +711,62 @@ export default class LatexDelimiterRenderer extends Plugin {
 
 }
 
-// Imperative settings remain available in the plugin sidebar.
+// Declarative definitions participate in Obsidian's global settings search.
 class MathColorsTab extends PluginSettingTab {
   constructor(private readonly plugin: LatexDelimiterRenderer) { super(plugin.app, plugin); }
-  display(): void {
-    this.containerEl.empty();
-    this.containerEl.createEl("p", { text: "Colors apply to equation source while editing. Leave a field empty to follow your theme. Enter a six-digit hex color, for example #88aaff." });
-    new Setting(this.containerEl).setName("Standard delimiter rendering").setDesc("Automatic pauses for the known competing renderer. Off leaves rendering to other tools. This never changes another plugin’s settings.").addDropdown(dropdown => {
-      dropdown.addOption("automatic", "Automatic").addOption("off", "Off").setValue(this.plugin.renderingMode).onChange(async value => {
-        this.plugin.renderingMode = value === "off" ? "off" : "automatic";
-        await this.plugin.saveColors();
-        this.display();
-      });
-    });
-    new Setting(this.containerEl).setName("Rendering status").setDesc(this.plugin.renderingStatus).addButton(button => {
-      button.setButtonText("Refresh").onClick(async () => { await this.plugin.refreshRenderingStatus(); this.display(); });
-    });
-    new Setting(this.containerEl).setName("Preview equations while editing").setDesc("Show a rendered preview beneath the active equation. Selections and multiple cursors do not show previews.").addToggle(toggle => {
-      toggle.setValue(this.plugin.editingPreviews).onChange(async value => {
-        this.plugin.editingPreviews = value;
-        await this.plugin.saveColors();
-      });
-    });
-    for (const kind of COLOR_KINDS) {
-      new Setting(this.containerEl).setName(`${kind[0].toUpperCase()}${kind.slice(1)} color`).addText(input => {
-        input.setPlaceholder("Theme default").setValue(this.plugin.colors[kind] ?? "").onChange(async value => {
-          if (value !== "" && !/^#[0-9a-f]{6}$/i.test(value)) return;
-          this.plugin.colors[kind] = value;
-          await this.plugin.saveColors();
-        });
-      });
+
+  getSettingDefinitions(): SettingDefinitionItem[] {
+    return [
+      {
+        name: "Standard delimiter rendering",
+        desc: "Automatic pauses for the known competing renderer. Off leaves rendering to other tools. This never changes another plugin’s settings.",
+        aliases: ["LaTeX", "MathJax", "equations"],
+        control: { type: "dropdown", key: "renderingMode", options: { automatic: "Automatic", off: "Off" } }
+      },
+      {
+        name: "Rendering status", desc: this.plugin.renderingStatus,
+        render: setting => { setting.addButton(button => {
+          button.setButtonText("Refresh").onClick(async () => { await this.plugin.refreshRenderingStatus(); this.update(); });
+        }); }
+      },
+      {
+        name: "Preview equations while editing",
+        desc: "Show a rendered preview beneath the active equation. Selections and multiple cursors do not show previews.",
+        aliases: ["LaTeX", "live preview"],
+        control: { type: "toggle", key: "editingPreviews" }
+      },
+      ...COLOR_KINDS.map(kind => ({
+        name: `${kind[0].toUpperCase()}${kind.slice(1)} color`,
+        desc: "Leave empty to follow your theme, or enter a six-digit hex color, for example #88aaff.",
+        aliases: ["math", "LaTeX", "syntax coloring"],
+        control: {
+          type: "text" as const, key: kind, placeholder: "Theme default",
+          validate: (value: string) => value === "" || /^#[0-9a-f]{6}$/i.test(value) ? undefined : "Enter a six-digit hex color, for example #88aaff, or leave empty."
+        }
+      }))
+    ];
+  }
+
+  getControlValue(key: string): unknown {
+    if (key === "renderingMode") return this.plugin.renderingMode;
+    if (key === "editingPreviews") return this.plugin.editingPreviews;
+    const kind = COLOR_KINDS.find(kind => kind === key);
+    return kind ? this.plugin.colors[kind] ?? "" : undefined;
+  }
+
+  async setControlValue(key: string, value: unknown): Promise<void> {
+    if (key === "renderingMode") {
+      if (value !== "off" && value !== "automatic") return;
+      this.plugin.renderingMode = value;
+    } else if (key === "editingPreviews") {
+      if (typeof value !== "boolean") return;
+      this.plugin.editingPreviews = value;
+    } else {
+      const kind = COLOR_KINDS.find(kind => kind === key);
+      if (!kind || typeof value !== "string" || (value !== "" && !/^#[0-9a-f]{6}$/i.test(value))) return;
+      this.plugin.colors[kind] = value;
     }
+    await this.plugin.saveColors();
+    if (key === "renderingMode") this.update();
   }
 }

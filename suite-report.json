@@ -1,9 +1,9 @@
 {
-  "version": "0.3.0",
-  "timestamp": "2026-09-26T21:30:34.164Z",
+  "version": "0.3.1",
+  "timestamp": "2026-09-27T05:35:59.941Z",
   "obsidianVersion": "1.13.7",
   "stylesSha256": "e80df64d07c2a4ade9b8ac34d4d9db6c41de19b3bd1e8b5f1a82c59bee59cfd9",
-  "mainJsSha256": "b2b28b223b972769963cafb20ff620f9d9b2e44b7b08d5c853ef6f5db176a539",
+  "mainJsSha256": "d3b86e381943f3708201172b0e3da44d4fbb58ef0af2475c2a01332656d79996",
   "reports": [
     {
       "name": "navigation",

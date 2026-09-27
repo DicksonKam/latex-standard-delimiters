@@ -1,0 +1,29 @@
+name: Bug report
+description: Report an editing, rendering, installation or update problem.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the expected behavior and actual behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps and minimal Markdown
+      description: Include raw delimiters in a fenced code block. Use invented content rather than private notes.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Plugin and Obsidian versions, OS/device, theme, Reading View/Live Preview/Source mode, keyboard/IME and relevant math plugins with versions.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Additional evidence
+      description: Optional screenshots or error messages. Check for personal information before sharing. For update problems, include old/new versions and whether installation used BRAT or manual files.

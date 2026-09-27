@@ -90,6 +90,6 @@
     const current=app.plugins.plugins['latex-standard-delimiters'];if(current){current.editingPreviews=originalPreview;await current.saveColors();}
     if(view&&view.state.doc.toString()!==before)view.dispatch({changes:{from:0,to:view.state.doc.length,insert:before}});
   }
-  fs.writeFileSync(root+'/beta-audit-report.json',JSON.stringify({version:'0.3.0',results,timings},null,2));
+  fs.writeFileSync(root+'/beta-audit-report.json',JSON.stringify({version:JSON.parse(fs.readFileSync(root+'/.obsidian/plugins/latex-standard-delimiters/manifest.json','utf8')).version,results,timings},null,2));
   console.log('BETA AUDIT',results.filter(r=>!r.passed),timings);
 })();

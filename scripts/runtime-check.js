@@ -8,7 +8,7 @@
   const root = app.vault.adapter.getBasePath();
   const sourcePath = path.join(root, 'Examples.md');
   const before = fs.readFileSync(sourcePath, 'utf8');
-  const report = { pluginVersion: '0.3.0', timestamp: new Date().toISOString(), mainJsSha256: require('node:crypto').createHash('sha256').update(fs.readFileSync(path.join(root, '.obsidian/plugins/latex-standard-delimiters/main.js'))).digest('hex'), tests: [] };
+  const report = { pluginVersion: JSON.parse(fs.readFileSync(root+'/.obsidian/plugins/latex-standard-delimiters/manifest.json','utf8')).version, timestamp: new Date().toISOString(), mainJsSha256: require('node:crypto').createHash('sha256').update(fs.readFileSync(path.join(root, '.obsidian/plugins/latex-standard-delimiters/main.js'))).digest('hex'), tests: [] };
   const assert = (name, condition, detail = '') => {
     report.tests.push({ name, passed: Boolean(condition), detail });
   };

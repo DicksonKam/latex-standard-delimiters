@@ -1,5 +1,12 @@
 # Changes
 
+## 0.3.1 — beta
+
+- Searchable declarative settings preserve existing preferences.
+- Invalid source colors display validation feedback.
+- Add structured bug reports and a distinct compatibility test fixture.
+- Retest all 195 actual-app checks on the new binary.
+
 ## 0.3.0 — verified local release candidate
 
 - Touch taps reveal equation source; scrolling, cancellations and long presses retain native behavior.

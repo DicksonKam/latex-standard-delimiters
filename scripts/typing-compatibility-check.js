@@ -28,6 +28,6 @@
   }
   check('Typing fixture bytes unchanged',fs.readFileSync(root+'/Typing.md','utf8')===before);
  }finally{if(app.plugins.plugins['quick-latex'])await app.plugins.disablePlugin('quick-latex');}
- fs.writeFileSync(root+'/typing-compatibility-report.json',JSON.stringify({version:'0.3.0',results},null,2));
+ fs.writeFileSync(root+'/typing-compatibility-report.json',JSON.stringify({version:JSON.parse(fs.readFileSync(root+'/.obsidian/plugins/latex-standard-delimiters/manifest.json','utf8')).version,results},null,2));
  console.log('TYPING COMPATIBILITY',results.filter(r=>!r.passed));
 })();

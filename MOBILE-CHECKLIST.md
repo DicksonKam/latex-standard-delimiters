@@ -1,6 +1,6 @@
 # Real-device verification checklist
 
-Real iOS/Android testing is outstanding. Desktop pointer events, narrow panes and popout tests are not mobile certification. The plugin's production code uses Obsidian/CodeMirror and browser APIs; the Node/fs/crypto calls in developer scripts are not bundled. API/minimum-version review is still in progress.
+Real iOS/Android testing is outstanding. Desktop pointer events, narrow panes and popout tests are not mobile certification. The plugin's production code uses Obsidian/CodeMirror and browser APIs; the Node/fs/crypto calls in developer scripts are not bundled. The API audit and minimum version are documented in PLATFORM-AUDIT.md; real-device evidence is still required.
 
 Use a disposable vault and the release candidate when packaged. Record device model, OS, Obsidian version, plugin version, theme, keyboard/input method and enabled plugins. Keep a copy of fixture Markdown before testing and compare it afterward.
 

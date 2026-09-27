@@ -38,6 +38,6 @@
   view.dispatch({selection:{anchor:0}});await wait();
   check('Rendered equations restored',view.dom.querySelectorAll('.lsd-math-block').length===2);
   check('Document unchanged',view.state.doc.toString()===before&&fs.readFileSync(root+'/Navigation.md','utf8')===before);
-  fs.writeFileSync(root+'/navigation-report.json',JSON.stringify({version:'0.3.0',results},null,2));
+  fs.writeFileSync(root+'/navigation-report.json',JSON.stringify({version:JSON.parse(fs.readFileSync(root+'/.obsidian/plugins/latex-standard-delimiters/manifest.json','utf8')).version,results},null,2));
   console.log('NAVIGATION',results.filter(x=>!x.passed));
 })();

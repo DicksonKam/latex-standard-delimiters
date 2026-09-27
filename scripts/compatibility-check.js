@@ -34,6 +34,6 @@
     check('Restoring plugin renders custom macro again',Boolean(leaf.view.containerEl.querySelector('.lsd-math mjx-container .mjx-c1D444')));
     check('Compatibility note bytes unchanged',fs.readFileSync(root+'/Compatibility.md','utf8')===before);
   } finally { fs.writeFileSync(config,original); }
-  fs.writeFileSync(root+'/compatibility-report.json',JSON.stringify({version:'0.3.0',results},null,2));
+  fs.writeFileSync(root+'/compatibility-report.json',JSON.stringify({version:JSON.parse(fs.readFileSync(root+'/.obsidian/plugins/latex-standard-delimiters/manifest.json','utf8')).version,results},null,2));
   console.log('COMPATIBILITY',results.filter(x=>!x.passed));
 })();
