@@ -63,7 +63,7 @@ function renderFormula(source: string, display: boolean, blockHost = display, ow
 
 type RenderedCharacter = { node: Text; offset: number };
 
-function renderedCharacters(element: HTMLElement): {
+function renderedCharacters(element: HTMLElement, ignoreBlockSeparators = false): {
   text: string;
   characters: RenderedCharacter[];
 } {
@@ -77,6 +77,7 @@ function renderedCharacters(element: HTMLElement): {
       return;
     }
     if (node.instanceOf(Text)) {
+      if (ignoreBlockSeparators && node.parentNode === element && /^\s*$/.test(node.data)) return;
       for (let offset = 0; offset < node.data.length; offset++) {
         text += node.data[offset];
         characters.push({ node, offset });
@@ -162,6 +163,36 @@ class EmbeddedMathRenderChild extends MarkdownRenderChild {
   }
 }
 
+// Blank rows can split one display across multiple Reading View sections.
+// Wait for both source-bound sections, then map only their common source span.
+class CrossSectionMathChild extends MarkdownRenderChild {
+  constructor(element: HTMLElement, private readonly context: MarkdownPostProcessorContext, private readonly plugin: Plugin, private readonly match: MathDelimiterMatch) { super(element); }
+  onload(): void {
+    const timerWindow = this.containerEl.ownerDocument.defaultView ?? window;
+    let frame = 0, attempts = 0;
+    this.register(() => timerWindow.cancelAnimationFrame(frame));
+    const resolve = (): void => {
+      const parent = this.containerEl.parentElement;
+      if (!parent || !parent.classList.contains("markdown-preview-section")) { if (++attempts < 20) frame = timerWindow.requestAnimationFrame(resolve); return; }
+      const opening = this.context.getSectionInfo(this.containerEl);
+      if (!opening) { if (++attempts < 20) frame = timerWindow.requestAnimationFrame(resolve); return; }
+      const starts = [0];
+      for (let i = 0; i < opening.text.length; i++) if (opening.text[i] === "\n") starts.push(i + 1);
+      const end = Array.from(parent.children).map(child => this.context.getSectionInfo(child as HTMLElement)).find(section => section && (starts[section.lineStart] ?? 0) <= this.match.to - 1 && (starts[section.lineEnd + 1] ?? opening.text.length) >= this.match.to);
+      if (!end) { if (++attempts < 20) frame = timerWindow.requestAnimationFrame(resolve); return; }
+      const section = { ...opening, lineEnd: end.lineEnd };
+      const elements = Array.from(parent.children).filter(child => {
+        if (child.classList.contains("mod-ui")) return false;
+        const info = this.context.getSectionInfo(child as HTMLElement);
+        return info && info.lineStart >= opening.lineStart && info.lineEnd <= end.lineEnd;
+      }) as HTMLElement[];
+      const context: MarkdownPostProcessorContext = { docId: this.context.docId, sourcePath: this.context.sourcePath, frontmatter: this.context.frontmatter as unknown, addChild: child => this.addChild(child), getSectionInfo: () => section };
+      void renderReadingViewOnce(parent, context, this.plugin, this.match, elements).catch(error => console.error("Standard delimiters cross-section rendering:", error));
+    };
+    frame = timerWindow.requestAnimationFrame(resolve);
+  }
+}
+
 const readingTasks = new WeakMap<HTMLElement, Promise<void>>();
 function renderReadingView(element: HTMLElement, context: MarkdownPostProcessorContext, plugin: Plugin): Promise<void> {
   const existing = readingTasks.get(element);
@@ -175,7 +206,9 @@ function renderReadingView(element: HTMLElement, context: MarkdownPostProcessorC
 async function renderReadingViewOnce(
   element: HTMLElement,
   context: MarkdownPostProcessorContext,
-  plugin: Plugin
+  plugin: Plugin,
+  crossSectionMatch?: MathDelimiterMatch,
+  crossSectionElements?: HTMLElement[]
 ): Promise<void> {
   if (disabledRenderers.has(plugin) || element.closest(`[${READING_RENDER_MARKER}="template"]`)) return;
 
@@ -185,10 +218,15 @@ async function renderReadingViewOnce(
   for (let i = 0; i < section.text.length; i++) if (section.text[i] === "\n") lineStarts.push(i + 1);
   const sectionStart = lineStarts[section.lineStart] ?? 0;
   const sectionEnd = lineStarts[section.lineEnd + 1] ?? section.text.length;
-  const matches = readingMatches(section.text).filter(match => match.from >= sectionStart && match.to <= sectionEnd);
+  const allMatches = readingMatches(section.text);
+  if (!crossSectionMatch) {
+    for (const match of allMatches) if (match.from >= sectionStart && match.from < sectionEnd && match.to > sectionEnd) context.addChild(new CrossSectionMathChild(element, context, plugin, match));
+  }
+  const matches = allMatches.filter(match => match.from >= sectionStart && match.to <= sectionEnd && (!crossSectionMatch || (match.from === crossSectionMatch.from && match.to === crossSectionMatch.to)));
   if (matches.length === 0) return;
 
-  const rendered = renderedCharacters(element);
+  const fragments = (crossSectionElements ?? [element]).map(part => renderedCharacters(part));
+  const rendered = { text: fragments.map(part => part.text).join(""), characters: fragments.flatMap(part => part.characters) };
   const replacements: Array<{
     from: number;
     to: number;
@@ -212,7 +250,7 @@ async function renderReadingViewOnce(
     }
     markedSource += section.text.slice(sourceAt, sectionEnd);
     await MarkdownRenderer.render(plugin.app, markedSource, template, context.sourcePath, component);
-    const markedText = renderedCharacters(template).text;
+    const markedText = renderedCharacters(template, !!crossSectionMatch).text;
     const mapped: Array<{ from: number; to: number; visible: string; match: MathDelimiterMatch }> = [];
     let cleanText = "", markedAt = 0;
     for (const marker of markers) {
@@ -246,8 +284,9 @@ async function renderReadingViewOnce(
 
   if (disabledRenderers.has(plugin) || replacements.length === 0) return;
 
-  let scope = elementScopes.get(element);
-  if (!scope) { scope = new ReadingRenderScope(element, context, plugin); context.addChild(scope); }
+  const scopeElement = crossSectionElements?.[0] ?? element;
+  let scope = elementScopes.get(scopeElement);
+  if (!scope) { scope = new ReadingRenderScope(scopeElement, context, plugin); context.addChild(scope); }
   replacements.sort((left, right) => right.from - left.from);
   for (const replacement of replacements) {
     const first = rendered.characters[replacement.from];
@@ -260,7 +299,15 @@ async function renderReadingViewOnce(
     // Another nested processor may have completed while the template was awaited.
     if (range.toString() !== rendered.text.slice(replacement.from, replacement.to)) continue;
     const original = range.cloneContents();
-    range.deleteContents();
+    const acrossParents = first.node.parentElement !== last.node.parentElement;
+    const pieces: Array<{ node: Text; from: number; to: number }> = [];
+    if (acrossParents) {
+      for (const character of rendered.characters.slice(replacement.from, replacement.to)) {
+        const previous = pieces[pieces.length - 1];
+        if (previous?.node === character.node) previous.to = character.offset + 1;
+        else pieces.push({ node: character.node, from: character.offset, to: character.offset + 1 });
+      }
+    } else range.deleteContents();
     const presentation = mathPresentation(section.text, replacement.match);
     const math = renderFormula(presentation.source, replacement.match.display, replacement.match.display, element.ownerDocument);
     if (element.closest(".cm-callout .callout-content")) {
@@ -281,8 +328,21 @@ async function renderReadingViewOnce(
         view.dispatch({ selection: { anchor: candidate.from + 2 }, scrollIntoView: true }); view.focus();
       });
     }
-    range.insertNode(math);
-    scope.replacements.push({ element: math, original });
+    if (acrossParents) {
+      // Replace each text fragment separately so unload restores the original
+      // paragraph/list structure, rather than nesting cloned blocks in a paragraph.
+      for (let index = pieces.length - 1; index >= 0; index--) {
+        const piece = pieces[index];
+        const local = element.ownerDocument.createRange();
+        local.setStart(piece.node, piece.from); local.setEnd(piece.node, piece.to);
+        const saved = local.cloneContents(); local.deleteContents();
+        const placeholder = index === 0 ? math : element.ownerDocument.createElement("span");
+        local.insertNode(placeholder); scope.replacements.push({ element: placeholder, original: saved });
+      }
+    } else {
+      range.insertNode(math);
+      scope.replacements.push({ element: math, original });
+    }
   }
   await finishRenderMath();
 }

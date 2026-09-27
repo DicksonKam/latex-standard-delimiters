@@ -1,14 +1,14 @@
 {
-  "version": "0.4.3",
-  "timestamp": "2026-09-27T09:18:10.997Z",
-  "mainJsSha256": "0400df2fa1faed1f6eb1532ae4f3068d27000539e86bf4269a14eb6951bc3d77",
+  "version": "0.4.4",
+  "timestamp": "2026-09-27T10:03:46.593Z",
+  "mainJsSha256": "ad9db8104895e4fe5a61609baa3390ef9ff559d30f52fe9bc3c9324a090c9dd2",
   "scope": "Single large native callout with 25, 100 and 250 inline underbrace equations, Live Preview and Reading View. End-to-end warm mount/typesetting wall time, not typing latency.",
   "results": [
     {
       "name": "25/source avoids quadratic delay",
       "passed": true,
       "detail": {
-        "elapsedMs": 77.6000000089407
+        "elapsedMs": 58.30000001192093
       }
     },
     {
@@ -30,7 +30,7 @@
       "name": "25/preview avoids quadratic delay",
       "passed": true,
       "detail": {
-        "elapsedMs": 90.3999999910593
+        "elapsedMs": 85.90000000596046
       }
     },
     {
@@ -52,7 +52,7 @@
       "name": "100/source avoids quadratic delay",
       "passed": true,
       "detail": {
-        "elapsedMs": 244.90000000596046
+        "elapsedMs": 235.09999999403954
       }
     },
     {
@@ -74,7 +74,7 @@
       "name": "100/preview avoids quadratic delay",
       "passed": true,
       "detail": {
-        "elapsedMs": 339.19999998807907
+        "elapsedMs": 245.90000000596046
       }
     },
     {
@@ -96,7 +96,7 @@
       "name": "250/source avoids quadratic delay",
       "passed": true,
       "detail": {
-        "elapsedMs": 418.70000000298023
+        "elapsedMs": 406.6000000089407
       }
     },
     {
@@ -118,7 +118,7 @@
       "name": "250/preview avoids quadratic delay",
       "passed": true,
       "detail": {
-        "elapsedMs": 623.7000000029802
+        "elapsedMs": 800
       }
     },
     {
@@ -141,37 +141,37 @@
     {
       "count": 25,
       "mode": "source",
-      "elapsedMs": 77.6000000089407,
+      "elapsedMs": 58.30000001192093,
       "actual": 25
     },
     {
       "count": 25,
       "mode": "preview",
-      "elapsedMs": 90.3999999910593,
+      "elapsedMs": 85.90000000596046,
       "actual": 25
     },
     {
       "count": 100,
       "mode": "source",
-      "elapsedMs": 244.90000000596046,
+      "elapsedMs": 235.09999999403954,
       "actual": 100
     },
     {
       "count": 100,
       "mode": "preview",
-      "elapsedMs": 339.19999998807907,
+      "elapsedMs": 245.90000000596046,
       "actual": 100
     },
     {
       "count": 250,
       "mode": "source",
-      "elapsedMs": 418.70000000298023,
+      "elapsedMs": 406.6000000089407,
       "actual": 250
     },
     {
       "count": 250,
       "mode": "preview",
-      "elapsedMs": 623.7000000029802,
+      "elapsedMs": 800,
       "actual": 250
     }
   ]

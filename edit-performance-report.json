@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-09-27T09:19:01.715Z",
+  "timestamp": "2026-09-27T10:04:36.266Z",
   "characters": 76780,
   "equations": 1000,
   "editDispatchSamples": 40,
-  "meanMs": 14.675,
-  "maxMs": 29.900000005960464,
+  "meanMs": 16.272499999776482,
+  "maxMs": 39.8999999910593,
   "scope": "Synchronous insertion/deletion dispatch including decoration computation and viewport DOM updates; not end-to-end keyboard or full-document typesetting latency",
-  "mainJsSha256": "0400df2fa1faed1f6eb1532ae4f3068d27000539e86bf4269a14eb6951bc3d77",
+  "mainJsSha256": "ad9db8104895e4fe5a61609baa3390ef9ff559d30f52fe9bc3c9324a090c9dd2",
   "results": [
     {
       "name": "Large-note active math preview renders",

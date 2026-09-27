@@ -112,3 +112,27 @@ test('quoted multiline displays beside prose project only validated container pr
   assert.equal(broken.projected, false);
   assert.deepEqual(containerReplacementRanges(invalid, findMathInMarkdown(invalid)[0], broken), []);
 });
+
+
+test('list displays with trailing prose project validated indentation', () => {
+  for (const marker of ['- ', '+ ', '* ', '1. ', '12) ', '  - ']) {
+    const text = marker + String.raw`\[321+` + '\n' + ' '.repeat(marker.length) + String.raw`4\].`;
+    const result = project(text);
+    assert.equal(result.projected, true);
+    assert.equal(result.source, '321+\n4');
+    assert.equal(containerReplacementRanges(text, findMathInMarkdown(text)[0], result).length, 2);
+  }
+  assert.equal(project(String.raw`- \[321+
+4\].`).projected, false);
+});
+
+
+test('blank rows in list displays retain source mapping and layout', () => {
+  const text = String.raw`- \[321+
+
+  4\].`;
+  const result = project(text);
+  assert.equal(result.source, '321+\n\n4');
+  const ranges = containerReplacementRanges(text, findMathInMarkdown(text)[0], result);
+  assert.equal([...ranges].reverse().reduce((value, range) => value.slice(0, range.from) + value.slice(range.to), text), '- \n\n  .');
+});

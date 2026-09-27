@@ -1,11 +1,11 @@
-# 0.4.3 daily editing audit
+# 0.4.4 boundary rendering audit
 
-Status: complete — desktop GitHub beta
+Status: in progress
 
 Local verification: complete
 
-Confirmed defects: multiline displays beside prose/punctuation/indentation were skipped in Live Preview. Quoted displays beside prose/punctuation leaked Markdown quote markers into active MathJax previews. The patch replaces content per line and projects only validated container prefixes while preserving source ranges and inconsistent-boundary fail-closed behavior. Production does not write note source.
+Confirmed defects: multiline list displays with trailing punctuation/prose were skipped in Live Preview; blank rows prevented list projection and split Reading View displays across sections. The fixes validate list indentation, preserve empty rows, map only exact source-bound Reading View sections and restore individual text fragments without nesting paragraphs.
 
-Final gates: 33 unit tests including 7,000 generated inputs; original runtime suite plus daily identity checks and existing stress suites on final bundle; trusted native keyboard/paste/undo evidence; dense callout performance; package matching runtime/stress/native evidence; GitHub CI and public asset verification. Test writes are restricted to disposable work/TestVault. Mobile, Community publication and untested OS/IME behavior remain outside certified scope.
+Required final gates: 35 unit tests, all original runtime and stress suites plus boundary cases on the final bundle, native keyboard checks, packaging, GitHub CI and independent public asset checks. All test writes are confined to disposable work/TestVault. Main vault, mobile and Community publication remain outside test scope.
 
-All 33 unit tests, 1,442 scripted app assertions and nine trusted native keyboard checks pass on the final bundle. GitHub checks and release packaging passed. Public 0.4.3 is published as a pre-release; all eight independent public asset checks pass. The main vault was untouched.
+Final bundle passed 35 unit tests including 7,000 generated inputs, 2,007 scripted app assertions across 23 suites and nine native keyboard checks. Dense callout regression limits and unload restoration passed. Zero lint errors/four DOM helper advisories. Public release/CI verification is pending.

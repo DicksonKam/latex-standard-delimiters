@@ -1,3 +1,9 @@
+# 0.4.4
+
+- Render validated multiline list displays followed by punctuation or prose.
+- Accept blank TeX rows inside list displays and render displays split across Reading View paragraphs.
+- Bind cross-section mapping to exact source sections, preserve paragraph structure on unload, and add repeated/literal equation regression cases.
+
 # Changes
 
 ## 0.4.3 — daily editing fixes

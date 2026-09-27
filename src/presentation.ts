@@ -39,7 +39,7 @@ export function mathPresentation(text: string, match: MathDelimiterMatch): MathP
   }
   const container = quoteDepth ? 'quote' : list || continuationIndent ? 'list' : 'plain';
   const raw = text.slice(match.from + 2, match.to - 2);
-  if (container === 'plain' || (!standalone && !(match.display && quoteDepth))) {
+  if (container === 'plain' || (!standalone && !(match.display && (quoteDepth || list || continuationIndent)))) {
     return { source: raw, segments: raw ? [{ from: match.from + 2, to: match.to - 2, sourceFrom: 0 }] : [], container, standalone, projected: false };
   }
   let source = '';
@@ -56,8 +56,8 @@ export function mathPresentation(text: string, match: MathDelimiterMatch): MathP
       remove = lineQuote.length;
       if (listIndent) {
         const indent = line[0].slice(remove, remove + listIndent);
-        if (indent.length !== listIndent || !/^[ \t]*$/.test(indent)) { valid = false; break; }
-        remove += listIndent;
+        if (indent.length === listIndent && /^[ \t]*$/.test(indent)) remove += listIndent;
+        else if (line[0].slice(remove).trim()) { valid = false; break; }
       }
     }
     const content = line[0].slice(remove);

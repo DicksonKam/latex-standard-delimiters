@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-09-27T09:18:47.815Z",
-  "mainJsSha256": "0400df2fa1faed1f6eb1532ae4f3068d27000539e86bf4269a14eb6951bc3d77",
+  "timestamp": "2026-09-27T10:04:23.242Z",
+  "mainJsSha256": "ad9db8104895e4fe5a61609baa3390ef9ff559d30f52fe9bc3c9324a090c9dd2",
   "scope": "Synthetic pointer events and composing guard on desktop; not real mobile or IME verification",
   "results": [
     {
