@@ -1,6 +1,6 @@
 # 0.4.5 editing correctness audit
 
-Status: local gates complete; public release verification pending — desktop GitHub beta
+Status: complete — desktop GitHub beta
 
 Local verification: complete
 
@@ -19,4 +19,6 @@ Current evidence (Obsidian 1.13.7, macOS):
 - Native keyboard: native-daily-keyboard-report.json (9 passing checks), native-cross-section-report.json (6 passing checks with trusted events).
 - Local gates: npm run check; 18 runtime suites (258 assertions); six stress suites (1,943 assertions); no recorded failures.
 - Review: REVIEW-MILESTONE.md documents separate self-review, corrections and bounded coverage. It is not an independent reviewer certification.
-- Publication: packaging, GitHub CI and independent public-asset verification are still required.
+- Publication: packaging passed; Checks #19 and Release #9 succeeded for fefffd3. Public 0.4.5 was published and independently downloaded; public-release-check-report.json records eight passing byte/checksum/ZIP/attribution/manifest checks. The release tag matches the tested implementation.
+
+Requirement audit: baseline reproduction, implementation fixes, semantic edits/undo/delimiters/multiple panes, cleanup/source preservation, existing MathJax coexistence, separate self-review and evidence boundaries, all named local/native/performance gates, packaging, CI and public release verification are satisfied by the current reports. Universal stability and external reviewer certification are not claimed.

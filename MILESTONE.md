@@ -20,3 +20,5 @@ Acceptance evidence:
 - Run relevant unit, runtime, native input and performance gates on the final artifact; publish and independently verify the GitHub beta assets.
 
 Mobile and Community directory submission remain outside scope. Main-vault writes are prohibited. Completion requires current evidence for each item above; until then the milestone remains active.
+
+The 0.4.5 editing-correctness milestone is complete. See COMPLETION-AUDIT.md for current requirement evidence and REVIEW-MILESTONE.md for corrections and limits.
