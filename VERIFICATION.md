@@ -1,3 +1,7 @@
+# Current scope — 0.3.2
+
+Desktop-only GitHub beta. Mobile certification and Community directory eligibility are outside scope by owner instruction. Rendering JavaScript and CSS are unchanged from the tested 0.3.1 binary; the manifest now declares isDesktopOnly=true. Historical reports below retain their original version and limits.
+
 # Verification — 0.3.1
 
 Verified on macOS in Obsidian 1.13.7, in a disposable TestVault. Main-vault note/plugin files were not modified. Production never writes Markdown; developer scripts deliberately edit disposable fixtures/preferences and restore them. The minimum app version matches this tested host. Older versions may work, but support is not claimed.

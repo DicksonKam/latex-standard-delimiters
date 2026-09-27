@@ -1,5 +1,11 @@
 # Changes
 
+## 0.3.2 — beta
+
+- Declare desktop-only support in the manifest.
+- Document GitHub/BRAT distribution; community listing and mobile certification are outside scope.
+- Rendering code and preference storage remain identical to tested 0.3.1.
+
 ## 0.3.1 — beta
 
 - Searchable declarative settings preserve existing preferences.

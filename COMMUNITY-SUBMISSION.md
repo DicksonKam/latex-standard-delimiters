@@ -1,3 +1,7 @@
+# Historical community release preparation
+
+As of September 27, 2026, the owner chose GitHub distribution and desktop-only support. Community submission and mobile testing are no longer release gates. The former plan below is retained as historical context, not an active submission task. No author outreach or community submission was performed.
+
 # Community release preparation
 
 Status: in progress. Do not describe this document as approval or a submitted listing.

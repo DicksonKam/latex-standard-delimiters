@@ -1,3 +1,7 @@
+# Current platform scope
+
+Version 0.3.2 and later are desktop-only by owner decision. Mobile testing is no longer a release requirement. The earlier platform assessment below is historical evidence, not a mobile-support promise.
+
 # Platform and API audit — working release candidate
 
 Production imports are Obsidian, CodeMirror state/view/language and local parser/highlighter modules. There are no Node.js, Electron, filesystem or network imports in the production plugin. The compiled file requires host-provided modules only. Developer runtime scripts use Node APIs and are separate files, not bundled. The manifest remains isDesktopOnly=false. This is an architectural compatibility statement, not a real-device test result.
