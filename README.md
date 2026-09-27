@@ -65,3 +65,5 @@ The runner locks against overlapping runs and records plugin/host versions and m
 ## Attribution
 
 Derived from [LaTeX Delimiter Renderer by Andreas Burger](https://github.com/BurgerAndreas/latex-delimiter-renderer), under MIT. LICENSE and NOTICE.md retain attribution.
+
+Version 0.4.5 fixes stale cross-paragraph Reading View equations after edits and recovers equations when cached sections return from offscreen. Current verification separates scripted semantic regressions from trusted native keyboard checks; see [Verification](VERIFICATION.md) and [Review findings](REVIEW-MILESTONE.md).

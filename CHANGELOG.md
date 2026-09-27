@@ -1,3 +1,9 @@
+# 0.4.5
+
+- Refresh cross-paragraph Reading View equations when any participating section changes, including external file updates and rapid edits.
+- Cancel obsolete asynchronous renders and dispose DOM ownership before native paragraph updates; preserve paragraph structure and source.
+- Add semantic editing regressions for operators, commands, undo/redo, delimiters, multiple panes and queued-refresh teardown. Require both the public 0.4.4 failing reproduction and current passing evidence in packaging.
+
 # 0.4.4
 
 - Render validated multiline list displays followed by punctuation or prose.

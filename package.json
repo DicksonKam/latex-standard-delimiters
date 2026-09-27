@@ -1,6 +1,6 @@
 {
   "name": "latex-standard-delimiters",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "private": true,
   "description": "Render LaTeX paren and bracket math delimiters in Obsidian without modifying note source.",
   "type": "module",

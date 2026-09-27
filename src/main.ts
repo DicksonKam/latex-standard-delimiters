@@ -7,6 +7,7 @@ import {
   loadMathJax,
   type MarkdownPostProcessorContext,
   MarkdownView,
+  TFile,
   Plugin,
   Notice,
   PluginSettingTab,
@@ -95,9 +96,11 @@ const disabledRenderers = new WeakSet<Plugin>();
 const renderScopes = new WeakMap<Plugin, Set<ReadingRenderScope>>();
 const elementScopes = new WeakMap<HTMLElement, ReadingRenderScope>();
 class ReadingRenderScope extends MarkdownRenderChild {
-  replacements: Array<{ element: HTMLElement; original: DocumentFragment }> = [];
-  constructor(element: HTMLElement, readonly context: MarkdownPostProcessorContext, readonly plugin: Plugin) { super(element); }
+  active = true;
+  replacements: Array<{ element: HTMLElement; original: DocumentFragment; key: string }> = [];
+  constructor(element: HTMLElement, readonly context: MarkdownPostProcessorContext, readonly plugin: Plugin, readonly sourceRevision: string, public crossSection: boolean) { super(element); }
   onload(): void {
+    this.active = true;
     let scopes = renderScopes.get(this.plugin);
     if (!scopes) { scopes = new Set(); renderScopes.set(this.plugin, scopes); }
     scopes.add(this); elementScopes.set(this.containerEl, this);
@@ -106,7 +109,7 @@ class ReadingRenderScope extends MarkdownRenderChild {
     for (const replacement of this.replacements) if (replacement.element.parentNode) replacement.element.replaceWith(replacement.original);
     this.replacements = [];
   }
-  onunload(): void { this.restore(); renderScopes.get(this.plugin)?.delete(this); elementScopes.delete(this.containerEl); }
+  onunload(): void { this.active = false; this.restore(); renderScopes.get(this.plugin)?.delete(this); if (elementScopes.get(this.containerEl) === this) elementScopes.delete(this.containerEl); }
 }
 
 const embeddedElements = new WeakMap<HTMLElement, EmbeddedMathRenderChild>();
@@ -165,41 +168,88 @@ class EmbeddedMathRenderChild extends MarkdownRenderChild {
 
 // Blank rows can split one display across multiple Reading View sections.
 // Wait for both source-bound sections, then map only their common source span.
+const crossSectionChildren = new WeakMap<Plugin, Set<CrossSectionMathChild>>();
+const managedReadingContexts = new WeakSet<MarkdownPostProcessorContext>();
 class CrossSectionMathChild extends MarkdownRenderChild {
-  constructor(element: HTMLElement, private readonly context: MarkdownPostProcessorContext, private readonly plugin: Plugin, private readonly match: MathDelimiterMatch) { super(element); }
+  constructor(element: HTMLElement, private readonly context: MarkdownPostProcessorContext, private readonly plugin: Plugin, private readonly match: MathDelimiterMatch, private readonly sourceRevision: string) { super(element); }
   onload(): void {
+    if (disabledRenderers.has(this.plugin)) return;
+    let children = crossSectionChildren.get(this.plugin);
+    if (!children) { children = new Set(); crossSectionChildren.set(this.plugin, children); }
+    children.add(this);
     const timerWindow = this.containerEl.ownerDocument.defaultView ?? window;
-    let frame = 0, attempts = 0;
-    this.register(() => timerWindow.cancelAnimationFrame(frame));
+    let frame = 0, attempts = 0, active = true, rendering = false, dirty = false;
+    let observer: MutationObserver | undefined, watched: HTMLElement | undefined;
+    let participants = [this.containerEl];
+    const key = `${this.match.from}:${this.match.to}`;
+    const isRendered = (): boolean => elementScopes.get(this.containerEl)?.replacements.some(replacement =>
+      replacement.key === key && replacement.element.classList.contains("lsd-math") && this.containerEl.contains(replacement.element)) ?? false;
+    this.register(() => { active = false; timerWindow.cancelAnimationFrame(frame); observer?.disconnect(); children.delete(this); });
+    const schedule = (): void => {
+      if (!active || disabledRenderers.has(this.plugin) || isRendered()) return;
+      if (rendering) { dirty = true; return; }
+      if (!frame) frame = timerWindow.requestAnimationFrame(resolve);
+    };
     const resolve = (): void => {
+      frame = 0;
+      if (!active || disabledRenderers.has(this.plugin) || isRendered()) return;
       const parent = this.containerEl.parentElement;
-      if (!parent || !parent.classList.contains("markdown-preview-section")) { if (++attempts < 20) frame = timerWindow.requestAnimationFrame(resolve); return; }
+      if (!parent || !parent.classList.contains("markdown-preview-section")) { if (++attempts < 20) schedule(); return; }
+      (this.plugin as LatexDelimiterRenderer).watchReadingRemounts(this.containerEl, this.context);
+      if (watched !== parent) {
+        observer?.disconnect(); watched = parent;
+        observer = new timerWindow.MutationObserver(records => {
+          if (isRendered()) return;
+          if (records.some(record => record.target === parent || participants.some(part => part.contains(record.target)))) {
+            attempts = 0; schedule();
+          }
+        });
+        observer.observe(parent, { childList: true, subtree: true, characterData: true });
+      }
       const opening = this.context.getSectionInfo(this.containerEl);
-      if (!opening) { if (++attempts < 20) frame = timerWindow.requestAnimationFrame(resolve); return; }
+      if (!opening) { if (++attempts < 20) schedule(); return; }
+      if (opening.text !== this.sourceRevision) return;
       const starts = [0];
       for (let i = 0; i < opening.text.length; i++) if (opening.text[i] === "\n") starts.push(i + 1);
       const end = Array.from(parent.children).map(child => this.context.getSectionInfo(child as HTMLElement)).find(section => section && (starts[section.lineStart] ?? 0) <= this.match.to - 1 && (starts[section.lineEnd + 1] ?? opening.text.length) >= this.match.to);
-      if (!end) { if (++attempts < 20) frame = timerWindow.requestAnimationFrame(resolve); return; }
+      if (!end) { if (++attempts < 20) schedule(); return; }
       const section = { ...opening, lineEnd: end.lineEnd };
       const elements = Array.from(parent.children).filter(child => {
         if (child.classList.contains("mod-ui")) return false;
         const info = this.context.getSectionInfo(child as HTMLElement);
         return info && info.lineStart >= opening.lineStart && info.lineEnd <= end.lineEnd;
       }) as HTMLElement[];
+      participants = elements;
+      const scope = elementScopes.get(this.containerEl);
+      if (scope?.sourceRevision === this.sourceRevision) {
+        // A virtualized paragraph may drop just one equation fragment. Restore
+        // surviving fragments and release detached copies before mapping again.
+        scope.replacements = scope.replacements.filter(replacement => {
+          if (replacement.key !== key && elements.some(element => element.contains(replacement.element))) return true;
+          if (replacement.element.parentNode) replacement.element.replaceWith(replacement.original);
+          return false;
+        });
+      }
+      if (!elements.length || !renderedCharacters(elements[0]).text || !renderedCharacters(elements[elements.length - 1]).text) return;
       const context: MarkdownPostProcessorContext = { docId: this.context.docId, sourcePath: this.context.sourcePath, frontmatter: this.context.frontmatter as unknown, addChild: child => this.addChild(child), getSectionInfo: () => section };
-      void renderReadingViewOnce(parent, context, this.plugin, this.match, elements).catch(error => console.error("Standard delimiters cross-section rendering:", error));
+      rendering = true;
+      void renderReadingViewOnce(parent, context, this.plugin, this.match, elements, () => active && this.context.getSectionInfo(this.containerEl)?.text === section.text && elements.every(element => element.parentElement === parent))
+        .catch(error => console.error("Standard delimiters cross-section rendering:", error))
+        .finally(() => { rendering = false; if (dirty) { dirty = false; schedule(); } });
     };
-    frame = timerWindow.requestAnimationFrame(resolve);
+    schedule();
   }
 }
 
-const readingTasks = new WeakMap<HTMLElement, Promise<void>>();
+const readingTasks = new WeakMap<HTMLElement, { source: string | undefined; sourcePath: string; task: Promise<void> }>();
 function renderReadingView(element: HTMLElement, context: MarkdownPostProcessorContext, plugin: Plugin): Promise<void> {
+  const source = context.getSectionInfo(element)?.text;
   const existing = readingTasks.get(element);
-  if (existing) return existing;
+  if (existing && existing.source === source && existing.sourcePath === context.sourcePath) return existing.task;
   const task = renderReadingViewOnce(element, context, plugin);
-  readingTasks.set(element, task);
-  void task.finally(() => { if (readingTasks.get(element) === task) readingTasks.delete(element); }).catch(() => {});
+  const pending = { source, sourcePath: context.sourcePath, task };
+  readingTasks.set(element, pending);
+  void task.finally(() => { if (readingTasks.get(element) === pending) readingTasks.delete(element); }).catch(() => {});
   return task;
 }
 
@@ -208,7 +258,8 @@ async function renderReadingViewOnce(
   context: MarkdownPostProcessorContext,
   plugin: Plugin,
   crossSectionMatch?: MathDelimiterMatch,
-  crossSectionElements?: HTMLElement[]
+  crossSectionElements?: HTMLElement[],
+  isCurrent: () => boolean = () => true
 ): Promise<void> {
   if (disabledRenderers.has(plugin) || element.closest(`[${READING_RENDER_MARKER}="template"]`)) return;
 
@@ -220,10 +271,17 @@ async function renderReadingViewOnce(
   const sectionEnd = lineStarts[section.lineEnd + 1] ?? section.text.length;
   const allMatches = readingMatches(section.text);
   if (!crossSectionMatch) {
-    for (const match of allMatches) if (match.from >= sectionStart && match.from < sectionEnd && match.to > sectionEnd) context.addChild(new CrossSectionMathChild(element, context, plugin, match));
+    for (const match of allMatches) if (match.from >= sectionStart && match.from < sectionEnd && match.to > sectionEnd) context.addChild(new CrossSectionMathChild(element, context, plugin, match, section.text));
   }
-  const matches = allMatches.filter(match => match.from >= sectionStart && match.to <= sectionEnd && (!crossSectionMatch || (match.from === crossSectionMatch.from && match.to === crossSectionMatch.to)));
+  const matches = allMatches.filter(match => match.from >= sectionStart && match.to <= sectionEnd);
   if (matches.length === 0) return;
+  // Register ownership before asynchronous template rendering. If the host
+  // removes this section while we await, its teardown cancels the pending work.
+  const scopeElement = crossSectionElements?.[0] ?? element;
+  let scope = elementScopes.get(scopeElement);
+  if (scope && (scope.sourceRevision !== section.text || scope.context.sourcePath !== context.sourcePath)) { scope.unload(); scope = undefined; }
+  if (!scope) { scope = new ReadingRenderScope(scopeElement, context, plugin, section.text, !!crossSectionMatch); context.addChild(scope); }
+  else if (crossSectionMatch) scope.crossSection = true;
 
   const fragments = (crossSectionElements ?? [element]).map(part => renderedCharacters(part));
   const rendered = { text: fragments.map(part => part.text).join(""), characters: fragments.flatMap(part => part.characters) };
@@ -282,11 +340,7 @@ async function renderReadingViewOnce(
     }
   } finally { component.unload(); }
 
-  if (disabledRenderers.has(plugin) || replacements.length === 0) return;
-
-  const scopeElement = crossSectionElements?.[0] ?? element;
-  let scope = elementScopes.get(scopeElement);
-  if (!scope) { scope = new ReadingRenderScope(scopeElement, context, plugin); context.addChild(scope); }
+  if (disabledRenderers.has(plugin) || !scope.active || !isCurrent() || context.getSectionInfo(element)?.text !== section.text || replacements.length === 0) return;
   replacements.sort((left, right) => right.from - left.from);
   for (const replacement of replacements) {
     const first = rendered.characters[replacement.from];
@@ -337,11 +391,11 @@ async function renderReadingViewOnce(
         local.setStart(piece.node, piece.from); local.setEnd(piece.node, piece.to);
         const saved = local.cloneContents(); local.deleteContents();
         const placeholder = index === 0 ? math : element.ownerDocument.createElement("span");
-        local.insertNode(placeholder); scope.replacements.push({ element: placeholder, original: saved });
+        local.insertNode(placeholder); scope.replacements.push({ element: placeholder, original: saved, key: `${replacement.match.from}:${replacement.match.to}` });
       }
     } else {
       range.insertNode(math);
-      scope.replacements.push({ element: math, original });
+      scope.replacements.push({ element: math, original, key: `${replacement.match.from}:${replacement.match.to}` });
     }
   }
   await finishRenderMath();
@@ -826,6 +880,13 @@ export default class LatexDelimiterRenderer extends Plugin {
   private disposed = false;
   private checkingConflict = false;
   private embeddedChildren = new Map<HTMLElement, EmbeddedMathRenderChild>();
+  private pendingReadingRefresh = new Map<MarkdownView, { source: string; scroll?: number; pixels?: number; cancel: () => void }>();
+  private fileReadVersions = new WeakMap<TFile, number>();
+  private refreshedReadingSource = new WeakMap<MarkdownView, string>();
+  private readingRemounts = new Map<MarkdownView, {
+    context: MarkdownPostProcessorContext; component: Component; children: Set<MarkdownRenderChild>;
+    dispose: () => void; schedule: () => void;
+  }>();
   private extensions = [livePreviewExtension, EditorView.theme({}), mathNavigation, renderOptions.of({ previews: true, enabled: true }), compositionState, compositionEvents, vimSourceState, vimSourceObserver, calloutCaretObserver, embeddedWidgetObserver, refreshEmbedded.of(() => this.refreshEmbeddedMath())];
 
   async saveColors(): Promise<void> {
@@ -856,15 +917,191 @@ export default class LatexDelimiterRenderer extends Plugin {
     await loadMathJax();
 
     this.registerMarkdownPostProcessor((element, context) => {
-      if (this.rendererEnabled) return renderReadingView(element, context, this);
+      if (this.rendererEnabled) {
+        return renderReadingView(element, context, this);
+      }
     });
     this.registerEditorExtension(this.extensions);
     this.registerInterval(window.setInterval(() => { void this.checkRendererConflict(); }, 2000));
-    this.registerEvent(this.app.workspace.on("layout-change", () => this.refreshEmbeddedMath()));
+    this.registerEvent(this.app.workspace.on("layout-change", () => {
+      this.refreshEmbeddedMath();
+      this.pruneReadingRefreshes();
+    }));
+    this.registerEvent(this.app.workspace.on("editor-change", (editor, info) => {
+      if (info.file) {
+        this.fileReadVersions.set(info.file, (this.fileReadVersions.get(info.file) ?? 0) + 1);
+        this.refreshChangedCrossSection(info.file.path, editor.getValue());
+      }
+    }));
+    this.registerEvent(this.app.vault.on("modify", file => {
+      if (!(file instanceof TFile) || file.extension !== "md" || !this.hasReadingPane(file.path)) return;
+      const revision = (this.fileReadVersions.get(file) ?? 0) + 1;
+      this.fileReadVersions.set(file, revision);
+      void this.app.vault.cachedRead(file).then(text => {
+        if (this.fileReadVersions.get(file) === revision) this.refreshChangedCrossSection(file.path, text);
+      }).catch(() => { /* A file may disappear while a queued read is pending. */ });
+    }));
 
     this.app.workspace.onLayoutReady(() => {
       this.app.workspace.updateOptions();
       this.refreshEmbeddedMath();
+    });
+  }
+
+  // The native virtualizer can remount a processed paragraph after unloading
+  // its render children. A view-owned coordinator reclaims source-bound math in
+  // those remounted sections; its lifetime is independent of paragraph caching.
+  watchReadingRemounts(element: HTMLElement, context: MarkdownPostProcessorContext): void {
+    if (managedReadingContexts.has(context) || this.disposed || !this.rendererEnabled) return;
+    this.app.workspace.iterateAllLeaves(leaf => {
+      const view = leaf.view;
+      if (!(view instanceof MarkdownView) || view.getMode() !== "preview" || !view.previewMode.containerEl.contains(element)) return;
+      const existing = this.readingRemounts.get(view);
+      if (existing) { existing.context = context; return; }
+      const component = this.addChild(new Component()), children = new Set<MarkdownRenderChild>();
+      const timerWindow = element.ownerDocument.defaultView ?? window;
+      let frame = 0, busy = false, dirty = false, active = true;
+      const schedule = (): void => {
+        if (!active || this.disposed || !this.rendererEnabled) return;
+        if (busy) { dirty = true; return; }
+        if (!frame) frame = timerWindow.requestAnimationFrame(() => { frame = 0; void process(); });
+      };
+      const observer = new timerWindow.MutationObserver(records => {
+        if (records.some(record => {
+          const target = record.target.nodeType === 1 ? record.target as Element : record.target.parentElement;
+          return target && !target.closest(".lsd-math, mjx-container, .math, .mod-ui");
+        })) schedule();
+      });
+      const record = { context, component, children, schedule, dispose: (): void => {
+        active = false; timerWindow.cancelAnimationFrame(frame); observer.disconnect(); this.removeChild(component);
+      } };
+      const process = async (): Promise<void> => {
+        if (!active || this.disposed || !this.rendererEnabled || !view.containerEl.isConnected || view.getMode() !== "preview" || view.file?.path !== record.context.sourcePath) return;
+        busy = true;
+        try {
+          for (const child of children) if (!view.previewMode.containerEl.contains(child.containerEl)) {
+            component.removeChild(child); children.delete(child);
+          }
+          const source = view.previewMode.get(), base = record.context, parent = view.previewMode.containerEl.querySelector<HTMLElement>(".markdown-preview-section");
+          if (!parent) return;
+          const starts = [0];
+          for (let i = 0; i < source.length; i++) if (source[i] === "\n") starts.push(i + 1);
+          const matches = readingMatches(source);
+          const managed: MarkdownPostProcessorContext = {
+            docId: base.docId, sourcePath: base.sourcePath, frontmatter: base.frontmatter as unknown,
+            addChild: child => { children.add(child); component.addChild(child); },
+            getSectionInfo: node => active && view.previewMode.containerEl.contains(node) && view.previewMode.get() === source ? base.getSectionInfo(node) : null
+          };
+          managedReadingContexts.add(managed);
+          for (const part of Array.from(parent.children) as HTMLElement[]) {
+            if (part.classList.contains("mod-ui") || !part.textContent) continue;
+            const info = managed.getSectionInfo(part);
+            if (!info || info.text !== source) continue;
+            const from = starts[info.lineStart] ?? 0, to = starts[info.lineEnd + 1] ?? source.length;
+            const relevant = matches.filter(match => match.from >= from && match.from < to);
+            if (!relevant.length) continue;
+            const owned = new Set(elementScopes.get(part)?.replacements.filter(replacement =>
+              replacement.element.classList.contains("lsd-math") && part.contains(replacement.element)).map(replacement => replacement.key));
+            if (relevant.every(match => owned.has(`${match.from}:${match.to}`))) continue;
+            await renderReadingView(part, managed, this);
+          }
+        } catch (error) { console.error("Standard delimiters remount rendering:", error); }
+        finally { busy = false; if (dirty) { dirty = false; schedule(); } }
+      };
+      this.readingRemounts.set(view, record);
+      observer.observe(view.previewMode.containerEl, { childList: true, subtree: true });
+    });
+  }
+
+  private pruneReadingRefreshes(): void {
+    if (this.pendingReadingRefresh.size === 0 && this.readingRemounts.size === 0) return;
+    const open = new Set<MarkdownView>();
+    this.app.workspace.iterateAllLeaves(leaf => { if (leaf.view instanceof MarkdownView) open.add(leaf.view); });
+    for (const [view, record] of this.readingRemounts) {
+      if (!open.has(view) || !view.containerEl.isConnected || view.getMode() !== "preview" || view.file?.path !== record.context.sourcePath) {
+        record.dispose(); this.readingRemounts.delete(view);
+      }
+    }
+    for (const [view, pending] of this.pendingReadingRefresh) {
+      if (!open.has(view) || !view.containerEl.isConnected || view.getMode() !== "preview") {
+        pending.cancel(); this.pendingReadingRefresh.delete(view);
+      }
+    }
+  }
+
+  private hasReadingPane(sourcePath: string): boolean {
+    let found = false;
+    this.app.workspace.iterateAllLeaves(leaf => {
+      if (leaf.view instanceof MarkdownView && leaf.view.file?.path === sourcePath && leaf.view.getMode() === "preview") found = true;
+    });
+    return found;
+  }
+
+  // Restore cross-section DOM before the host rebuilds individual paragraphs.
+  // After its update, rebuild the affected preview from the newest revision.
+  // Ordinary notes keep Obsidian's normal incremental rendering path.
+  private refreshChangedCrossSection(sourcePath: string, text: string): void {
+    if (this.disposed || !this.rendererEnabled || !this.hasReadingPane(sourcePath)) return;
+    const hasCrossSectionMath = readingMatches(text).some(match => match.display &&
+      /\n[ \t]*\n/.test(mathPresentation(text, match).source));
+    this.app.workspace.iterateAllLeaves(leaf => {
+      const view = leaf.view;
+      if (!(view instanceof MarkdownView) || view.file?.path !== sourcePath || view.getMode() !== "preview") return;
+      const previous = this.pendingReadingRefresh.get(view);
+      if (previous?.source === text || (!previous && this.refreshedReadingSource.get(view) === text && view.previewMode.get() === text)) return;
+      // On 1.13.7 the scrolling preview can be inside the public container.
+      const scroller = (): HTMLElement => view.previewMode.containerEl.querySelector<HTMLElement>(".markdown-preview-view") ?? view.previewMode.containerEl;
+      const currentScroll = view.previewMode.getScroll();
+      const retainedScroll = previous?.scroll ?? (Number.isFinite(currentScroll) ? currentScroll : 0);
+      const retainedPixels = previous?.pixels ?? scroller().scrollTop;
+      const scopes = [...(renderScopes.get(this) ?? [])].filter(scope => view.previewMode.containerEl.contains(scope.containerEl));
+      if (!hasCrossSectionMath && !scopes.some(scope => scope.crossSection) && !this.pendingReadingRefresh.has(view)) return;
+      for (const scope of scopes) scope.unload();
+      previous?.cancel();
+      const timerWindow = view.containerEl.ownerDocument.defaultView ?? window;
+      let timer = 0, frame = 0, attempts = 0;
+      const pending: { source: string; scroll?: number; pixels?: number; cancel: () => void } = {
+        source: text, scroll: retainedScroll, pixels: retainedPixels,
+        cancel: () => { timerWindow.clearTimeout(timer); timerWindow.cancelAnimationFrame(frame); }
+      };
+      const isCurrent = (): boolean => !this.disposed && this.rendererEnabled && leaf.view === view &&
+        view.containerEl.isConnected && view.file?.path === sourcePath && view.getMode() === "preview" &&
+        this.pendingReadingRefresh.get(view) === pending;
+      const finish = (): void => { if (this.pendingReadingRefresh.get(view) === pending) this.pendingReadingRefresh.delete(view); };
+      const refresh = (): void => {
+        if (!isCurrent()) { finish(); return; }
+        if (view.previewMode.get() !== text) {
+          if (++attempts < 20) timer = timerWindow.setTimeout(refresh, 100);
+          else finish();
+          return;
+        }
+        const scroll = pending.scroll ?? view.previewMode.getScroll();
+        pending.scroll = scroll;
+        for (const scope of renderScopes.get(this) ?? []) if (view.previewMode.containerEl.contains(scope.containerEl)) scope.unload();
+        // A rerender can retain cached, already-processed paragraphs on large
+        // notes. Rebuild this renderer's data so all mounted sections receive
+        // new processor ownership, then retain the user's logical scroll anchor.
+        view.previewMode.clear();
+        view.previewMode.set(text, true);
+        this.refreshedReadingSource.set(view, text);
+        // Native line mapping may be NaN until virtualized sections finish
+        // layout. Keep the pixel anchor meanwhile; apply the logical anchor only
+        // when it is usable. Every frame remains owned by this source revision.
+        let scrollFrames = 0;
+        const restoreScroll = (): void => {
+          if (!isCurrent() || view.previewMode.get() !== text) { finish(); return; }
+          if (Number.isFinite(view.previewMode.getScroll())) {
+            view.previewMode.applyScroll(scroll);
+            if (Math.abs(view.previewMode.getScroll() - scroll) < 0.5) { finish(); return; }
+          }
+          scroller().scrollTop = pending.pixels ?? 0;
+          if (++scrollFrames < 60) frame = timerWindow.requestAnimationFrame(restoreScroll);
+          else finish();
+        };
+        frame = timerWindow.requestAnimationFrame(restoreScroll);
+      };
+      timer = timerWindow.setTimeout(refresh, 100);
+      this.pendingReadingRefresh.set(view, pending);
     });
   }
 
@@ -927,8 +1164,14 @@ export default class LatexDelimiterRenderer extends Plugin {
 
   onunload(): void {
     this.disposed = true; disabledRenderers.add(this);
-    for (const scope of renderScopes.get(this) ?? []) scope.restore();
+    for (const record of this.readingRemounts.values()) record.dispose();
+    this.readingRemounts.clear();
+    for (const scope of renderScopes.get(this) ?? []) scope.unload();
     renderScopes.get(this)?.clear();
+    for (const child of crossSectionChildren.get(this) ?? []) child.unload();
+    crossSectionChildren.get(this)?.clear();
+    for (const pending of this.pendingReadingRefresh.values()) pending.cancel();
+    this.pendingReadingRefresh.clear();
     this.embeddedChildren.clear(); readingParseCache.clear();
   }
 

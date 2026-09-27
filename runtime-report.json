@@ -1,7 +1,7 @@
 {
-  "pluginVersion": "0.4.4",
-  "timestamp": "2026-09-27T10:04:01.484Z",
-  "mainJsSha256": "ad9db8104895e4fe5a61609baa3390ef9ff559d30f52fe9bc3c9324a090c9dd2",
+  "pluginVersion": "0.4.5",
+  "timestamp": "2026-09-27T12:19:23.353Z",
+  "mainJsSha256": "31395b9fd0eafeb04163b152905d3466e0de177761a6c9a0270f2e467dbbf415",
   "tests": [
     {
       "name": "Live Preview renders all three inline examples visibly",
@@ -31,7 +31,7 @@
     {
       "name": "All requested token categories are highlighted",
       "passed": true,
-      "detail": "[[\"command\",[{\"text\":\"\\\\frac\",\"color\":\"rgb(8, 109, 221)\"},{\"text\":\"\\\\alpha\",\"color\":\"rgb(8, 109, 221)\"}]],[\"brace\",[{\"text\":\"{\",\"color\":\"rgb(120, 82, 238)\"},{\"text\":\"}\",\"color\":\"rgb(120, 82, 238)\"},{\"text\":\"{\",\"color\":\"rgb(120, 82, 238)\"},{\"text\":\"}\",\"color\":\"rgb(120, 82, 238)\"}]],[\"number\",[{\"text\":\"12\",\"color\":\"rgb(236, 117, 0)\"},{\"text\":\"1\",\"color\":\"rgb(236, 117, 0)\"},{\"text\":\"2\",\"color\":\"rgb(236, 117, 0)\"}]],[\"operator\",[{\"text\":\"_\",\"color\":\"rgb(233, 49, 71)\"},{\"text\":\"+\",\"color\":\"rgb(233, 49, 71)\"},{\"text\":\"^\",\"color\":\"rgb(233, 49, 71)\"}]],[\"delimiter\",[{\"text\":\"\\\\\",\"color\":\"rgb(138, 92, 245)\"},{\"text\":\"(\",\"color\":\"rgb(138, 92, 245)\"},{\"text\":\"\\\\\",\"color\":\"rgb(138, 92, 245)\"},{\"text\":\")\",\"color\":\"rgb(138, 92, 245)\"}]]]"
+      "detail": "[[\"command\",[{\"text\":\"\\\\frac\",\"color\":\"rgb(2, 122, 255)\"},{\"text\":\"\\\\alpha\",\"color\":\"rgb(2, 122, 255)\"}]],[\"brace\",[{\"text\":\"{\",\"color\":\"rgb(168, 130, 255)\"},{\"text\":\"}\",\"color\":\"rgb(168, 130, 255)\"},{\"text\":\"{\",\"color\":\"rgb(168, 130, 255)\"},{\"text\":\"}\",\"color\":\"rgb(168, 130, 255)\"}]],[\"number\",[{\"text\":\"12\",\"color\":\"rgb(233, 151, 63)\"},{\"text\":\"1\",\"color\":\"rgb(233, 151, 63)\"},{\"text\":\"2\",\"color\":\"rgb(233, 151, 63)\"}]],[\"operator\",[{\"text\":\"_\",\"color\":\"rgb(251, 70, 76)\"},{\"text\":\"+\",\"color\":\"rgb(251, 70, 76)\"},{\"text\":\"^\",\"color\":\"rgb(251, 70, 76)\"}]],[\"delimiter\",[{\"text\":\"\\\\\",\"color\":\"rgb(166, 138, 249)\"},{\"text\":\"(\",\"color\":\"rgb(166, 138, 249)\"},{\"text\":\"\\\\\",\"color\":\"rgb(166, 138, 249)\"},{\"text\":\")\",\"color\":\"rgb(166, 138, 249)\"}]]]"
     },
     {
       "name": "Token categories use distinct visible colors",

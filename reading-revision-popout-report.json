@@ -1,0 +1,44 @@
+{
+  "version": "0.4.5",
+  "timestamp": "2026-09-27T12:18:45.331Z",
+  "mainJsSha256": "31395b9fd0eafeb04163b152905d3466e0de177761a6c9a0270f2e467dbbf415",
+  "scope": "Actual desktop popout closed while a cross-section Reading View refresh is queued.",
+  "passed": true,
+  "results": [
+    {
+      "name": "Initial editor source equals fixture",
+      "passed": true,
+      "detail": {
+        "actual": "Before\n\n\\[321+\n\n4\\].\n\nAfter\n"
+      }
+    },
+    {
+      "name": "Popout Reading View uses separate document",
+      "passed": true
+    },
+    {
+      "name": "Initial popout split display renders",
+      "passed": true
+    },
+    {
+      "name": "Popout has owned queued revision",
+      "passed": true
+    },
+    {
+      "name": "Closing popout releases queued work",
+      "passed": true
+    },
+    {
+      "name": "Editor source remains exact after closing popout",
+      "passed": true
+    },
+    {
+      "name": "Disk source remains exact after closing popout",
+      "passed": true,
+      "detail": {
+        "saveMs": 0.09999999403953552,
+        "actual": "Before\n\n\\[321+\n\n5\\].\n\nAfter\n"
+      }
+    }
+  ]
+}

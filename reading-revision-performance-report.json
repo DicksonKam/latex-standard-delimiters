@@ -1,0 +1,145 @@
+{
+  "version": "0.4.5",
+  "timestamp": "2026-09-27T12:18:37.983Z",
+  "mainJsSha256": "31395b9fd0eafeb04163b152905d3466e0de177761a6c9a0270f2e467dbbf415",
+  "scope": "Visible Reading View refresh after synthetic editor changes on a 200-paragraph note; scroll stability and return from offscreen. Not OS input latency.",
+  "characters": 63118,
+  "meanMs": 151.88333333532015,
+  "maxMs": 159.30000001192093,
+  "passed": true,
+  "results": [
+    {
+      "name": "Initial equation on large note",
+      "passed": true
+    },
+    {
+      "name": "Warm revision 5 is current",
+      "passed": true,
+      "detail": {
+        "ms": 156.7000000178814,
+        "digits": "3215",
+        "scroll": 0
+      }
+    },
+    {
+      "name": "Warm revision 5 within 1800ms",
+      "passed": true,
+      "detail": {
+        "ms": 156.7000000178814
+      }
+    },
+    {
+      "name": "Warm revision 6 is current",
+      "passed": true,
+      "detail": {
+        "ms": 142.69999998807907,
+        "digits": "3216",
+        "scroll": 0
+      }
+    },
+    {
+      "name": "Warm revision 6 within 1800ms",
+      "passed": true,
+      "detail": {
+        "ms": 142.69999998807907
+      }
+    },
+    {
+      "name": "Warm revision 7 is current",
+      "passed": true,
+      "detail": {
+        "ms": 159.30000001192093,
+        "digits": "3217",
+        "scroll": 0
+      }
+    },
+    {
+      "name": "Warm revision 7 within 1800ms",
+      "passed": true,
+      "detail": {
+        "ms": 159.30000001192093
+      }
+    },
+    {
+      "name": "Warm revision 8 is current",
+      "passed": true,
+      "detail": {
+        "ms": 154.30000001192093,
+        "digits": "3218",
+        "scroll": 0
+      }
+    },
+    {
+      "name": "Warm revision 8 within 1800ms",
+      "passed": true,
+      "detail": {
+        "ms": 154.30000001192093
+      }
+    },
+    {
+      "name": "Warm revision 9 is current",
+      "passed": true,
+      "detail": {
+        "ms": 150.59999999403954,
+        "digits": "3219",
+        "scroll": 0
+      }
+    },
+    {
+      "name": "Warm revision 9 within 1800ms",
+      "passed": true,
+      "detail": {
+        "ms": 150.59999999403954
+      }
+    },
+    {
+      "name": "Warm revision 4 is current",
+      "passed": true,
+      "detail": {
+        "ms": 147.69999998807907,
+        "digits": "3214",
+        "scroll": 0
+      }
+    },
+    {
+      "name": "Warm revision 4 within 1800ms",
+      "passed": true,
+      "detail": {
+        "ms": 147.69999998807907
+      }
+    },
+    {
+      "name": "Refresh preserves Reading View scroll position",
+      "passed": true,
+      "detail": {
+        "before": 80,
+        "after": 80,
+        "queued": 80
+      }
+    },
+    {
+      "name": "Returning to top renders newest offscreen edit",
+      "passed": true
+    },
+    {
+      "name": "Cached equation survives remount 1",
+      "passed": true
+    },
+    {
+      "name": "Cached equation survives remount 2",
+      "passed": true
+    },
+    {
+      "name": "Cached equation survives remount 3",
+      "passed": true
+    },
+    {
+      "name": "Editor source remains exact",
+      "passed": true
+    },
+    {
+      "name": "Disk source remains exact",
+      "passed": true
+    }
+  ]
+}

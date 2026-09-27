@@ -25,3 +25,15 @@ npm test also runs 7,000 deterministic generated inputs: mixed protected Markdow
 ## Boundary suite
 
 `boundary-stress-check.js` mounts 31 layouts twice in Live Preview and Reading View, verifies numeric glyph identity in inactive and active math, rechecks identity after exiting source, checks editor/disk bytes and captured errors, and verifies blank-row paragraph restoration on unload. Coverage includes list suffix punctuation/prose, ordered/nested/task/quoted lists, adjacent displays, identical blank-row equations, literal lookalikes and Unicode. Selection actions are synthetic. The suite uses only disposable work/TestVault and is required by packaging. Cross-section rendering waits for source-bound sections to mount; both ends must mount within the bounded retry period, otherwise the equation stays literal. Long offscreen or virtualized equations are not certified.
+
+## Incremental correctness gate
+
+Run `scripts/cross-section-editing-check.js` in disposable TestVault. It opens one editor and two Reading View panes for the same note and checks changes without reopening it. The reference is native host MathJax output; the signature includes operators, command glyphs and fraction/script/underbrace tree structure, not only equation counts or digits. It excludes pane-dependent layout styles, so it does not replace visual layout verification.
+
+The required evidence distinguishes scenario coverage from repeated assertions. Every fix needs a released-build failing reproduction, a final-build passing regression, exact editor/disk preservation checks and a separate implementation review. Describe synthetic editor/keyboard dispatches as synthetic; retain native keyboard checks for actual input behavior. State known gaps instead of treating aggregate counts as proof of completeness.
+
+For a cross-section fix, test opening, middle and closing edits, command/operator changes, delimiter removal/recovery, undo/redo, rapid changes, multiple panes, teardown and large-note cost. Reports must identify the exact bundle. The release cannot inherit a historical passing report as evidence for changed code.
+
+Run `reading-revision-performance-check.js` separately while the native TestVault window is focused. It measures six warm Reading View changes on a 200-paragraph note, checks a local 1800ms upper bound, preserves the logical scroll anchor and verifies the newest equation after returning from offscreen. The measurement is host rendering after synthetic editor dispatch, not OS keyboard latency.
+
+For `native-cross-section-setup.js`, drive actual typing of 9, Cmd-Z and Cmd-Shift-Z through the native UI; then run `native-cross-section-finish.js`. Trusted event capture checks Reading View updates and exact intended source. Re-enable checks in the semantic suite also run without manual refresh or reopening. Packaging requires current performance/scroll and native cross-section reports in addition to the original native daily keyboard probe.
