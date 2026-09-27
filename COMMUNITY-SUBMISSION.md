@@ -27,7 +27,7 @@ Overview: Write or paste equations with standard LaTeX inline and display delimi
 - Clean BRAT install, version upgrade, preference persistence and recovery evidence: checked on macOS/Obsidian 1.13.7 with BRAT 1.3.0; see brat-update-report.json and brat-recovery-report.json.
 - Real iOS and Android checks or an explicitly agreed change to platform scope; current mobile evidence remains outstanding.
 - Current developer policies and submission requirements reviewed September 27, 2026. Fork approval remains a submission blocker; see the policy review below.
-- Check plugin ID uniqueness in the current directory.
+- Public installation registry checked: no exact ID or case-insensitive name collision among 8,102 entries; see registry-check-report.json. Unpublished submissions/reservations remain unverified until actual directory submission.
 
 When ready, the owner signs in with an Obsidian account at community.obsidian.md, links GitHub ownership and adds the plugin. The directory reads the default branch manifest and performs automated review. This work prepares the package; it does not create/link accounts or submit a listing.
 
@@ -42,3 +42,21 @@ Production review found no Node/Electron imports, remote rendering service, tele
 Remaining gates: fork eligibility, real mobile evidence, final ID/name uniqueness verification in the current directory. GitHub beta distribution can continue while these remain open.
 
 Desktop screenshots are now included in README.md and images/. They were captured from actual Obsidian 1.13.7 with beta 0.3.1 in a disposable vault and visually inspected. Mobile evidence remains separate and outstanding.
+
+## Requirement audit — September 27, 2026
+
+- Clean-vault BRAT installation: verified through actual BRAT UI, starting with public 0.3.0.
+- Upgrade, preferences and failed-load recovery: verified; brat-update-report.json and brat-recovery-report.json.
+- Searchable settings: verified in actual Obsidian UI; settings-ui-report.json.
+- Large-note editing: measured in actual Obsidian, with exact scope/limits in VERIFICATION.md and edit-performance-report.json.
+- Math-plugin coexistence: actual-app reports cover the named tested versions and load orders; COMPATIBILITY.md states limitations.
+- Markdown preservation: covered by actual-app assertions and BRAT recovery fixture checks. Main vault remains outside the developer test workflow.
+- Public examples/screenshots: README.md, supplied fixtures and two inspected actual desktop screenshots.
+- Bug reporting and known limits: issue form, CONTRIBUTING.md, VERIFICATION.md and platform/compatibility documents.
+- Public release assets: independently downloaded 0.3.1 files match the tested local files; public-release-check-report.json.
+- Community listing package: draft metadata and policy review prepared here. Not submitted.
+- Real iOS/Android editing: incomplete. No actual-device result reports exist. MOBILE-QUICK-TEST.md and MOBILE-CHECKLIST.md are procedures, not evidence.
+- Fork eligibility: incomplete. Upstream approval has not been obtained; the unsent request is a review draft outside the public repository.
+- Directory uniqueness: public registry evidence collected; unpublished directory reservations cannot be ruled out by this evidence.
+
+This audit does not mark the durable goal complete. Required mobile evidence and eligibility resolution remain external dependencies.
