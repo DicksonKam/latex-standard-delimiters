@@ -1,19 +1,19 @@
 {
-  "version": "0.4.3",
-  "timestamp": "2026-09-27T09:25:07.852311+00:00",
-  "releaseUrl": "https://github.com/DicksonKam/latex-standard-delimiters/releases/tag/0.4.3",
-  "commit": "72a853a4f6edb83a5bdcf7689c272496969057d6",
+  "version": "0.4.4",
+  "timestamp": "2026-09-27T10:08:13.686567+00:00",
+  "releaseUrl": "https://github.com/DicksonKam/latex-standard-delimiters/releases/tag/0.4.4",
+  "commit": "9936d00a2efbc4e2706f51b146e7aefaa084483e",
   "scope": "Independent unauthenticated HTTPS downloads of published assets; exact bytes, checksums, ZIP integrity and attribution compared against locally verified candidate.",
   "results": [
     {
       "name": "Downloaded main.js matches locally verified candidate",
       "passed": true,
-      "sha256": "0400df2fa1faed1f6eb1532ae4f3068d27000539e86bf4269a14eb6951bc3d77"
+      "sha256": "ad9db8104895e4fe5a61609baa3390ef9ff559d30f52fe9bc3c9324a090c9dd2"
     },
     {
       "name": "Downloaded manifest.json matches locally verified candidate",
       "passed": true,
-      "sha256": "d38aa6aeefedf0df207f0906df79caf1effdd3f48ed3ad971cfeac4acac974cc"
+      "sha256": "b9ef37a34dfdab99a33fc2c7b4b7b04edb28a7e1960c7d613b66343879b487c8"
     },
     {
       "name": "Downloaded styles.css matches locally verified candidate",
@@ -37,7 +37,7 @@
       "passed": true
     },
     {
-      "name": "Public version 0.4.3 and desktop-only manifest",
+      "name": "Public version 0.4.4 and desktop-only manifest",
       "passed": true
     }
   ],

@@ -1,6 +1,6 @@
 # 0.4.4 boundary rendering audit
 
-Status: in progress
+Status: complete — desktop GitHub beta
 
 Local verification: complete
 
@@ -8,4 +8,4 @@ Confirmed defects: multiline list displays with trailing punctuation/prose were 
 
 Required final gates: 35 unit tests, all original runtime and stress suites plus boundary cases on the final bundle, native keyboard checks, packaging, GitHub CI and independent public asset checks. All test writes are confined to disposable work/TestVault. Main vault, mobile and Community publication remain outside test scope.
 
-Final bundle passed 35 unit tests including 7,000 generated inputs, 2,007 scripted app assertions across 23 suites and nine native keyboard checks. Dense callout regression limits and unload restoration passed. Zero lint errors/four DOM helper advisories. Public release/CI verification is pending.
+Final bundle passed 35 unit tests including 7,000 generated inputs, 2,007 scripted app assertions across 23 suites and nine native keyboard checks. Dense callout regression limits and unload restoration passed. Zero lint errors/four DOM helper advisories. GitHub checks and release packaging passed. Public 0.4.4 is published as a pre-release and all eight independent public asset checks passed. Main vault was untouched.
