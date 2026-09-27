@@ -28,4 +28,4 @@ Inline math remains single-line. Coloring is a tokenizer, not a TeX compiler. Ex
 
 Historical BRAT install/upgrade/recovery evidence is in brat-update-report.json and brat-recovery-report.json: public 0.3.0 → 0.3.1 preserved nondefault preferences and fixture bytes; a broken local bundle was recovered through a version rollback, then Latest. This is historical recovery evidence, not a claimed 0.4.0 upgrade test. Keep data.json when replacing plugin files, and use files from one release. See UPDATING.md.
 
-Previous public asset and BRAT reports retain their truthful 0.4.0 version. Current 0.4.1 public verification is pending.
+Public 0.4.1 assets were independently downloaded and byte-compared with the verified candidate. All eight checksum/ZIP/attribution/manifest checks pass in public-release-check-report.json. BRAT upgrade reports remain historical (including 0.3.1 → 0.4.0 in brat-040-update-report.json); the 0.4.1 patch was not separately exercised through BRAT UI.
