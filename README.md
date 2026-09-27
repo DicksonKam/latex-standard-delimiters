@@ -4,6 +4,14 @@ Verified locally on Obsidian 1.13.7. Beta releases are available from [GitHub Re
 
 Render `\(...\)` and `\[...\]` without rewriting Markdown. Reading View uses Obsidian's shared MathJax engine. Live Preview shows colored original source and an updating equation preview while editing. Native dollar math remains handled by Obsidian.
 
+## Screenshots
+
+Actual Obsidian 1.13.7 screenshots from a disposable test vault, using beta 0.3.1. The first shows colored inline source and its updating preview; the second shows Reading View. These are desktop examples, not mobile verification.
+
+![Live Preview with colored source and equation preview](images/live-preview.png)
+
+![Reading View with standard delimiters, native math and literal code](images/reading-view.png)
+
 ## Installation
 
 Create `.obsidian/plugins/latex-standard-delimiters/` inside your vault. Download the three assets `main.js`, `manifest.json`, and `styles.css` from one release, or extract the release ZIP into that folder. The three files must be directly inside the plugin folder. Reload Obsidian and enable LaTeX Standard Delimiters under Community plugins. This plugin requires Obsidian 1.13.7 or newer; earlier versions have not been tested.

@@ -39,4 +39,6 @@ This repository retains code derived from Andreas Burger’s LaTeX Delimiter Ren
 
 Production review found no Node/Electron imports, remote rendering service, telemetry, ads, self-updater or note-write API. Settings use host persistence; BRAT is a separate optional installer. The manifest description is below 250 characters and ends with a period, minimum app version matches the tested host, and there are no sample commands or funding links. MIT license and upstream attribution are present. These checks do not constitute directory approval or a complete security certification.
 
-Remaining gates: fork eligibility, real mobile evidence, actual screenshots and final ID/name uniqueness verification in the current directory. GitHub beta distribution can continue while these remain open.
+Remaining gates: fork eligibility, real mobile evidence, final ID/name uniqueness verification in the current directory. GitHub beta distribution can continue while these remain open.
+
+Desktop screenshots are now included in README.md and images/. They were captured from actual Obsidian 1.13.7 with beta 0.3.1 in a disposable vault and visually inspected. Mobile evidence remains separate and outstanding.
