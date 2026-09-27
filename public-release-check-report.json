@@ -1,24 +1,45 @@
 {
-  "version": "0.3.1",
-  "checkedAt": "2026-09-27",
-  "assets": [
+  "version": "0.4.0",
+  "timestamp": "2026-09-27T07:35:29.923145+00:00",
+  "releaseUrl": "https://github.com/DicksonKam/latex-standard-delimiters/releases/tag/0.4.0",
+  "commit": "52f9cd9b1bc178254f4aec2ba64bb75c0e30d92b",
+  "scope": "Independent unauthenticated HTTPS downloads of published assets; exact bytes, checksums, ZIP integrity and attribution compared against locally verified candidate.",
+  "results": [
     {
-      "asset": "main.js",
-      "url": "https://github.com/DicksonKam/latex-standard-delimiters/releases/download/0.3.1/main.js",
-      "sha256": "d3b86e381943f3708201172b0e3da44d4fbb58ef0af2475c2a01332656d79996",
-      "matchesLocal": true
+      "name": "Downloaded main.js matches locally verified candidate",
+      "passed": true,
+      "sha256": "f933ca33152044c88a1b353d53f12a09324d76eeca84dc8a43038105c8fe2763"
     },
     {
-      "asset": "manifest.json",
-      "url": "https://github.com/DicksonKam/latex-standard-delimiters/releases/download/0.3.1/manifest.json",
-      "sha256": "7d81c990d9d954e8009546ad69be3801c94f8722d74ebe48539771c9394d3903",
-      "matchesLocal": true
+      "name": "Downloaded manifest.json matches locally verified candidate",
+      "passed": true,
+      "sha256": "e9206fca3d92c2ba89738e24408aed561da47e94deffb14af27e70a5dd4411ba"
     },
     {
-      "asset": "styles.css",
-      "url": "https://github.com/DicksonKam/latex-standard-delimiters/releases/download/0.3.1/styles.css",
-      "sha256": "e80df64d07c2a4ade9b8ac34d4d9db6c41de19b3bd1e8b5f1a82c59bee59cfd9",
-      "matchesLocal": true
+      "name": "Downloaded styles.css matches locally verified candidate",
+      "passed": true,
+      "sha256": "e80df64d07c2a4ade9b8ac34d4d9db6c41de19b3bd1e8b5f1a82c59bee59cfd9"
+    },
+    {
+      "name": "Published checksum matches main.js",
+      "passed": true
+    },
+    {
+      "name": "Published checksum matches manifest.json",
+      "passed": true
+    },
+    {
+      "name": "Published checksum matches styles.css",
+      "passed": true
+    },
+    {
+      "name": "Public ZIP integrity and exact assets/license attribution",
+      "passed": true
+    },
+    {
+      "name": "Public version 0.4.0 and desktop-only manifest",
+      "passed": true
     }
-  ]
+  ],
+  "passed": true
 }

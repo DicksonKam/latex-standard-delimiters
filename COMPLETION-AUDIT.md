@@ -1,6 +1,6 @@
 # Desktop 0.4.0 completion audit
 
-Status: in progress
+Status: complete
 
 Local verification: complete
 
@@ -12,6 +12,8 @@ Full editing/compatibility/performance/lifecycle gate: all 239 assertions pass a
 
 Desktop/IME inventory: macOS Obsidian 1.13.7 is available. Installed Cangjie was activated but automated input produced Latin text without composition events; os-ime-attempt-report.json explicitly records an unverified real IME result and restored fixture/input source. Windows/Linux evidence remains unavailable and must remain documented. Synthetic composition checks are separate evidence.
 
-Delivery gate: version-bound reports, current documentation/examples, local packaging, GitHub CI, public 0.4.0 release and independent downloadable-asset checksum verification remain pending. Historical BRAT upgrade/recovery reports do not establish a 0.4.0 upgrade.
+Delivery gate: GitHub Checks passed for release commit 52f9cd9b1bc178254f4aec2ba64bb75c0e30d92b (run 36303446677). Release workflow run 36303485518 generated the inspected draft, published as public prerelease 0.4.0. Independent unauthenticated downloads match the verified main.js, manifest.json and styles.css bytes; checksums and ZIP integrity/retained attribution pass (public-release-check-report.json). Local installation/source ZIPs also pass package-release.py integrity/hash checks. Current release notes, changelog, fixtures and actual 0.4.0 screenshot document behavior and limits. Numeric version metadata matches throughout.
 
-Main vault is outside the test workflow. Production contains no note-write APIs; developer tests exercise and restore disposable TestVault fixtures. The goal remains active until current evidence establishes all required deliverables.
+BRAT update gate: actual BRAT UI updated the clean disposable vault from public 0.3.1 to 0.4.0. All nine checks pass: runtime version, exact saved preference bytes, loaded custom colors/preview/Off settings, two fixture hashes, installed JS/CSS bytes, manifest fields and re-enable preservation (brat-040-update-report.json). BRAT reformats JSON whitespace; every manifest key/value matches. Historical broken-bundle recovery remains explicitly historical.
+
+Main vault is outside the test workflow. Production contains no note-write APIs; developer tests exercise and restore disposable TestVault fixtures. All explicit milestone deliverables are established by the scoped current evidence above; untested platforms/real IME remain documented as required, without simulated passes.

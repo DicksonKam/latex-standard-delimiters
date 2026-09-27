@@ -25,3 +25,5 @@ Inline math remains single-line. Coloring is a tokenizer, not a TeX compiler. Ex
 ## Updates
 
 Historical BRAT install/upgrade/recovery evidence is in brat-update-report.json and brat-recovery-report.json: public 0.3.0 → 0.3.1 preserved nondefault preferences and fixture bytes; a broken local bundle was recovered through a version rollback, then Latest. This is historical recovery evidence, not a claimed 0.4.0 upgrade test. Keep data.json when replacing plugin files, and use files from one release. See UPDATING.md.
+
+Public 0.4.0 assets were independently downloaded and match the tested JavaScript, manifest and CSS exactly; checksums and ZIP/license attribution pass (public-release-check-report.json). Actual BRAT 1.3.0 updated the clean disposable vault from 0.3.1 to 0.4.0, preserving saved preference bytes, loaded custom colors/preview/Off settings, and both fixture notes after re-enable. BRAT reformats manifest JSON; every parsed field remains identical. See brat-040-update-report.json.

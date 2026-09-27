@@ -2,7 +2,7 @@
 
 ## Normal beta updates
 
-Install BRAT 1.1.0 or newer, add DicksonKam/latex-standard-delimiters and choose Latest version. BRAT updates from published GitHub releases. A frozen version intentionally stays on its selected release. The verified path used BRAT 1.3.0 and Obsidian 1.13.7 on macOS.
+Install BRAT 1.1.0 or newer, add DicksonKam/latex-standard-delimiters and choose Latest version. BRAT updates from published GitHub releases. A frozen version intentionally stays on its selected release. The current verified path updated public 0.3.1 → 0.4.0 using BRAT 1.3.0 and Obsidian 1.13.7 on macOS, preserving notes and preferences after re-enable. See brat-040-update-report.json.
 
 Keep data.json: it contains your colors, editing preview preference and rendering mode. Manual updates require replacing main.js, manifest.json and styles.css together from one release. Do not mix files from different versions or delete the entire plugin folder to update.
 

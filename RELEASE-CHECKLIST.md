@@ -1,9 +1,7 @@
-# 0.4.0 release gate — in progress
+# 0.4.0 release gate — verified
 
-- Pass npm run check and bind the complete 17-suite actual-app results to the final JavaScript/CSS hashes.
-- Inspect source preservation, native pointer/navigation behavior, lifecycle, named-plugin coexistence and large-note measurements.
-- Update current-scope documentation, examples, changelog, release notes and completion audit. Retain MIT attribution and record untested desktop/IME environments honestly.
-- Verify local packages; commit and push the candidate; wait for GitHub CI; tag 0.4.0 and inspect the generated draft release.
-- Publish the authorized GitHub beta, independently verify downloadable assets and record update evidence.
+The final candidate passes npm run check (27 unit tests, versions, type checking/build; zero lint errors) and all 239 actual-app assertions across 17 suites. suite-report.json binds exact JavaScript/CSS hashes and Obsidian 1.13.7 host. Native click/Up-arrow behavior and the new screenshot were inspected in TestVault.
 
-Mobile and Community directory publication are outside scope. Previous release evidence is historical unless its exact scope is identified. Main-vault notes remain outside testing.
+Current docs, release notes, attribution and platform/IME limits are recorded. Local archives pass integrity/hash checks. GitHub CI passed; the inspected draft was published and independently downloaded/byte/checksum/ZIP verified. Actual BRAT update 0.3.1 → 0.4.0 preserved note/preference bytes and loaded settings after re-enable.
+
+See COMPLETION-AUDIT.md, public-release-check-report.json and brat-040-update-report.json. Mobile and Community directory publication are excluded; main-vault notes remained outside testing.
