@@ -6,6 +6,7 @@ export type MathPresentation = {
   segments: MathSourceSegment[];
   container: 'plain' | 'quote' | 'list';
   standalone: boolean;
+  projected: boolean;
 };
 
 /** Project container math to TeX without changing source or its document offsets. */
@@ -38,23 +39,24 @@ export function mathPresentation(text: string, match: MathDelimiterMatch): MathP
   }
   const container = quoteDepth ? 'quote' : list || continuationIndent ? 'list' : 'plain';
   const raw = text.slice(match.from + 2, match.to - 2);
-  if (!standalone || container === 'plain') {
-    return { source: raw, segments: raw ? [{ from: match.from + 2, to: match.to - 2, sourceFrom: 0 }] : [], container, standalone };
+  if (container === 'plain' || (!standalone && !(match.display && quoteDepth))) {
+    return { source: raw, segments: raw ? [{ from: match.from + 2, to: match.to - 2, sourceFrom: 0 }] : [], container, standalone, projected: false };
   }
   let source = '';
   const segments: MathSourceSegment[] = [];
   const listIndent = list ? afterQuote.length : continuationIndent;
   let first = true;
+  let valid = true;
   for (const line of raw.matchAll(/[^\n]*(?:\n|$)/g)) {
     if (!line[0]) continue;
     let remove = 0;
     if (!first) {
       const lineQuote = /^(?: {0,3}>[ \t]?)+/.exec(line[0])?.[0] ?? '';
-      if ((lineQuote.match(/>/g) ?? []).length !== quoteDepth) { standalone = false; break; }
+      if ((lineQuote.match(/>/g) ?? []).length !== quoteDepth) { valid = false; break; }
       remove = lineQuote.length;
       if (listIndent) {
         const indent = line[0].slice(remove, remove + listIndent);
-        if (indent.length !== listIndent || !/^[ \t]*$/.test(indent)) { standalone = false; break; }
+        if (indent.length !== listIndent || !/^[ \t]*$/.test(indent)) { valid = false; break; }
         remove += listIndent;
       }
     }
@@ -65,13 +67,24 @@ export function mathPresentation(text: string, match: MathDelimiterMatch): MathP
     }
     first = false;
   }
-  if (!standalone) return { source: raw, segments: [{ from: match.from + 2, to: match.to - 2, sourceFrom: 0 }], container, standalone: false };
-  return { source, segments, container, standalone };
+  if (!valid) return { source: raw, segments: [{ from: match.from + 2, to: match.to - 2, sourceFrom: 0 }], container, standalone: false, projected: false };
+  return { source, segments, container, standalone, projected: true };
 }
 
 /** Content-only ranges leave Markdown prefixes and line boundaries untouched. */
 export function containerReplacementRanges(text: string, match: MathDelimiterMatch, presentation = mathPresentation(text, match)): Array<{ from: number; to: number }> {
-  if (!presentation.standalone || presentation.container === 'plain') return [];
+  if (presentation.container === 'plain') {
+    // Preserve prose, punctuation and line boundaries around a multiline display.
+    const ranges: Array<{ from: number; to: number }> = [];
+    for (let from = match.from; from < match.to;) {
+      const newline = text.indexOf('\n', from);
+      const to = newline < 0 ? match.to : Math.min(match.to, newline);
+      if (to > from) ranges.push({ from, to });
+      from = to + 1;
+    }
+    return ranges;
+  }
+  if (!presentation.standalone && !presentation.projected) return [];
   const ranges = [{ from: match.from, to: text.indexOf('\n', match.from) < 0 ? match.to : Math.min(match.to, text.indexOf('\n', match.from)) }];
   for (const segment of presentation.segments) {
     let from = segment.from;

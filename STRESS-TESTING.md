@@ -8,6 +8,10 @@ In the Obsidian developer Console, set window.lsdTestScriptsPath to this reposit
 await eval(require("node:fs").readFileSync(window.lsdTestScriptsPath + "/run-stress-suite.js", "utf8"))
 ```
 
+The daily editing suite verifies numeric glyph identities after edits/undo, deleted/recovered delimiters, moves between Markdown structures, actual folded-state transitions, repeated vertical entry and same-note editor/Reading View updates. It checks active callout previews for leaked Markdown quote glyphs. Scripted events are labeled as scripted.
+
+Native keyboard checks are separate: evaluate native-daily-keyboard-setup.js in TestVault, close DevTools and press Down, Right, type 9, undo, redo, Backspace, paste the literal LaTeX command \alpha_2, then undo. Open DevTools and evaluate native-daily-keyboard-finish.js. The report checks trusted input events and exact source, including caret entry and paste. This narrow native desktop sequence does not certify all input methods or callout gestures.
+
 The suite rejects overlapping developer runs and binds reports to the installed main.js hash. Keep the disposable window foreground. No main-vault files or preferences are used.
 
 The rendering matrix exercises 40 cases through three cycles in both views: identical equations, literal lookalikes, Markdown emphasis, underbraces, nested callouts/titles, folds, tables within callouts, escaped pipes, code/fences, native dollars, frontmatter, incomplete delimiters, marker collisions and CRLF. A plugin-disabled control distinguishes Obsidian's CRLF normalization on save from plugin source changes.

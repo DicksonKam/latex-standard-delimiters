@@ -1,9 +1,9 @@
 {
-  "version": "0.4.2",
-  "timestamp": "2026-09-27T08:54:14.622Z",
+  "version": "0.4.3",
+  "timestamp": "2026-09-27T09:19:04.583Z",
   "obsidianVersion": "1.13.7",
   "stylesSha256": "e80df64d07c2a4ade9b8ac34d4d9db6c41de19b3bd1e8b5f1a82c59bee59cfd9",
-  "mainJsSha256": "f02426309c07f2df6bab51aec687d884d4cd5b6c9f12af26d29133c8e96e49ae",
+  "mainJsSha256": "0400df2fa1faed1f6eb1532ae4f3068d27000539e86bf4269a14eb6951bc3d77",
   "reports": [
     {
       "name": "euler-callout",

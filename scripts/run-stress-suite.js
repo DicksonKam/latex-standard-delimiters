@@ -3,9 +3,9 @@
  const fs=require('node:fs'),crypto=require('node:crypto'),root=app.vault.adapter.getBasePath();
  if(!root.endsWith('/work/TestVault'))throw Error('Disposable work/TestVault only');
  if(typeof window.lsdTestScriptsPath!=='string'||typeof window.lsdTestHostVersion!=='string')throw Error('Set script path and displayed host version first');
- for(const script of ['stress-rendering-check.js','stress-lifecycle-check.js','stress-volume-check.js'])await eval(fs.readFileSync(window.lsdTestScriptsPath+'/'+script,'utf8'));
+ for(const script of ['daily-editing-check.js','stress-rendering-check.js','stress-lifecycle-check.js','stress-volume-check.js'])await eval(fs.readFileSync(window.lsdTestScriptsPath+'/'+script,'utf8'));
  const mainJsSha256=crypto.createHash('sha256').update(fs.readFileSync(root+'/.obsidian/plugins/latex-standard-delimiters/main.js')).digest('hex');
- const reports=['stress-rendering','stress-lifecycle','stress-volume'].map(name=>{
+ const reports=['daily-editing','stress-rendering','stress-lifecycle','stress-volume'].map(name=>{
   const report=JSON.parse(fs.readFileSync(root+'/'+name+'-report.json','utf8'));
   if(report.mainJsSha256!==mainJsSha256)throw Error('Bundle changed during stress run');
   return {name,count:report.results.length,failures:report.results.filter(r=>!r.passed)};

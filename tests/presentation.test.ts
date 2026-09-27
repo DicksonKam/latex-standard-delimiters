@@ -75,3 +75,40 @@ test('Euler aligned callout preserves underbrace subscripts and TeX row breaks',
   assert.ok(result.source.includes(String.raw`}_{\text{even}}`));
   assert.ok(result.source.includes(String.raw`\\`));
 });
+
+test('multiline plain displays retain surrounding prose, punctuation and line breaks', () => {
+  for (const [text, remaining] of [
+    [String.raw`Given \[818+
+2\] then continue.`, 'Given \n then continue.'],
+    [String.raw`\[818+
+2\].`, '\n.'],
+    [String.raw`  \[818+
+2\]  `, '  \n  ']
+  ]) {
+    const match = findMathInMarkdown(text)[0];
+    const presentation = mathPresentation(text, match);
+    assert.equal(presentation.source, '818+\n2');
+    const ranges = containerReplacementRanges(text, match, presentation);
+    assert.equal(ranges.length, 2);
+    for (const range of ranges) assert.ok(!text.slice(range.from, range.to).includes('\n'));
+    assert.equal([...ranges].reverse().reduce((value, range) => value.slice(0, range.from) + value.slice(range.to), text), remaining);
+  }
+});
+
+test('quoted multiline displays beside prose project only validated container prefixes', () => {
+  const text = String.raw`> Given \[818+
+> 2\] then continue.`;
+  const result = project(text);
+  assert.equal(result.source, '818+\n2');
+  assert.equal(result.standalone, false);
+  assert.equal(result.projected, true);
+  const match = findMathInMarkdown(text)[0];
+  const remaining = [...containerReplacementRanges(text, match, result)].reverse().reduce((value, range) => value.slice(0, range.from) + value.slice(range.to), text);
+  assert.equal(remaining, '> Given \n>  then continue.');
+  const invalid = String.raw`> Given \[818+
+2\] then continue.`;
+  const broken = project(invalid);
+  assert.equal(broken.source, '818+\n2');
+  assert.equal(broken.projected, false);
+  assert.deepEqual(containerReplacementRanges(invalid, findMathInMarkdown(invalid)[0], broken), []);
+});

@@ -1,5 +1,11 @@
 # Changes
 
+## 0.4.3 — daily editing fixes
+
+- Render multiline displays beside prose, punctuation or indentation in Live Preview without consuming surrounding text or line breaks.
+- Strip validated callout prefixes from active previews even when display math shares a line with prose/punctuation.
+- Add stateful displayed-equation identity tests and actual native keyboard/paste/undo evidence to release gates.
+
 ## 0.4.2 — stress testing and dense callout performance
 
 - Map all equations in a rendered section with one marked Markdown template, removing quadratic dense-callout work.
