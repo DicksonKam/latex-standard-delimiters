@@ -5,13 +5,15 @@
  if(typeof window.lsdTestHostVersion!=='string')throw new Error('Set window.lsdTestHostVersion from the displayed Obsidian window title');
  if(typeof window.lsdTestScriptsPath!=='string')throw new Error('Set window.lsdTestScriptsPath to the source package scripts folder');
  const fs=require('node:fs'),path=require('node:path'),root=app.vault.adapter.getBasePath();
- for(const file of ['Examples.md','EdgeCases.md','Navigation.md','Audit.md','Typing.md','Compatibility.md','EmbedHost.md','preamble.sty','Comfort.md','Upstream.md'])if(!fs.existsSync(path.join(root,file)))throw new Error('Copy supplied fixture '+file+' into TestVault first');
+ for(const file of ['Examples.md','EdgeCases.md','Navigation.md','Audit.md','Typing.md','Compatibility.md','EmbedHost.md','preamble.sty','Comfort.md','Upstream.md','Containers.md','ContainerVariants.md'])if(!fs.existsSync(path.join(root,file)))throw new Error('Copy supplied fixture '+file+' into TestVault first');
  const swiftSettings=JSON.parse(fs.readFileSync(path.join(root,'.obsidian/plugins/swiftlatex-render/data.json'),'utf8'));
  if(swiftSettings.enableCache!==false || swiftSettings.package_url!=='http://127.0.0.1:9/')throw new Error('Configure isolated SwiftLaTeX with cache disabled and loopback-only endpoint');
  if(!fs.existsSync(path.join(root,'.obsidian/themes/Minimal/theme.css')))throw new Error('Copy Minimal theme stylesheet into TestVault for theme checks');
  window.lsdRuntimeChecksRunning=true;
- const scripts=['navigation-check.js','runtime-check.js','editing-preview-check.js','beta-audit.js','typing-compatibility-check.js','compatibility-check.js','input-comfort-check.js','composition-ownership-check.js','panes-comfort-check.js','upstream-coexistence-check.js','popout-check.js','swift-coexistence-check.js','vim-check.js','edit-performance-check.js','theme-narrow-check.js'];
- const reports=['navigation','runtime','editing-preview','beta-audit','typing-compatibility','compatibility','input-comfort','composition-ownership','panes-comfort','upstream-coexistence','popout','swift-coexistence','vim','edit-performance','theme-narrow'];
+ // Source visibility requires the focused main document. Popout runs last because
+ // closing its native window can leave the parent document unfocused.
+ const scripts=['container-editing-check.js','container-variants-check.js','navigation-check.js','runtime-check.js','editing-preview-check.js','beta-audit.js','typing-compatibility-check.js','compatibility-check.js','input-comfort-check.js','composition-ownership-check.js','panes-comfort-check.js','upstream-coexistence-check.js','swift-coexistence-check.js','vim-check.js','edit-performance-check.js','theme-narrow-check.js','popout-check.js'];
+ const reports=['container-editing','container-variants','navigation','runtime','editing-preview','beta-audit','typing-compatibility','compatibility','input-comfort','composition-ownership','panes-comfort','upstream-coexistence','swift-coexistence','vim','edit-performance','theme-narrow','popout'];
  try{
   await app.plugins.disablePlugin('latex-standard-delimiters');await app.plugins.enablePlugin('latex-standard-delimiters');
   for(const script of scripts)await eval(fs.readFileSync(path.join(window.lsdTestScriptsPath,script),'utf8'));

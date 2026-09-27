@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-09-27T05:35:50.066Z",
+  "timestamp": "2026-09-27T07:29:52.609Z",
   "scope": "Actual desktop popout; not mobile simulation",
-  "mainJsSha256": "d3b86e381943f3708201172b0e3da44d4fbb58ef0af2475c2a01332656d79996",
+  "mainJsSha256": "f933ca33152044c88a1b353d53f12a09324d76eeca84dc8a43038105c8fe2763",
   "results": [
     {
       "name": "Popout uses separate document",

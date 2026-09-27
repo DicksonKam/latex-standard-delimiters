@@ -1,6 +1,6 @@
-# Compatibility findings — 0.3.1 candidate
+# Compatibility findings — 0.4.0 candidate
 
-The final 0.3.1 binary passed 195 actual-app assertions on macOS/Obsidian 1.13.7, with code/CSS hashes recorded in suite-report.json. This is evidence for the tested combinations, not universal compatibility certification.
+The 0.4.0 candidate passed 239 actual-app assertions on macOS/Obsidian 1.13.7, with code/CSS hashes recorded in suite-report.json. This is evidence for the tested combinations, not universal compatibility certification.
 
 Extended MathJax 0.4.1: custom preamble macros and chemistry work with standard/native delimiters in Reading View and Live Preview. Both load orders were checked. Unloading our renderer preserves native math. We share Obsidian's MathJax engine rather than replacing that plugin's functionality.
 
@@ -14,4 +14,4 @@ Built-in Vim: normal-mode j/k and counted motions enter logical equation source 
 
 Multiple panes and desktop popouts: independent active previews, owner-document rendering, reading/live math, coloring, source preservation and repeated reload cleanup were checked. Long previews stay scrollable within their pane. Tables/callout titles and embeds have source-aware checks; unsupported or ambiguous mappings can remain literal.
 
-Themes/platforms: built-in light/dark classes were tested. The installed Minimal stylesheet was checked in light/dark classes at a 360px editor width; long previews stayed contained and scrollable. This does not certify every theme preset or custom color contrast. Real mobile and OS IME testing remains outstanding; use MOBILE-CHECKLIST.md. The minimum is conservatively the tested host 1.13.7. Older versions may work but are not claimed.
+Themes/platforms: built-in light/dark classes were tested. The installed Minimal stylesheet was checked in light/dark classes at a 360px editor width; long previews stayed contained and scrollable. This does not certify every theme preset or custom color contrast. Mobile is outside scope. Windows/Linux and real OS IME composition remain unverified; see DESKTOP-TESTING.md and the recorded unsuccessful automation attempt. The minimum is conservatively the tested host 1.13.7. Older versions may work but are not claimed.

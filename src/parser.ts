@@ -14,6 +14,7 @@ export function protectedRanges(text: string): ProtectedRange[] {
   const lines = /[^\n]*(?:\n|$)/g;
   let fence: { char: string; length: number; from: number } | undefined;
   let frontmatter = false;
+  let listIndent: number | undefined;
   for (const line of text.matchAll(lines)) {
     if (!line[0]) continue;
     const from = line.index;
@@ -24,6 +25,12 @@ export function protectedRanges(text: string): ProtectedRange[] {
       if (/^(?:---|\.\.\.)\s*$/.test(body)) { ranges.push({ from: 0, to: from + line[0].length }); frontmatter = false; }
       continue;
     }
+    const listMarker = /^[ \t]*(?:[-+*]|\d{1,9}[.)])[ \t]+/.exec(body);
+    const indent = /^[ \t]*/.exec(body)![0].length;
+    if (!fence) {
+      if (listMarker) listIndent = listMarker[0].length;
+      else if (body.trim() && listIndent !== undefined && indent < listIndent) listIndent = undefined;
+    }
     const fenceBody = fence ? body : body.replace(/^ {0,3}(?:[-+*]|\d{1,9}[.)])[ \t]+/, "");
     const marker = /^[ \t]*(`{3,}|~{3,})(.*)$/.exec(fenceBody);
     if (fence) {
@@ -32,7 +39,7 @@ export function protectedRanges(text: string): ProtectedRange[] {
       }
     } else if (marker && !(marker[1][0] === "`" && marker[2].includes("`"))) {
       fence = { char: marker[1][0], length: marker[1].length, from };
-    } else if (/^(?: {4}|\t)/.test(body)) ranges.push({ from, to: from + line[0].length, indented: true });
+    } else if (/^(?: {4}|\t)/.test(body) && (listIndent === undefined || indent >= listIndent + 4)) ranges.push({ from, to: from + line[0].length, indented: true });
   }
   if (frontmatter) ranges.push({ from: 0, to: text.length });
   if (fence) ranges.push({ from: fence.from, to: text.length });

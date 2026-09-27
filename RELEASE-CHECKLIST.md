@@ -1,5 +1,9 @@
-# 0.3.0 release gate — verified
+# 0.4.0 release gate — in progress
 
-npm run check passes 19 unit tests, TypeScript, version consistency and production build. All 195 actual-app checks pass, including repeated-edit performance and actual Minimal/narrow-pane checks. Final evidence records version 0.3.0, observed host 1.13.7 and matching main.js/styles.css hashes.
+- Pass npm run check and bind the complete 17-suite actual-app results to the final JavaScript/CSS hashes.
+- Inspect source preservation, native pointer/navigation behavior, lifecycle, named-plugin coexistence and large-note measurements.
+- Update current-scope documentation, examples, changelog, release notes and completion audit. Retain MIT attribution and record untested desktop/IME environments honestly.
+- Verify local packages; commit and push the candidate; wait for GitHub CI; tag 0.4.0 and inspect the generated draft release.
+- Publish the authorized GitHub beta, independently verify downloadable assets and record update evidence.
 
-README, VERIFICATION, COMPATIBILITY, PLATFORM-AUDIT, TYPING-INTEGRATION, MOBILE-CHECKLIST and COMPLETION-AUDIT describe scope and limitations. package-release.py validates suite/version/hash requirements and verifies both ZIPs before emitting archive hashes. The archived 0.2.0 release is unchanged. Main-vault files were not modified. GitHub beta publication is now authorized; see RELEASING.md for the subsequent release process.
+Mobile and Community directory publication are outside scope. Previous release evidence is historical unless its exact scope is identified. Main-vault notes remain outside testing.

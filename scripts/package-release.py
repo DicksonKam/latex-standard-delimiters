@@ -8,7 +8,7 @@ version = manifest["version"]
 suite = json.loads((root / "suite-report.json").read_text())
 def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
-required = {"navigation", "runtime", "editing-preview", "beta-audit", "typing-compatibility", "compatibility", "input-comfort", "composition-ownership", "panes-comfort", "upstream-coexistence", "popout", "swift-coexistence", "vim", "edit-performance", "theme-narrow"}
+required = {"navigation", "runtime", "editing-preview", "beta-audit", "typing-compatibility", "compatibility", "input-comfort", "composition-ownership", "panes-comfort", "upstream-coexistence", "popout", "swift-coexistence", "vim", "edit-performance", "theme-narrow", "container-editing", "container-variants"}
 checks = [
     (suite.get("passed") is True, "Runtime suite must pass"),
     (suite.get("version") == version, "Runtime suite version must match candidate"),
@@ -16,12 +16,12 @@ checks = [
     (suite.get("stylesSha256") == digest(root / "styles.css"), "styles.css hash must match"),
     (required == {item["name"] for item in suite["reports"]}, "All final suites are required"),
     (all(not item["failures"] for item in suite["reports"]), "All assertions must pass"),
-    ("Status: complete" in (root / "COMPLETION-AUDIT.md").read_text(), "Completion audit is not complete"),
+    ("Local verification: complete" in (root / "COMPLETION-AUDIT.md").read_text(), "Local verification audit is not complete"),
 ]
 for passed, message in checks:
     if not passed:
         raise SystemExit("Packaging blocked: " + message)
-release_files = ["main.js", "manifest.json", "styles.css", "README.md", "LICENSE", "NOTICE.md", "Examples.md", "CHANGELOG.md", "VERIFICATION.md", "COMPATIBILITY.md", "PLATFORM-AUDIT.md", "MOBILE-CHECKLIST.md", "TYPING-INTEGRATION.md", "COMPLETION-AUDIT.md", "suite-report.json"]
+release_files = ["main.js", "manifest.json", "styles.css", "README.md", "LICENSE", "NOTICE.md", "Examples.md", "CHANGELOG.md", "VERIFICATION.md", "COMPATIBILITY.md", "PLATFORM-AUDIT.md", "DESKTOP-TESTING.md", "TYPING-INTEGRATION.md", "COMPLETION-AUDIT.md", "suite-report.json"]
 archives = []
 for source in [False, True]:
     target = root.parent / ("latex-standard-delimiters-" + version + ("-source" if source else "") + ".zip")

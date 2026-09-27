@@ -1,5 +1,13 @@
 # Changes
 
+## 0.4.0 — candidate under verification
+
+- Project list/callout math to TeX while preserving original Markdown offsets and prefixes.
+- Render multiline displays using content-only replacements and recover inactive callout bodies from their source.
+- Extend vertical equation entry to container displays and map source colors around Markdown prefixes.
+- Recognize ordered-list continuation math while retaining genuine indented-code exclusions.
+- Add container-specific editing regression coverage.
+
 ## 0.3.2 — beta
 
 - Declare desktop-only support in the manifest.

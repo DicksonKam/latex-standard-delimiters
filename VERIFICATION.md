@@ -1,35 +1,27 @@
-# Current scope — 0.3.2
+# Verification — 0.4.0
 
-Desktop-only GitHub beta. Mobile certification and Community directory eligibility are outside scope by owner instruction. Rendering JavaScript and CSS are unchanged from the tested 0.3.1 binary; the manifest now declares isDesktopOnly=true. Historical reports below retain their original version and limits.
+Desktop GitHub beta candidate, tested on macOS in Obsidian 1.13.7 using a disposable TestVault. Mobile and Community directory publication are outside scope. Production does not write Markdown or change another plugin’s settings. Developer scripts intentionally exercise and restore disposable fixtures/preferences.
 
-# Verification — 0.3.1
+npm run check passes 27 unit tests, version consistency, TypeScript and build, with zero lint errors and three owner-document DOM creation advisories. The final actual-app suite records 239 passing assertions across 17 suites. suite-report.json records host/version and binds the JavaScript/CSS hashes to the run. Container editing checks cover list/callout rendering, original source visibility, selection, previews, typing, undo/redo, ArrowUp and Reading View. Variant checks include ordered-list continuations, nested quotes and quoted lists.
 
-Verified on macOS in Obsidian 1.13.7, in a disposable TestVault. Main-vault note/plugin files were not modified. Production never writes Markdown; developer scripts deliberately edit disposable fixtures/preferences and restore them. The minimum app version matches this tested host. Older versions may work, but support is not claimed.
+The existing suites recheck native math, comments/malformed delimiters, selections/multiple cursors, clipboard, undo/redo, rapid preview updates, composition lifecycle, rendering ownership, panes/popouts, embeds, reload/unload cleanup, Vim, named math plugins, preferences, themes and source preservation. Synthetic pointer/composition events are explicitly synthetic.
 
-Final npm run check passed: version consistency, zero lint errors, 19 parser/tokenizer regression tests, TypeScript and production build. Three advisory warnings remain for native DOM constructors that deliberately use the target document. Settings now use declarative definitions and were checked through global search, invalid/valid color input and preview toggling; see settings-ui-report.json. Node 23.9.0 was used locally; supported Node 22/24 is recommended for development.
+Source projection removes only recognized container prefixes from the TeX sent to MathJax. Editor replacement ranges preserve Markdown prefixes and line boundaries, while colors map back to original source spans. Native inactive callout bodies use source recovery through the attached editor widget. Ambiguous DOM source mappings remain literal; unrecognized container syntax is retained in projected TeX rather than silently stripped. Container continuation lines remain in the editor layout, so their spacing can differ from native dollar display math.
 
-All 195 final actual-app assertions passed across 15 suites. suite-report.json binds plugin version, observed host version, main.js SHA256 and styles.css SHA256 to the run. Individual JSON reports contain exact assertions:
+## Performance
 
-- Navigation 36; baseline runtime 28; live editing preview updates seven; parser/container/selection/clipboard/undo/conflict/performance/lifecycle audit 31.
-- Quick Latex typing compatibility seven and shared Extended MathJax compatibility nine, including both load orders, custom macros/chemistry, native math and source preservation.
-- Synthetic pointer routing seven and composition/ownership 13, covering tap/swipe/cancel/long press, composition preview suppression/commit, Automatic/Off, status and persistence.
-- Split-pane comfort 11, actual upstream renderer handoff 12, actual desktop popout eight and SwiftLaTeX engine/coexistence eight.
-- Built-in Vim seven, repeated-edit performance four and actual Minimal/narrow-editor checks seven.
+The final candidate benchmark used 76,780 characters and 1,000 equations, with 40 insertion/deletion dispatches. Mean 14.71 ms; maximum 24.50 ms. These are synchronous dispatch/decoration/viewport-DOM measurements on this machine, not end-to-end keyboard latency or full-document typesetting. Exact source was restored and one active preview remained. Minimal stylesheet/narrow-pane checks cover light/dark classes and horizontally scrolling long previews; they do not certify every theme or custom color’s contrast.
 
-Source preservation is explicitly checked in editing, copy/paste, undo/redo, delimiter deletion, source/reading switches, multiple panes/popouts, plugin handoff/reloads and large notes. Duplicate source markers are prevented for the known upstream renderer; CSS uses separate lsd-math names. Unknown competing renderer IDs are not universally detected.
+## Desktop and IME evidence
 
-The final edit benchmark used 76,780 characters and 1,000 equations, with 40 insertion/deletion dispatches. Mean was 16.44 ms; maximum 32.20 ms. These are synchronous dispatch/decoration/viewport-DOM timings on this machine, not end-to-end keyboard latency or complete-document typesetting. They show that large-note edits cost more than caret movement; no latency guarantee is made. Source returned exactly to its original text and one active preview remained. The separate beta audit records 100/500/1000-note caret measurements; its open timings include a fixed wait and are not latency claims.
+Windows/Linux desktop Obsidian evidence remains unavailable. The installed Cangjie method was activated, but the automation keypress inserted Latin text without any composition events. That attempt does not prove real IME composition support. The fixture and ABC keyboard source were restored; os-ime-attempt-report.json records the observations. Synthetic composition lifecycle checks pass separately. See DESKTOP-TESTING.md for a manual real-input procedure.
 
-Minimal's actual stylesheet was loaded in the test document with a 360px editor. In light/dark classes a 3,919px equation scrolled within a 315px preview without changing source. Token visibility and containment were checked; contrast for every preset or custom color was not certified.
+## Compatibility limits
 
-The first synthetic composition harness left CodeMirror composing after blur without compositionend; it now commits before switching views, and production does not assume blur alone commits. The first upstream Reading View assertion counted a hidden editor along with the reading DOM; it now scopes to the active view. A developer Console import error occurred after an earlier run; host-version reporting now uses the observed window version, and the complete corrected suite was rerun successfully.
+Extended MathJax 0.4.1 shared macros/chemistry and both load orders pass. Quick Latex 2.6.5 native-dollar helpers coexist; standard-delimiter snippets are not added. SwiftLaTeX 0.6.0 engine initialization/coexistence is checked with a loopback-only package endpoint, without full PDF/SVG compilation. Upstream renderer 1.0.4 handoff passes for its known ID; arbitrary competing renderers are not universally detected. Vim normal-mode visibility uses an observed host DOM convention; arbitrary mappings/macros remain unverified.
 
-Remaining limits: real iOS/Android and OS IME evidence is outstanding; synthetic desktop events and narrow panes are not mobile certification. MOBILE-CHECKLIST.md gives real-device procedures. SwiftLaTeX checks initialize the embedded engine using an offline package endpoint and verify coexistence; full TeX/PDF/SVG compilation is not tested. Quick Latex shortcuts are not extended to standard delimiters. Vim normal-mode source visibility uses a host DOM convention, not a guaranteed public API; arbitrary mappings/macros need further tests. Inline math remains single-line, and list/callout-prefixed multiline displays remain unsupported in Live Preview. Color highlighting is a tokenizer, not a TeX compiler. Exporters bypassing Obsidian's DOM do not automatically support the syntax.
+Inline math remains single-line. Coloring is a tokenizer, not a TeX compiler. Exporters bypassing Obsidian’s rendered DOM do not automatically support standard delimiters. Older hosts than 1.13.7, arbitrary Markdown extensions and universal stability are not certified.
 
-See COMPATIBILITY.md, PLATFORM-AUDIT.md and TYPING-INTEGRATION.md for boundaries. Actual-app evidence was collected before GitHub publication. Replacement of other plugins and universal stability certification are not claimed.
+## Updates
 
-## Beta installation and recovery
-
-BRAT 1.3.0 installed public 0.3.0 in a separate clean vault. An actual BRAT upgrade to public 0.3.1 preserved nondefault colors, preview preference, rendering mode and both fixture notes. A deliberate broken local bundle failed to load while BRAT remained usable; selecting public 0.3.0 recovered the plugin with preferences/source intact, and selecting Latest restored 0.3.1. See brat-update-report.json and brat-recovery-report.json. This tests load-failure recovery, not arbitrary application crashes.
-
-Community eligibility remains unresolved: current directory policy requires qualifying approval for this derivative. COMMUNITY-SUBMISSION.md records the policy and remaining gates. This beta is not a submitted or approved Community plugin.
+Historical BRAT install/upgrade/recovery evidence is in brat-update-report.json and brat-recovery-report.json: public 0.3.0 → 0.3.1 preserved nondefault preferences and fixture bytes; a broken local bundle was recovered through a version rollback, then Latest. This is historical recovery evidence, not a claimed 0.4.0 upgrade test. Keep data.json when replacing plugin files, and use files from one release. See UPDATING.md.

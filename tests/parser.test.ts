@@ -76,3 +76,9 @@ test('long backslash runs and protected-region-heavy notes recover correctly', (
 test('blockquote rule at note start is not YAML frontmatter', () => {
   assert.deepEqual(parse('> ---\n> \\(x\\)').map(m=>m.source),['x']);
 });
+
+test('ordered list continuation math is not mistaken for indented code', () => {
+  assert.equal(parse('12. Item\n\n    \\[\n    x+y\n    \\]').length, 1);
+  assert.equal(parse('- Item\n\n      \\(code\\)').length, 0);
+  assert.equal(parse('12. Item\n\n    text\n\nOutside\n    \\(code\\)').length, 0);
+});

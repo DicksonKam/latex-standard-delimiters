@@ -12,6 +12,10 @@ Actual Obsidian 1.13.7 screenshots from a disposable test vault, using beta 0.3.
 
 ![Reading View with standard delimiters, native math and literal code](images/reading-view.png)
 
+The 0.4.0 screenshot below shows a list display equation and a callout equation with its original colored source and live editing preview. Captured directly from the disposable desktop TestVault.
+
+![Callout equation source and editing preview in beta 0.4.0](images/container-editing-0.4.0.png)
+
 Distribution is through GitHub Releases and BRAT. Community Plugins listing is not planned. The retained MIT license permits this derivative; upstream attribution remains.
 
 ## Installation
@@ -24,9 +28,9 @@ For beta updates, use [BRAT](https://github.com/TfTHacker/obsidian42-brat) 1.1.0
 
 Click or tap a rendered equation to reveal source. Up/Down enters a display equation. Source receives command, brace, number, operator, comment and delimiter colors, with matching-brace feedback. A preview appears below a complete active equation; selections and multiple cursors suppress it. Disable editing previews in settings if preferred. Long previews scroll horizontally within their pane.
 
-During IME composition, previews and source-marker replacement widgets are suppressed until composition ends. Synthetic lifecycle checks pass; real OS input-method testing is still outstanding. In built-in Vim normal mode, standard-delimiter math stays as source so native motions and counts retain logical lines. Insert mode restores ordinary rendering. This uses Obsidian's observed cm-vimMode DOM indicator, which must be rechecked on future host versions.
+During IME composition, previews and source-marker replacement widgets are suppressed until composition ends. Synthetic lifecycle checks pass; real OS input-method composition remains unverified. See DESKTOP-TESTING.md. In built-in Vim normal mode, standard-delimiter math stays as source so native motions and counts retain logical lines. Insert mode restores ordinary rendering. This uses Obsidian's observed cm-vimMode DOM indicator, which must be rechecked on future host versions.
 
-Source mode stays raw. Inline math must fit on one line. Multiline displays must occupy complete lines for Live Preview; list/callout-prefixed multiline displays remain unsupported there. Incomplete equations remain editable literal text. Malformed complete math uses MathJax's visible error feedback. Coloring is a tokenizer, not a TeX compiler.
+Source mode stays raw. Inline math must fit on one line. Version 0.4.0 adds multiline displays on complete math lines inside lists and callouts. Markdown prefixes stay outside the math replacements; projections remove only container syntax before typesetting. Unrecognized container syntax is retained in projected TeX rather than silently stripped. Incomplete equations remain editable literal text. Malformed complete math uses MathJax's visible error feedback. Coloring is a tokenizer, not a TeX compiler.
 
 ## Rendering ownership and other tools
 
@@ -42,9 +46,9 @@ CSS uses the plugin's own lsd-math namespace. Theme variables supply default tok
 
 ## Development and verification
 
-Use supported Node 22 or 24. npm ci followed by npm run check validates versions, lint, tests, TypeScript and the production bundle. The final source passed 19 unit tests and 195 actual-app checks, including editing performance and Minimal/narrow-pane verification. VERIFICATION.md describes exact scope and outstanding gates.
+Use supported Node 22 or 24. npm ci followed by npm run check validates versions, lint, tests, TypeScript and the production bundle. The final source passed 27 unit tests and 239 actual-app checks, including editing performance and Minimal/narrow-pane verification. VERIFICATION.md describes exact scope and outstanding gates.
 
-Developer scripts run only in a disposable vault named TestVault and deliberately exercise editor contents/settings. Copy the supplied Markdown fixtures and preamble.sty there. For the compatibility fixture, copy `fixtures/Compatibility.md` into the vault root; `COMPATIBILITY.md` is the findings document. Install Extended MathJax 0.4.1, Quick Latex 2.6.5, SwiftLaTeX 0.6.0, upstream LaTeX Delimiter Renderer 1.0.4 and the Minimal theme stylesheet. Do not copy personal plugin data. For the SwiftLaTeX test copy, set data.json to {"enableCache":false,"package_url":"http://127.0.0.1:9/","compiler":0,"onlyRenderInReadingMode":false}. The upstream test used a local build of original source; package compilation is not part of SwiftLaTeX coexistence checks.
+Developer scripts run only in a disposable vault named TestVault and deliberately exercise editor contents/settings. Copy the supplied Markdown fixtures and preamble.sty there, including fixtures/Containers.md and fixtures/ContainerVariants.md in the vault root. For the compatibility fixture, copy `fixtures/Compatibility.md` into the vault root; `COMPATIBILITY.md` is the findings document. Install Extended MathJax 0.4.1, Quick Latex 2.6.5, SwiftLaTeX 0.6.0, upstream LaTeX Delimiter Renderer 1.0.4 and the Minimal theme stylesheet. Do not copy personal plugin data. For the SwiftLaTeX test copy, set data.json to {"enableCache":false,"package_url":"http://127.0.0.1:9/","compiler":0,"onlyRenderInReadingMode":false}. The upstream test used a local build of original source; package compilation is not part of SwiftLaTeX coexistence checks.
 
 Keep Obsidian foreground. In its developer Console, set window.lsdTestScriptsPath to the absolute scripts directory and window.lsdTestHostVersion to the Obsidian version displayed in the window title (for this verified run, "1.13.7"), then execute:
 

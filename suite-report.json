@@ -1,10 +1,20 @@
 {
-  "version": "0.3.1",
-  "timestamp": "2026-09-27T05:35:59.941Z",
+  "version": "0.4.0",
+  "timestamp": "2026-09-27T07:29:52.611Z",
   "obsidianVersion": "1.13.7",
   "stylesSha256": "e80df64d07c2a4ade9b8ac34d4d9db6c41de19b3bd1e8b5f1a82c59bee59cfd9",
-  "mainJsSha256": "d3b86e381943f3708201172b0e3da44d4fbb58ef0af2475c2a01332656d79996",
+  "mainJsSha256": "f933ca33152044c88a1b353d53f12a09324d76eeca84dc8a43038105c8fe2763",
   "reports": [
+    {
+      "name": "container-editing",
+      "count": 33,
+      "failures": []
+    },
+    {
+      "name": "container-variants",
+      "count": 11,
+      "failures": []
+    },
     {
       "name": "navigation",
       "count": 36,
@@ -56,11 +66,6 @@
       "failures": []
     },
     {
-      "name": "popout",
-      "count": 8,
-      "failures": []
-    },
-    {
       "name": "swift-coexistence",
       "count": 8,
       "failures": []
@@ -78,6 +83,11 @@
     {
       "name": "theme-narrow",
       "count": 7,
+      "failures": []
+    },
+    {
+      "name": "popout",
+      "count": 8,
       "failures": []
     }
   ],

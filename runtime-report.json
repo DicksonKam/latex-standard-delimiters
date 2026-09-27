@@ -1,7 +1,7 @@
 {
-  "pluginVersion": "0.3.1",
-  "timestamp": "2026-09-27T05:35:20.419Z",
-  "mainJsSha256": "d3b86e381943f3708201172b0e3da44d4fbb58ef0af2475c2a01332656d79996",
+  "pluginVersion": "0.4.0",
+  "timestamp": "2026-09-27T07:29:15.074Z",
+  "mainJsSha256": "f933ca33152044c88a1b353d53f12a09324d76eeca84dc8a43038105c8fe2763",
   "tests": [
     {
       "name": "Live Preview renders all three inline examples visibly",

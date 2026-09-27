@@ -30,6 +30,7 @@ import {
 } from "./parser";
 
 import { mathTokens, matchingBraces } from "./highlight";
+import { mathPresentation, containerReplacementRanges } from "./presentation";
 
 const readingParseCache = new Map<string, MathDelimiterMatch[]>();
 function readingMatches(text: string): MathDelimiterMatch[] {
@@ -107,7 +108,7 @@ class ReadingRenderScope extends MarkdownRenderChild {
   onunload(): void { this.restore(); renderScopes.get(this.plugin)?.delete(this); elementScopes.delete(this.containerEl); }
 }
 
-// Live Preview renders table cells and callout titles separately, often with
+// Live Preview renders table cells and callout titles/bodies separately, often with
 // no section metadata. Wait until their widget is attached, then recover the
 // exact source fragment through CodeMirror's public DOM-position API.
 class EmbeddedMathRenderChild extends MarkdownRenderChild {
@@ -134,6 +135,15 @@ class EmbeddedMathRenderChild extends MarkdownRenderChild {
           if (spans.length !== row.cells.length) return;
           const span = spans[cell.cellIndex];
           if (span) text = rowSource.slice(span.from, span.to).trim();
+        } else if (this.containerEl.closest(".callout-content")) {
+          if (!/^ {0,3}>[ \t]?\[![^\]]+\]/.test(line.text)) return;
+          const body: string[] = [];
+          for (let number = line.number + 1; number <= view.state.doc.lines; number++) {
+            const sourceLine = view.state.doc.line(number).text;
+            if (!/^ {0,3}>/.test(sourceLine)) break;
+            body.push(sourceLine.replace(/^ {0,3}>[ \t]?/, ""));
+          }
+          text = body.join("\n");
         } else if (this.containerEl.closest(".callout-title")) {
           text = line.text.replace(/^(?: {0,3}>[ \t]?)+\[![^\]]+\][+-]?[ \t]*/, "");
         }
@@ -234,12 +244,92 @@ async function renderReadingView(
     range.setEnd(last.node, last.offset + 1);
     const original = range.cloneContents();
     range.deleteContents();
-    const math = renderFormula(replacement.match.source, replacement.match.display, replacement.match.display, element.ownerDocument);
+    const presentation = mathPresentation(section.text, replacement.match);
+    const math = renderFormula(presentation.source, replacement.match.display, replacement.match.display, element.ownerDocument);
+    if (element.closest(".cm-callout .callout-content")) {
+      math.addEventListener("click", event => {
+        if (event.button !== 0) return;
+        const editor = element.closest<HTMLElement>(".cm-editor");
+        const view = editor ? EditorView.findFromDOM(editor) : null;
+        const widget = element.closest<HTMLElement>(".cm-callout");
+        if (!view || !widget || view.composing) return;
+        const bounds = calloutSourceBounds(view, widget);
+        if (!bounds) return;
+        const candidates = parsedMatches(view.state).filter(candidate => candidate.from >= bounds.from && candidate.to <= bounds.to);
+        const sourceOrder = [...replacements].sort((left, right) => left.match.from - right.match.from);
+        const candidate = candidates[sourceOrder.indexOf(replacement)];
+        if (candidates.length !== sourceOrder.length || !candidate || mathPresentation(view.state.doc.toString(), candidate).source !== presentation.source) return;
+        event.preventDefault(); event.stopPropagation();
+        revealContainingCallout(view, candidate.from + 2);
+        view.dispatch({ selection: { anchor: candidate.from + 2 }, scrollIntoView: true }); view.focus();
+      });
+    }
     range.insertNode(math);
     scope.replacements.push({ element: math, original });
   }
   await finishRenderMath();
 }
+
+/** The native callout edit button is a host DOM convention, verified on 1.13.7. */
+function calloutSourceBounds(view: EditorView, widget: HTMLElement): { from: number; to: number; headerFrom: number } | null {
+  try {
+    const line = view.state.doc.lineAt(view.posAtDOM(widget));
+    if (!/^ {0,3}>[ \t]?\[![^\]]+\]/.test(line.text)) return null;
+    let to = line.to;
+    for (let number = line.number + 1; number <= view.state.doc.lines; number++) {
+      const bodyLine = view.state.doc.line(number);
+      if (!/^ {0,3}>/.test(bodyLine.text)) break;
+      to = bodyLine.to;
+    }
+    return { from: Math.min(line.to + 1, view.state.doc.length), to, headerFrom: line.from };
+  } catch { return null; }
+}
+
+const pendingCalloutCarets = new WeakMap<EditorView, { position: number; headerFrom: number; to: number; doc: EditorState["doc"]; expires: number }>();
+
+function revealContainingCallout(view: EditorView, position: number): void {
+  if (view.composing) return;
+  for (const widget of Array.from(view.dom.querySelectorAll<HTMLElement>(".cm-callout"))) {
+    const bounds = calloutSourceBounds(view, widget);
+    if (bounds && position >= bounds.from && position <= bounds.to) {
+      const button = widget.querySelector<HTMLElement>(".edit-block-button");
+      if (!button) return;
+      pendingCalloutCarets.set(view, { position, headerFrom: bounds.headerFrom, to: bounds.to, doc: view.state.doc, expires: Date.now() + 500 });
+      button.click();
+      return;
+    }
+  }
+}
+
+// Obsidian's edit control asynchronously selects its entire callout. Observe
+// that exact transaction instead of guessing when the native callback runs.
+const calloutCaretObserver = ViewPlugin.fromClass(class {
+  private destroyed = false;
+  constructor(private view: EditorView) {}
+  update(): void {
+    const pending = pendingCalloutCarets.get(this.view);
+    if (!pending) return;
+    const selection = this.view.state.selection.main;
+    if (Date.now() > pending.expires || this.view.state.doc !== pending.doc || this.view.composing || !this.view.state.facet(renderOptions).enabled || this.view.state.selection.ranges.length !== 1) {
+      pendingCalloutCarets.delete(this.view); return;
+    }
+    if (selection.empty && selection.head === pending.position) return;
+    if (selection.from !== pending.headerFrom || (selection.to !== pending.to && selection.to !== pending.to + 1)) {
+      pendingCalloutCarets.delete(this.view); return;
+    }
+    queueMicrotask(() => {
+      if (this.destroyed || pendingCalloutCarets.get(this.view) !== pending) return;
+      if (!this.view.dom.isConnected || this.view.state.doc !== pending.doc || this.view.composing) { pendingCalloutCarets.delete(this.view); return; }
+      // The first native selection may occur synchronously, before our caller
+      // sets the math caret. Keep the guard for the later DOM-selection flush.
+      if (!this.view.state.selection.main.eq(selection)) return;
+      pendingCalloutCarets.delete(this.view);
+      this.view.dispatch({ selection: { anchor: pending.position }, scrollIntoView: true });
+      this.view.focus();
+    });
+  }
+  destroy(): void { this.destroyed = true; pendingCalloutCarets.delete(this.view); }
+});
 
 function rangeTouchesSelection(state: EditorState, match: MathDelimiterMatch): boolean {
   return state.selection.ranges.some((range) => {
@@ -274,6 +364,7 @@ class MathWidget extends WidgetType {
     const reveal = () => {
       // A composing editor owns its selection until the input method commits.
       if (view.composing) return;
+      revealContainingCallout(view, this.revealPosition);
       view.dispatch({ selection: { anchor: this.revealPosition }, scrollIntoView: true });
       view.focus();
     };
@@ -480,6 +571,7 @@ function buildLivePreviewDecorations(state: EditorState): DecorationSet {
   const options = state.facet(renderOptions);
   if (!options.enabled || !state.field(editorLivePreviewField, false)) return Decoration.none;
   const matches = parsedMatches(state);
+  const documentText = state.doc.toString();
   const composing = state.field(compositionState, false) === true;
   const vimSource = state.field(vimSourceState, false) === true;
   let previewAdded = false;
@@ -489,9 +581,16 @@ function buildLivePreviewDecorations(state: EditorState): DecorationSet {
     ranges.push(Decoration.mark({ class: "lsd-math-emphasis-spill" }).range(spill.from, spill.to));
   }
   for (const match of matches) {
+    const presentation = mathPresentation(documentText, match);
     if (vimSource || rangeTouchesSelection(state, match)) {
-      for (const token of mathTokens(match.source, match.from + 2)) {
-        ranges.push(Decoration.mark({ class: `lsd-token-${token.kind}` }).range(token.from, token.to));
+      for (const token of mathTokens(presentation.source)) {
+        for (const segment of presentation.segments) {
+          const from = Math.max(token.from, segment.sourceFrom);
+          const to = Math.min(token.to, segment.sourceFrom + segment.to - segment.from);
+          if (to > from) ranges.push(Decoration.mark({ class: `lsd-token-${token.kind}` }).range(
+            segment.from + from - segment.sourceFrom, segment.from + to - segment.sourceFrom
+          ));
+        }
       }
       for (const edge of [match.from, match.to - 2]) {
         ranges.push(Decoration.mark({ class: "lsd-token-delimiter" }).range(edge, edge + 2));
@@ -522,7 +621,7 @@ function buildLivePreviewDecorations(state: EditorState): DecorationSet {
       if (!vimSource && !composing && options.previews && !previewAdded && state.selection.ranges.length === 1 && state.selection.main.empty) {
         previewAdded = true;
         ranges.push(Decoration.widget({
-        widget: new EditingPreviewWidget(match.source, match.display),
+        widget: new EditingPreviewWidget(presentation.source, match.display),
         block: true,
         side: 1
       }).range(state.doc.lineAt(match.to).to));
@@ -536,7 +635,16 @@ function buildLivePreviewDecorations(state: EditorState): DecorationSet {
     const isWholeLineBlock =
       match.display && match.from === startLine.from && match.to === endLine.to;
 
-    if (crossesLines && !isWholeLineBlock) continue;
+    if (crossesLines && !isWholeLineBlock) {
+      const contentRanges = containerReplacementRanges(documentText, match, presentation);
+      for (let i = 0; i < contentRanges.length; i++) {
+        const range = contentRanges[i];
+        ranges.push(Decoration.replace({
+          widget: i === 0 ? new MathWidget(presentation.source, true, false, match.from + 2) : undefined
+        }).range(range.from, range.to));
+      }
+      continue;
+    }
 
     ranges.push(
       Decoration.replace({
@@ -576,12 +684,14 @@ function enterMathVertically(view: EditorView, forward: boolean): boolean {
   if (matches.some(match => rangeTouchesSelection(state, match))) return false;
   const head = state.selection.main.head;
   const target = view.moveVertically(state.selection.main, forward).head;
+  const documentText = state.doc.toString();
   const candidates = matches.filter(match => match.display &&
-    match.from === state.doc.lineAt(match.from).from && match.to === state.doc.lineAt(match.to).to &&
+    mathPresentation(documentText, match).standalone &&
     (forward ? match.from >= head && match.from <= target : match.to <= head && match.to >= target));
   const match = forward ? candidates[0] : candidates[candidates.length - 1];
   if (!match) return false;
   const anchor = forward ? match.from + 2 : match.to - 2;
+  revealContainingCallout(view, anchor);
   view.dispatch({ selection: { anchor }, scrollIntoView: true });
   return true;
 }
@@ -603,7 +713,7 @@ export default class LatexDelimiterRenderer extends Plugin {
   private disposed = false;
   private checkingConflict = false;
   private embeddedChildren = new Map<HTMLElement, EmbeddedMathRenderChild>();
-  private extensions = [livePreviewExtension, EditorView.theme({}), mathNavigation, renderOptions.of({ previews: true, enabled: true }), compositionState, compositionEvents, vimSourceState, vimSourceObserver];
+  private extensions = [livePreviewExtension, EditorView.theme({}), mathNavigation, renderOptions.of({ previews: true, enabled: true }), compositionState, compositionEvents, vimSourceState, vimSourceObserver, calloutCaretObserver];
 
   async saveColors(): Promise<void> {
     await this.saveData({ colors: this.colors, editingPreviews: this.editingPreviews, renderingMode: this.renderingMode });
@@ -690,7 +800,7 @@ export default class LatexDelimiterRenderer extends Plugin {
     this.app.workspace.iterateAllLeaves(leaf => {
       if (!(leaf.view instanceof MarkdownView) || !leaf.view.file) return;
       const sourcePath = leaf.view.file.path;
-      for (const element of Array.from(leaf.view.containerEl.querySelectorAll<HTMLElement>(".cm-table-widget td, .cm-table-widget th, .cm-callout .callout-title-inner"))) {
+      for (const element of Array.from(leaf.view.containerEl.querySelectorAll<HTMLElement>(".cm-table-widget td, .cm-table-widget th, .cm-callout .callout-title-inner, .cm-callout .callout-content"))) {
         if (this.embeddedChildren.has(element) || element.querySelector(".lsd-math")) continue;
         const context: MarkdownPostProcessorContext = {
           docId: sourcePath, sourcePath, frontmatter: null,
