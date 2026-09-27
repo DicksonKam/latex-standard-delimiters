@@ -1,6 +1,6 @@
-# Compatibility findings — 0.4.0 candidate
+# Compatibility findings — 0.4.0 beta
 
-The 0.4.0 candidate passed 239 actual-app assertions on macOS/Obsidian 1.13.7, with code/CSS hashes recorded in suite-report.json. This is evidence for the tested combinations, not universal compatibility certification.
+The 0.4.0 beta passed 239 actual-app assertions on macOS/Obsidian 1.13.7, with code/CSS hashes recorded in suite-report.json. This is evidence for the tested combinations, not universal compatibility certification.
 
 Extended MathJax 0.4.1: custom preamble macros and chemistry work with standard/native delimiters in Reading View and Live Preview. Both load orders were checked. Unloading our renderer preserves native math. We share Obsidian's MathJax engine rather than replacing that plugin's functionality.
 

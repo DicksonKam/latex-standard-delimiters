@@ -1,12 +1,13 @@
 # Changes
 
-## 0.4.0 — candidate under verification
+## 0.4.0 — beta
 
 - Project list/callout math to TeX while preserving original Markdown offsets and prefixes.
 - Render multiline displays using content-only replacements and recover inactive callout bodies from their source.
 - Extend vertical equation entry to container displays and map source colors around Markdown prefixes.
 - Recognize ordered-list continuation math while retaining genuine indented-code exclusions.
-- Add container-specific editing regression coverage.
+- Fix callout click reveal and caret selection; add container-specific editing regression coverage.
+- Verify 27 unit tests, 239 actual-app assertions, public assets and BRAT upgrade preservation.
 
 ## 0.3.2 — beta
 
