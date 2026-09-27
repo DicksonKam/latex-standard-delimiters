@@ -1,5 +1,5 @@
 {
-  "version": "0.4.1",
+  "version": "0.4.2",
   "results": [
     {
       "name": "source: inline math in list/callout/table renders",
@@ -161,23 +161,23 @@
     {
       "count": 100,
       "characters": 7480,
-      "openIncluding100msWait": 118.59999999403954,
-      "selectionMeanMs": 1.0850000001490117,
-      "selectionMaxMs": 2.2000000029802322
+      "openIncluding100msWait": 110.70000000298023,
+      "selectionMeanMs": 0.9200000002980232,
+      "selectionMaxMs": 2.0999999940395355
     },
     {
       "count": 500,
       "characters": 38280,
       "openIncluding100msWait": 101.29999999701977,
-      "selectionMeanMs": 1.7,
-      "selectionMaxMs": 3.0999999940395355
+      "selectionMeanMs": 1.3449999995529651,
+      "selectionMaxMs": 2.6000000089406967
     },
     {
       "count": 1000,
       "characters": 76780,
-      "openIncluding100msWait": 101.29999999701977,
-      "selectionMeanMs": 2.3399999998509884,
-      "selectionMaxMs": 4.700000002980232
+      "openIncluding100msWait": 102,
+      "selectionMeanMs": 2.25,
+      "selectionMaxMs": 5
     }
   ]
 }

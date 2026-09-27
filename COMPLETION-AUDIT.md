@@ -1,13 +1,11 @@
-# 0.4.1 callout patch verification audit
+# 0.4.2 stress-test milestone audit
 
-Status: complete — published desktop GitHub beta
+Status: locally verified; publication pending
 
 Local verification: complete
 
-Confirmed defects: Markdown parsed underscores in internal source-mapping markers together with underbrace subscripts; native callout rendering waited for a two-second periodic scan. The patch uses Markdown-neutral markers and a per-editor insertion observer with frame/observer cleanup on unload. Embedded ownership and in-flight work are deduplicated; ambiguous partial mappings stay literal rather than rendering a lookalike parenthesis expression. Production does not write note source.
+Stress testing confirmed dense callout source mapping re-rendered the whole section once per equation: 250 equations took approximately 10 seconds in Live Preview and 20 seconds in Reading View on the tested machine. The patch builds one marked template per section and retains Markdown-neutral collision avoidance, unique partial mappings, deduplication and stale-DOM guards. Production does not write note source.
 
-28 unit tests, lint/type checking/build and 258 actual-Obsidian assertions across 18 suites pass on macOS/Obsidian 1.13.7. Final suite hashes bind the tested bundle/CSS. The exact reported Euler examples render in Live Preview and Reading View; the even/odd underbraces were visually inspected. Four warm callout mounts took 49–71 ms on this machine. Existing title/table literal-text, navigation, editing, compatibility, lifecycle and source-preservation checks pass.
+Final gate: 31 unit tests including 7,000 generated inputs; all 18 existing runtime suites and three new stress suites on the final bundle; dense callout timing improvement; exact source and literal-text preservation; package current hash-bound evidence; GitHub CI; public asset/checksum verification. Mobile, Community directory publication, Windows/Linux and real OS IME certification remain outside the tested scope. Test writes stay in disposable work/TestVault.
 
-Public 0.4.1 is published at https://github.com/DicksonKam/latex-standard-delimiters/releases/tag/0.4.1 from commit 1d995542ea8b4d8c0f9f9f1f7ece03860130628d. GitHub Checks run 36306535527 and Release run 36306574770 succeeded. The draft notes/assets were inspected before publication. Eight independent HTTPS asset/checksum/ZIP/attribution assertions pass in public-release-check-report.json. Published 0.4.0 remains immutable.
-
-BRAT upgrade/recovery reports retain their historical tested versions; the 0.4.1 patch update has not been separately exercised through BRAT UI. Main vault remains outside test writes. Desktop cross-platform and real OS IME evidence remain unverified; mobile and Community directory publication remain out of scope.
+Final local evidence passes: 31 unit tests, 7,000 generated inputs and 1,173 actual-app assertions across 21 suites on the current bundle. The 250-equation callout now completes in approximately 0.6 seconds in both views. All literal-text, source-preservation, navigation, editing, compatibility and lifecycle regression gates pass. Public release and asset verification are pending.

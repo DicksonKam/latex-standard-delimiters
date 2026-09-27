@@ -1,7 +1,7 @@
 {
-  "pluginVersion": "0.4.1",
-  "timestamp": "2026-09-27T08:30:36.508Z",
-  "mainJsSha256": "63d5b0e75eb58364d525cafa727233ab2bfb450732b5482bf77977f56b06e834",
+  "pluginVersion": "0.4.2",
+  "timestamp": "2026-09-27T08:53:36.960Z",
+  "mainJsSha256": "f02426309c07f2df6bab51aec687d884d4cd5b6c9f12af26d29133c8e96e49ae",
   "tests": [
     {
       "name": "Live Preview renders all three inline examples visibly",
@@ -26,7 +26,7 @@
     {
       "name": "Clicking equation reveals source and moves caret inside",
       "passed": true,
-      "detail": "{\"caret\":39,\"start\":37,\"visible\":\"Inline: \\\\(\\\\frac{12}{x_1} + \\\\alpha^2\\\\).\"}"
+      "detail": "{\"caret\":40,\"start\":38,\"visible\":\"Inline: \\\\(\\\\frac{12}{x_1} + \\\\alpha^2\\\\).\"}"
     },
     {
       "name": "All requested token categories are highlighted",

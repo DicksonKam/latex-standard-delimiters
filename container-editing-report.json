@@ -1,7 +1,7 @@
 {
-  "pluginVersion": "0.4.1",
-  "timestamp": "2026-09-27T08:30:27.224Z",
-  "mainJsSha256": "63d5b0e75eb58364d525cafa727233ab2bfb450732b5482bf77977f56b06e834",
+  "pluginVersion": "0.4.2",
+  "timestamp": "2026-09-27T08:53:27.710Z",
+  "mainJsSha256": "f02426309c07f2df6bab51aec687d884d4cd5b6c9f12af26d29133c8e96e49ae",
   "results": [
     {
       "name": "List display renders in Live Preview",

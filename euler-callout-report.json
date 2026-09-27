@@ -1,35 +1,35 @@
 {
-  "version": "0.4.1",
-  "timestamp": "2026-09-27T08:30:22.833Z",
-  "mainJsSha256": "63d5b0e75eb58364d525cafa727233ab2bfb450732b5482bf77977f56b06e834",
+  "version": "0.4.2",
+  "timestamp": "2026-09-27T08:53:23.350Z",
+  "mainJsSha256": "f02426309c07f2df6bab51aec687d884d4cd5b6c9f12af26d29133c8e96e49ae",
   "scope": "Actual Obsidian Euler aligned/underbrace and align callouts, four warm mounts and Reading View; times include note opening and Markdown/MathJax work on this machine.",
   "samples": [
     {
       "trial": 0,
-      "outsideMs": 37.1000000089407,
-      "calloutMs": 70.90000000596046
+      "outsideMs": 21,
+      "calloutMs": 39.19999998807907
     },
     {
       "trial": 1,
-      "outsideMs": 28.69999998807907,
-      "calloutMs": 53.19999998807907
+      "outsideMs": 19.799999997019768,
+      "calloutMs": 35.79999999701977
     },
     {
       "trial": 2,
-      "outsideMs": 29.200000002980232,
-      "calloutMs": 51.70000000298023
+      "outsideMs": 21.5,
+      "calloutMs": 38.20000000298023
     },
     {
       "trial": 3,
-      "outsideMs": 26.899999991059303,
-      "calloutMs": 48.599999994039536
+      "outsideMs": 18.30000001192093,
+      "calloutMs": 39.6000000089407
     }
   ],
   "results": [
     {
       "name": "Live Preview renders aligned-underbrace and align callouts 0",
       "passed": true,
-      "detail": "{\"trial\":0,\"outsideMs\":37.1000000089407,\"calloutMs\":70.90000000596046}"
+      "detail": "{\"trial\":0,\"outsideMs\":21,\"calloutMs\":39.19999998807907}"
     },
     {
       "name": "No MathJax errors in complex callouts 0",
@@ -39,7 +39,7 @@
     {
       "name": "Callout mounting has no two-second polling wait 0",
       "passed": true,
-      "detail": "{\"trial\":0,\"outsideMs\":37.1000000089407,\"calloutMs\":70.90000000596046}"
+      "detail": "{\"trial\":0,\"outsideMs\":21,\"calloutMs\":39.19999998807907}"
     },
     {
       "name": "Source unchanged 0",
@@ -49,7 +49,7 @@
     {
       "name": "Live Preview renders aligned-underbrace and align callouts 1",
       "passed": true,
-      "detail": "{\"trial\":1,\"outsideMs\":28.69999998807907,\"calloutMs\":53.19999998807907}"
+      "detail": "{\"trial\":1,\"outsideMs\":19.799999997019768,\"calloutMs\":35.79999999701977}"
     },
     {
       "name": "No MathJax errors in complex callouts 1",
@@ -59,7 +59,7 @@
     {
       "name": "Callout mounting has no two-second polling wait 1",
       "passed": true,
-      "detail": "{\"trial\":1,\"outsideMs\":28.69999998807907,\"calloutMs\":53.19999998807907}"
+      "detail": "{\"trial\":1,\"outsideMs\":19.799999997019768,\"calloutMs\":35.79999999701977}"
     },
     {
       "name": "Source unchanged 1",
@@ -69,7 +69,7 @@
     {
       "name": "Live Preview renders aligned-underbrace and align callouts 2",
       "passed": true,
-      "detail": "{\"trial\":2,\"outsideMs\":29.200000002980232,\"calloutMs\":51.70000000298023}"
+      "detail": "{\"trial\":2,\"outsideMs\":21.5,\"calloutMs\":38.20000000298023}"
     },
     {
       "name": "No MathJax errors in complex callouts 2",
@@ -79,7 +79,7 @@
     {
       "name": "Callout mounting has no two-second polling wait 2",
       "passed": true,
-      "detail": "{\"trial\":2,\"outsideMs\":29.200000002980232,\"calloutMs\":51.70000000298023}"
+      "detail": "{\"trial\":2,\"outsideMs\":21.5,\"calloutMs\":38.20000000298023}"
     },
     {
       "name": "Source unchanged 2",
@@ -89,7 +89,7 @@
     {
       "name": "Live Preview renders aligned-underbrace and align callouts 3",
       "passed": true,
-      "detail": "{\"trial\":3,\"outsideMs\":26.899999991059303,\"calloutMs\":48.599999994039536}"
+      "detail": "{\"trial\":3,\"outsideMs\":18.30000001192093,\"calloutMs\":39.6000000089407}"
     },
     {
       "name": "No MathJax errors in complex callouts 3",
@@ -99,7 +99,7 @@
     {
       "name": "Callout mounting has no two-second polling wait 3",
       "passed": true,
-      "detail": "{\"trial\":3,\"outsideMs\":26.899999991059303,\"calloutMs\":48.599999994039536}"
+      "detail": "{\"trial\":3,\"outsideMs\":18.30000001192093,\"calloutMs\":39.6000000089407}"
     },
     {
       "name": "Source unchanged 3",

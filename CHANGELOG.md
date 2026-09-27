@@ -1,5 +1,12 @@
 # Changes
 
+## 0.4.2 — stress testing and dense callout performance
+
+- Map all equations in a rendered section with one marked Markdown template, removing quadratic dense-callout work.
+- Add 40 adversarial cases repeated in both views, lifecycle/reload races, 1,000 edit dispatches and volume tests up to 250 equations in one callout.
+- Add 7,000 deterministic generated parser/projection inputs and require passing current stress evidence for release packaging.
+- Verify 31 unit tests and 1,173 actual-app assertions on the final bundle.
+
 ## 0.4.1 — callout rendering fixes
 
 - Remove underscores from internal Markdown mapping markers so aligned equations with underbrace subscripts render inside callouts.

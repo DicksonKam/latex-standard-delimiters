@@ -195,55 +195,54 @@ async function renderReadingViewOnce(
     match: MathDelimiterMatch;
   }> = [];
 
-  for (const match of matches) {
-    // Ask the actual Markdown renderer what visible text corresponds to this
-    // formula. This survives escaped punctuation and emphasis consumed by Markdown.
-    // The marker prevents our own processor recursing into this detached template.
-    const template = element.ownerDocument.createElement("div");
-    template.setAttribute(READING_RENDER_MARKER, "template");
-    const component = new Component();
-    component.load();
-    let visibleSource: string;
-    let visibleSection = "";
-    try {
-      let startMarker = "\uE000LSDSTART\uE001";
-      let endMarker = "\uE000LSDEND\uE001";
-      while (section.text.includes(startMarker) || section.text.includes(endMarker)) {
-        startMarker += "\uE002"; endMarker += "\uE002";
-      }
-      const markedSource = section.text.slice(sectionStart, match.from) + startMarker +
-        section.text.slice(match.from, match.to) + endMarker + section.text.slice(match.to, sectionEnd);
-      await MarkdownRenderer.render(plugin.app, markedSource, template, context.sourcePath, component);
-      const markedText = renderedCharacters(template).text;
-      const start = markedText.indexOf(startMarker);
-      const end = markedText.indexOf(endMarker);
-      if (start < 0 || end < start) continue;
-      visibleSource = markedText.slice(start + startMarker.length, end);
-      const cleanText = markedText.slice(0, start) + visibleSource + markedText.slice(end + endMarker.length);
-      visibleSection = cleanText;
-      const wholeSectionAt = rendered.text.indexOf(cleanText);
+  // Render one marked template for the entire section. Rendering the same
+  // section once per equation made dense callouts quadratic in their size.
+  const template = element.ownerDocument.createElement("div");
+  template.setAttribute(READING_RENDER_MARKER, "template");
+  const component = new Component();
+  component.load();
+  try {
+    let markerPrefix = "\uE000LSD";
+    while (section.text.includes(markerPrefix)) markerPrefix += "\uE002";
+    const markers = matches.map((match, index) => ({ match, start: `${markerPrefix}${index}START\uE001`, end: `${markerPrefix}${index}END\uE001` }));
+    let markedSource = "", sourceAt = sectionStart;
+    for (const marker of markers) {
+      markedSource += section.text.slice(sourceAt, marker.match.from) + marker.start + section.text.slice(marker.match.from, marker.match.to) + marker.end;
+      sourceAt = marker.match.to;
+    }
+    markedSource += section.text.slice(sourceAt, sectionEnd);
+    await MarkdownRenderer.render(plugin.app, markedSource, template, context.sourcePath, component);
+    const markedText = renderedCharacters(template).text;
+    const mapped: Array<{ from: number; to: number; visible: string; match: MathDelimiterMatch }> = [];
+    let cleanText = "", markedAt = 0;
+    for (const marker of markers) {
+      const start = markedText.indexOf(marker.start, markedAt);
+      const end = start < 0 ? -1 : markedText.indexOf(marker.end, start + marker.start.length);
+      // A missing marker makes the mapping untrustworthy; leave this section literal.
+      if (start < 0 || end < 0) return;
+      cleanText += markedText.slice(markedAt, start);
+      const visible = markedText.slice(start + marker.start.length, end);
+      const from = cleanText.length;
+      cleanText += visible;
+      mapped.push({ from, to: cleanText.length, visible, match: marker.match });
+      markedAt = end + marker.end.length;
+    }
+    cleanText += markedText.slice(markedAt);
+    const wholeSectionAt = rendered.text.indexOf(cleanText);
+    for (const mapping of mapped) {
+      if (!mapping.visible) continue;
       if (wholeSectionAt !== -1) {
-        replacements.push({ from: wholeSectionAt + start, to: wholeSectionAt + start + visibleSource.length, match });
-        continue;
+        replacements.push({ from: wholeSectionAt + mapping.from, to: wholeSectionAt + mapping.to, match: mapping.match });
+      } else {
+        // A partial mapping must be unique on both sides: an already completed
+        // nested processor can otherwise leave only a literal lookalike.
+        const from = rendered.text.indexOf(mapping.visible);
+        if (from !== -1 && from === rendered.text.lastIndexOf(mapping.visible) && cleanText.indexOf(mapping.visible) === cleanText.lastIndexOf(mapping.visible)) {
+          replacements.push({ from, to: from + mapping.visible.length, match: mapping.match });
+        }
       }
-    } finally { component.unload(); }
-    // Partial section mappings must be unique in both source-rendered and target
-    // text. Otherwise a completed nested renderer can leave only a literal lookalike.
-    if (!visibleSource || visibleSection.indexOf(visibleSource) !== visibleSection.lastIndexOf(visibleSource) || rendered.text.indexOf(visibleSource) !== rendered.text.lastIndexOf(visibleSource)) continue;
-    let from = rendered.text.indexOf(visibleSource);
-    while (
-      from !== -1 &&
-      replacements.some(
-        (replacement) =>
-          from < replacement.to && from + visibleSource.length > replacement.from
-      )
-    ) {
-      from = rendered.text.indexOf(visibleSource, from + 1);
     }
-    if (from !== -1) {
-      replacements.push({ from, to: from + visibleSource.length, match });
-    }
-  }
+  } finally { component.unload(); }
 
   if (disabledRenderers.has(plugin) || replacements.length === 0) return;
 

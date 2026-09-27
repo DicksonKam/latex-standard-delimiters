@@ -1,0 +1,178 @@
+{
+  "version": "0.4.2",
+  "timestamp": "2026-09-27T08:53:22.087Z",
+  "mainJsSha256": "f02426309c07f2df6bab51aec687d884d4cd5b6c9f12af26d29133c8e96e49ae",
+  "scope": "Single large native callout with 25, 100 and 250 inline underbrace equations, Live Preview and Reading View. End-to-end warm mount/typesetting wall time, not typing latency.",
+  "results": [
+    {
+      "name": "25/source avoids quadratic delay",
+      "passed": true,
+      "detail": {
+        "elapsedMs": 56.20000000298023
+      }
+    },
+    {
+      "name": "25/source count",
+      "passed": true,
+      "detail": {
+        "actual": 25
+      }
+    },
+    {
+      "name": "25/source no MathJax error",
+      "passed": true
+    },
+    {
+      "name": "25/source exact source",
+      "passed": true
+    },
+    {
+      "name": "25/preview avoids quadratic delay",
+      "passed": true,
+      "detail": {
+        "elapsedMs": 89.20000000298023
+      }
+    },
+    {
+      "name": "25/preview count",
+      "passed": true,
+      "detail": {
+        "actual": 25
+      }
+    },
+    {
+      "name": "25/preview no MathJax error",
+      "passed": true
+    },
+    {
+      "name": "25/preview exact source",
+      "passed": true
+    },
+    {
+      "name": "100/source avoids quadratic delay",
+      "passed": true,
+      "detail": {
+        "elapsedMs": 233.6000000089407
+      }
+    },
+    {
+      "name": "100/source count",
+      "passed": true,
+      "detail": {
+        "actual": 100
+      }
+    },
+    {
+      "name": "100/source no MathJax error",
+      "passed": true
+    },
+    {
+      "name": "100/source exact source",
+      "passed": true
+    },
+    {
+      "name": "100/preview avoids quadratic delay",
+      "passed": true,
+      "detail": {
+        "elapsedMs": 238.79999999701977
+      }
+    },
+    {
+      "name": "100/preview count",
+      "passed": true,
+      "detail": {
+        "actual": 100
+      }
+    },
+    {
+      "name": "100/preview no MathJax error",
+      "passed": true
+    },
+    {
+      "name": "100/preview exact source",
+      "passed": true
+    },
+    {
+      "name": "250/source avoids quadratic delay",
+      "passed": true,
+      "detail": {
+        "elapsedMs": 609.5999999940395
+      }
+    },
+    {
+      "name": "250/source count",
+      "passed": true,
+      "detail": {
+        "actual": 250
+      }
+    },
+    {
+      "name": "250/source no MathJax error",
+      "passed": true
+    },
+    {
+      "name": "250/source exact source",
+      "passed": true
+    },
+    {
+      "name": "250/preview avoids quadratic delay",
+      "passed": true,
+      "detail": {
+        "elapsedMs": 581.4000000059605
+      }
+    },
+    {
+      "name": "250/preview count",
+      "passed": true,
+      "detail": {
+        "actual": 250
+      }
+    },
+    {
+      "name": "250/preview no MathJax error",
+      "passed": true
+    },
+    {
+      "name": "250/preview exact source",
+      "passed": true
+    }
+  ],
+  "samples": [
+    {
+      "count": 25,
+      "mode": "source",
+      "elapsedMs": 56.20000000298023,
+      "actual": 25
+    },
+    {
+      "count": 25,
+      "mode": "preview",
+      "elapsedMs": 89.20000000298023,
+      "actual": 25
+    },
+    {
+      "count": 100,
+      "mode": "source",
+      "elapsedMs": 233.6000000089407,
+      "actual": 100
+    },
+    {
+      "count": 100,
+      "mode": "preview",
+      "elapsedMs": 238.79999999701977,
+      "actual": 100
+    },
+    {
+      "count": 250,
+      "mode": "source",
+      "elapsedMs": 609.5999999940395,
+      "actual": 250
+    },
+    {
+      "count": 250,
+      "mode": "preview",
+      "elapsedMs": 581.4000000059605,
+      "actual": 250
+    }
+  ]
+}

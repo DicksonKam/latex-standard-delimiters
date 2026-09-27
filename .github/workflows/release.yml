@@ -27,6 +27,7 @@ jobs:
           RELEASE_TAG: ${{ github.ref_name }}
         run: |
           node scripts/check-versions.mjs "$RELEASE_TAG"
+          python3 scripts/package-release.py
           sha256sum main.js manifest.json styles.css > SHA256SUMS.txt
           zip "latex-standard-delimiters-$RELEASE_TAG.zip" main.js manifest.json styles.css LICENSE NOTICE.md
       - name: Create draft release

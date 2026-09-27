@@ -1,4 +1,4 @@
-# Platform and API audit — 0.4.1 beta
+# Platform and API audit — 0.4.2 beta
 
 Desktop-only by owner decision, with isDesktopOnly=true. Production imports Obsidian, CodeMirror and local parser/highlighting/source-projection modules. It has no Node/Electron, network, telemetry or note-write APIs. It reads hidden vault plugin configuration for the known renderer guard and saves only its own preferences. Node APIs appear solely in developer scripts.
 

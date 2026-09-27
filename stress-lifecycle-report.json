@@ -1,0 +1,806 @@
+{
+  "version": "0.4.2",
+  "timestamp": "2026-09-27T08:53:19.768Z",
+  "mainJsSha256": "f02426309c07f2df6bab51aec687d884d4cd5b6c9f12af26d29133c8e96e49ae",
+  "scope": "30 rapid view/note switching rounds with 10 unload/reload races; 1000 edit dispatches in 20 bursts; exact counts, literal lookalikes, source restoration and uncaught error capture. Synthetic editor dispatches, not real keyboard/IME.",
+  "results": [
+    {
+      "name": "Race 0 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 0 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 0 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 1 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 1 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 1 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 2 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 2 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 2 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 3 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 3 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 3 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 4 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 4 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 4 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 5 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 5 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 5 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 6 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 6 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 6 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 7 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 7 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 7 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 8 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 8 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 8 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 9 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 9 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 9 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 10 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 10 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 10 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 11 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 11 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 11 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 12 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 12 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 12 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 13 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 13 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 13 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 14 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 14 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 14 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 15 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 15 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 15 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 16 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 16 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 16 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 17 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 17 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 17 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 18 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 18 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 18 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 19 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 19 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 19 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 20 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 20 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 20 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 21 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 21 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 21 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 22 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 22 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 22 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 23 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 23 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 23 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 24 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 24 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 24 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 25 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 25 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 25 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 26 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 26 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 26 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 27 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 27 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 27 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 28 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 28 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 28 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Race 29 renders exactly four equations",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "Race 29 literal title/table preserved",
+      "passed": true
+    },
+    {
+      "name": "Race 29 source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Burst 0 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 0 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Burst 1 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 1 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Burst 2 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 2 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Burst 3 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 3 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Burst 4 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 4 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Burst 5 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 5 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Burst 6 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 6 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Burst 7 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 7 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Burst 8 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 8 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Burst 9 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 9 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Burst 10 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 10 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Burst 11 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 11 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Burst 12 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 12 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Burst 13 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 13 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Burst 14 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 14 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Burst 15 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 15 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Burst 16 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 16 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Burst 17 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 17 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Burst 18 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 18 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Burst 19 exact source",
+      "passed": true
+    },
+    {
+      "name": "Burst 19 one valid active preview",
+      "passed": true
+    },
+    {
+      "name": "Unload removes owned editor math",
+      "passed": true
+    },
+    {
+      "name": "Reload renders exactly four equations",
+      "passed": true
+    },
+    {
+      "name": "Examples.md source unchanged",
+      "passed": true
+    },
+    {
+      "name": "EulerCallouts.md source unchanged",
+      "passed": true
+    },
+    {
+      "name": "Containers.md source unchanged",
+      "passed": true
+    },
+    {
+      "name": "No uncaught lifecycle errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "samples": [
+    {
+      "round": 0,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 1,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 2,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 3,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 4,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 5,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 6,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 7,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 8,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 9,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 10,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 11,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 12,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 13,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 14,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 15,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 16,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 17,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 18,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 19,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 20,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 21,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 22,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 23,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 24,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 25,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 26,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 27,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 28,
+      "ownedEmbedded": 4
+    },
+    {
+      "round": 29,
+      "ownedEmbedded": 4
+    },
+    {
+      "batch": 0,
+      "dispatches": 50,
+      "including30msWait": 130.79999999701977
+    },
+    {
+      "batch": 1,
+      "dispatches": 50,
+      "including30msWait": 119.5
+    },
+    {
+      "batch": 2,
+      "dispatches": 50,
+      "including30msWait": 120.79999999701977
+    },
+    {
+      "batch": 3,
+      "dispatches": 50,
+      "including30msWait": 115.79999999701977
+    },
+    {
+      "batch": 4,
+      "dispatches": 50,
+      "including30msWait": 116.80000001192093
+    },
+    {
+      "batch": 5,
+      "dispatches": 50,
+      "including30msWait": 113.09999999403954
+    },
+    {
+      "batch": 6,
+      "dispatches": 50,
+      "including30msWait": 110.70000000298023
+    },
+    {
+      "batch": 7,
+      "dispatches": 50,
+      "including30msWait": 118.8999999910593
+    },
+    {
+      "batch": 8,
+      "dispatches": 50,
+      "including30msWait": 122.70000000298023
+    },
+    {
+      "batch": 9,
+      "dispatches": 50,
+      "including30msWait": 123.90000000596046
+    },
+    {
+      "batch": 10,
+      "dispatches": 50,
+      "including30msWait": 105.20000000298023
+    },
+    {
+      "batch": 11,
+      "dispatches": 50,
+      "including30msWait": 108.90000000596046
+    },
+    {
+      "batch": 12,
+      "dispatches": 50,
+      "including30msWait": 112.8999999910593
+    },
+    {
+      "batch": 13,
+      "dispatches": 50,
+      "including30msWait": 111.6000000089407
+    },
+    {
+      "batch": 14,
+      "dispatches": 50,
+      "including30msWait": 108.8999999910593
+    },
+    {
+      "batch": 15,
+      "dispatches": 50,
+      "including30msWait": 108.5
+    },
+    {
+      "batch": 16,
+      "dispatches": 50,
+      "including30msWait": 109.40000000596046
+    },
+    {
+      "batch": 17,
+      "dispatches": 50,
+      "including30msWait": 108
+    },
+    {
+      "batch": 18,
+      "dispatches": 50,
+      "including30msWait": 104.70000000298023
+    },
+    {
+      "batch": 19,
+      "dispatches": 50,
+      "including30msWait": 111.09999999403954
+    }
+  ],
+  "errors": []
+}
