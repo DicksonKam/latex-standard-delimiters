@@ -1,0 +1,125 @@
+{
+  "version": "0.4.1",
+  "timestamp": "2026-09-27T08:30:22.833Z",
+  "mainJsSha256": "63d5b0e75eb58364d525cafa727233ab2bfb450732b5482bf77977f56b06e834",
+  "scope": "Actual Obsidian Euler aligned/underbrace and align callouts, four warm mounts and Reading View; times include note opening and Markdown/MathJax work on this machine.",
+  "samples": [
+    {
+      "trial": 0,
+      "outsideMs": 37.1000000089407,
+      "calloutMs": 70.90000000596046
+    },
+    {
+      "trial": 1,
+      "outsideMs": 28.69999998807907,
+      "calloutMs": 53.19999998807907
+    },
+    {
+      "trial": 2,
+      "outsideMs": 29.200000002980232,
+      "calloutMs": 51.70000000298023
+    },
+    {
+      "trial": 3,
+      "outsideMs": 26.899999991059303,
+      "calloutMs": 48.599999994039536
+    }
+  ],
+  "results": [
+    {
+      "name": "Live Preview renders aligned-underbrace and align callouts 0",
+      "passed": true,
+      "detail": "{\"trial\":0,\"outsideMs\":37.1000000089407,\"calloutMs\":70.90000000596046}"
+    },
+    {
+      "name": "No MathJax errors in complex callouts 0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Callout mounting has no two-second polling wait 0",
+      "passed": true,
+      "detail": "{\"trial\":0,\"outsideMs\":37.1000000089407,\"calloutMs\":70.90000000596046}"
+    },
+    {
+      "name": "Source unchanged 0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Live Preview renders aligned-underbrace and align callouts 1",
+      "passed": true,
+      "detail": "{\"trial\":1,\"outsideMs\":28.69999998807907,\"calloutMs\":53.19999998807907}"
+    },
+    {
+      "name": "No MathJax errors in complex callouts 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Callout mounting has no two-second polling wait 1",
+      "passed": true,
+      "detail": "{\"trial\":1,\"outsideMs\":28.69999998807907,\"calloutMs\":53.19999998807907}"
+    },
+    {
+      "name": "Source unchanged 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Live Preview renders aligned-underbrace and align callouts 2",
+      "passed": true,
+      "detail": "{\"trial\":2,\"outsideMs\":29.200000002980232,\"calloutMs\":51.70000000298023}"
+    },
+    {
+      "name": "No MathJax errors in complex callouts 2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Callout mounting has no two-second polling wait 2",
+      "passed": true,
+      "detail": "{\"trial\":2,\"outsideMs\":29.200000002980232,\"calloutMs\":51.70000000298023}"
+    },
+    {
+      "name": "Source unchanged 2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Live Preview renders aligned-underbrace and align callouts 3",
+      "passed": true,
+      "detail": "{\"trial\":3,\"outsideMs\":26.899999991059303,\"calloutMs\":48.599999994039536}"
+    },
+    {
+      "name": "No MathJax errors in complex callouts 3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Callout mounting has no two-second polling wait 3",
+      "passed": true,
+      "detail": "{\"trial\":3,\"outsideMs\":26.899999991059303,\"calloutMs\":48.599999994039536}"
+    },
+    {
+      "name": "Source unchanged 3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Reading View renders all three complex equations",
+      "passed": true,
+      "detail": "3"
+    },
+    {
+      "name": "Reading View has no MathJax error",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Fixture bytes remain unchanged",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

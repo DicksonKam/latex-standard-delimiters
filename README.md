@@ -32,6 +32,8 @@ During IME composition, previews and source-marker replacement widgets are suppr
 
 Source mode stays raw. Inline math must fit on one line. Version 0.4.0 adds multiline displays on complete math lines inside lists and callouts. Markdown prefixes stay outside the math replacements; projections remove only container syntax before typesetting. Unrecognized container syntax is retained in projected TeX rather than silently stripped. Incomplete equations remain editable literal text. Malformed complete math uses MathJax's visible error feedback. Coloring is a tokenizer, not a TeX compiler.
 
+Version 0.4.1 fixes aligned equations with underbrace subscripts in callouts and renders newly inserted native callout/table widgets without the previous two-second scan delay.
+
 ## Rendering ownership and other tools
 
 Settings offer Automatic and Off. Automatic pauses while the known upstream latex-delimiter-renderer ID is enabled and resumes after removal; Off leaves rendering to other tools. Rendering status explains the state. No other plugin's settings are changed. Other renderer IDs are not universally detected.
@@ -46,9 +48,9 @@ CSS uses the plugin's own lsd-math namespace. Theme variables supply default tok
 
 ## Development and verification
 
-Use supported Node 22 or 24. npm ci followed by npm run check validates versions, lint, tests, TypeScript and the production bundle. The final source passed 27 unit tests and 239 actual-app checks, including editing performance and Minimal/narrow-pane verification. VERIFICATION.md describes exact scope and outstanding gates.
+Use supported Node 22 or 24. npm ci followed by npm run check validates versions, lint, tests, TypeScript and the production bundle. The final source passed 28 unit tests and 258 actual-app checks, including editing performance and Minimal/narrow-pane verification. VERIFICATION.md describes exact scope and outstanding gates.
 
-Developer scripts run only in a disposable vault named TestVault and deliberately exercise editor contents/settings. Copy the supplied Markdown fixtures and preamble.sty there, including fixtures/Containers.md and fixtures/ContainerVariants.md in the vault root. For the compatibility fixture, copy `fixtures/Compatibility.md` into the vault root; `COMPATIBILITY.md` is the findings document. Install Extended MathJax 0.4.1, Quick Latex 2.6.5, SwiftLaTeX 0.6.0, upstream LaTeX Delimiter Renderer 1.0.4 and the Minimal theme stylesheet. Do not copy personal plugin data. For the SwiftLaTeX test copy, set data.json to {"enableCache":false,"package_url":"http://127.0.0.1:9/","compiler":0,"onlyRenderInReadingMode":false}. The upstream test used a local build of original source; package compilation is not part of SwiftLaTeX coexistence checks.
+Developer scripts run only in a disposable vault named TestVault and deliberately exercise editor contents/settings. Copy the supplied Markdown fixtures and preamble.sty there, including fixtures/Containers.md and fixtures/ContainerVariants.md and fixtures/EulerCallouts.md in the vault root. For the compatibility fixture, copy `fixtures/Compatibility.md` into the vault root; `COMPATIBILITY.md` is the findings document. Install Extended MathJax 0.4.1, Quick Latex 2.6.5, SwiftLaTeX 0.6.0, upstream LaTeX Delimiter Renderer 1.0.4 and the Minimal theme stylesheet. Do not copy personal plugin data. For the SwiftLaTeX test copy, set data.json to {"enableCache":false,"package_url":"http://127.0.0.1:9/","compiler":0,"onlyRenderInReadingMode":false}. The upstream test used a local build of original source; package compilation is not part of SwiftLaTeX coexistence checks.
 
 Keep Obsidian foreground. In its developer Console, set window.lsdTestScriptsPath to the absolute scripts directory and window.lsdTestHostVersion to the Obsidian version displayed in the window title (for this verified run, "1.13.7"), then execute:
 

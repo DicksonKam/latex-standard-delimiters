@@ -108,15 +108,17 @@ class ReadingRenderScope extends MarkdownRenderChild {
   onunload(): void { this.restore(); renderScopes.get(this.plugin)?.delete(this); elementScopes.delete(this.containerEl); }
 }
 
+const embeddedElements = new WeakMap<HTMLElement, EmbeddedMathRenderChild>();
+
 // Live Preview renders table cells and callout titles/bodies separately, often with
 // no section metadata. Wait until their widget is attached, then recover the
 // exact source fragment through CodeMirror's public DOM-position API.
 class EmbeddedMathRenderChild extends MarkdownRenderChild {
-  constructor(element: HTMLElement, private readonly context: MarkdownPostProcessorContext, private readonly plugin: Plugin) { super(element); }
+  constructor(element: HTMLElement, private readonly context: MarkdownPostProcessorContext, private readonly plugin: Plugin) { super(element); embeddedElements.set(element, this); }
   onload(): void {
     const timerWindow = this.containerEl.ownerDocument.defaultView ?? window;
     let frame = 0, attempts = 0;
-    this.register(() => timerWindow.cancelAnimationFrame(frame));
+    this.register(() => { timerWindow.cancelAnimationFrame(frame); if (embeddedElements.get(this.containerEl) === this) embeddedElements.delete(this.containerEl); });
     const resolve = (): void => {
       const editor = this.containerEl.closest<HTMLElement>(".cm-editor");
       const view = editor ? EditorView.findFromDOM(editor) : null;
@@ -160,7 +162,17 @@ class EmbeddedMathRenderChild extends MarkdownRenderChild {
   }
 }
 
-async function renderReadingView(
+const readingTasks = new WeakMap<HTMLElement, Promise<void>>();
+function renderReadingView(element: HTMLElement, context: MarkdownPostProcessorContext, plugin: Plugin): Promise<void> {
+  const existing = readingTasks.get(element);
+  if (existing) return existing;
+  const task = renderReadingViewOnce(element, context, plugin);
+  readingTasks.set(element, task);
+  void task.finally(() => { if (readingTasks.get(element) === task) readingTasks.delete(element); }).catch(() => {});
+  return task;
+}
+
+async function renderReadingViewOnce(
   element: HTMLElement,
   context: MarkdownPostProcessorContext,
   plugin: Plugin
@@ -168,7 +180,7 @@ async function renderReadingView(
   if (disabledRenderers.has(plugin) || element.closest(`[${READING_RENDER_MARKER}="template"]`)) return;
 
   const section = context.getSectionInfo(element);
-  if (!section) { context.addChild(new EmbeddedMathRenderChild(element, context, plugin)); return; }
+  if (!section) { if (!embeddedElements.has(element)) context.addChild(new EmbeddedMathRenderChild(element, context, plugin)); return; }
   const lineStarts = [0];
   for (let i = 0; i < section.text.length; i++) if (section.text[i] === "\n") lineStarts.push(i + 1);
   const sectionStart = lineStarts[section.lineStart] ?? 0;
@@ -192,11 +204,12 @@ async function renderReadingView(
     const component = new Component();
     component.load();
     let visibleSource: string;
+    let visibleSection = "";
     try {
-      let startMarker = "\uE000LSD_START\uE001";
-      let endMarker = "\uE000LSD_END\uE001";
+      let startMarker = "\uE000LSDSTART\uE001";
+      let endMarker = "\uE000LSDEND\uE001";
       while (section.text.includes(startMarker) || section.text.includes(endMarker)) {
-        startMarker += "_"; endMarker += "_";
+        startMarker += "\uE002"; endMarker += "\uE002";
       }
       const markedSource = section.text.slice(sectionStart, match.from) + startMarker +
         section.text.slice(match.from, match.to) + endMarker + section.text.slice(match.to, sectionEnd);
@@ -207,13 +220,16 @@ async function renderReadingView(
       if (start < 0 || end < start) continue;
       visibleSource = markedText.slice(start + startMarker.length, end);
       const cleanText = markedText.slice(0, start) + visibleSource + markedText.slice(end + endMarker.length);
+      visibleSection = cleanText;
       const wholeSectionAt = rendered.text.indexOf(cleanText);
       if (wholeSectionAt !== -1) {
         replacements.push({ from: wholeSectionAt + start, to: wholeSectionAt + start + visibleSource.length, match });
         continue;
       }
     } finally { component.unload(); }
-    if (!visibleSource) continue;
+    // Partial section mappings must be unique in both source-rendered and target
+    // text. Otherwise a completed nested renderer can leave only a literal lookalike.
+    if (!visibleSource || visibleSection.indexOf(visibleSource) !== visibleSection.lastIndexOf(visibleSource) || rendered.text.indexOf(visibleSource) !== rendered.text.lastIndexOf(visibleSource)) continue;
     let from = rendered.text.indexOf(visibleSource);
     while (
       from !== -1 &&
@@ -237,11 +253,13 @@ async function renderReadingView(
   for (const replacement of replacements) {
     const first = rendered.characters[replacement.from];
     const last = rendered.characters[replacement.to - 1];
-    if (!first || !last) continue;
+    if (!first || !last || !element.contains(first.node) || !element.contains(last.node) || first.offset >= first.node.length || last.offset >= last.node.length) continue;
 
     const range = element.ownerDocument.createRange();
     range.setStart(first.node, first.offset);
     range.setEnd(last.node, last.offset + 1);
+    // Another nested processor may have completed while the template was awaited.
+    if (range.toString() !== rendered.text.slice(replacement.from, replacement.to)) continue;
     const original = range.cloneContents();
     range.deleteContents();
     const presentation = mathPresentation(section.text, replacement.match);
@@ -284,6 +302,42 @@ function calloutSourceBounds(view: EditorView, widget: HTMLElement): { from: num
     return { from: Math.min(line.to + 1, view.state.doc.length), to, headerFrom: line.from };
   } catch { return null; }
 }
+
+const refreshEmbedded = Facet.define<() => void, (() => void) | undefined>({ combine: callbacks => callbacks.at(-1) });
+
+// Native callout/table widgets appear after the editor transaction. React to
+// their insertion instead of waiting for the renderer-conflict polling timer.
+const embeddedWidgetObserver = ViewPlugin.fromClass(class {
+  private observer: MutationObserver;
+  private frame = 0;
+  private destroyed = false;
+  private timerWindow: Window;
+  constructor(private view: EditorView) {
+    this.timerWindow = view.dom.ownerDocument.defaultView ?? window;
+    const Observer = view.dom.ownerDocument.defaultView?.MutationObserver ?? MutationObserver;
+    const widgets = ".cm-callout, .callout-content, .callout-title-inner, .cm-table-widget, td, th";
+    this.observer = new Observer(records => {
+      if (records.some(record => Array.from(record.addedNodes).concat(Array.from(record.removedNodes)).some(node => {
+        if (node.nodeType !== 1) return false;
+        const element = node as Element;
+        return element.matches(widgets) || !!element.querySelector(widgets);
+      }))) this.schedule();
+    });
+    this.observer.observe(view.dom, { childList: true, subtree: true });
+    this.schedule();
+  }
+  private schedule(): void {
+    if (this.frame || this.destroyed) return;
+    this.frame = this.timerWindow.requestAnimationFrame(() => {
+      this.frame = 0;
+      if (!this.destroyed) this.view.state.facet(refreshEmbedded)?.();
+    });
+  }
+  destroy(): void {
+    this.destroyed = true; this.observer.disconnect();
+    if (this.frame) this.timerWindow.cancelAnimationFrame(this.frame);
+  }
+});
 
 const pendingCalloutCarets = new WeakMap<EditorView, { position: number; headerFrom: number; to: number; doc: EditorState["doc"]; expires: number }>();
 
@@ -713,7 +767,7 @@ export default class LatexDelimiterRenderer extends Plugin {
   private disposed = false;
   private checkingConflict = false;
   private embeddedChildren = new Map<HTMLElement, EmbeddedMathRenderChild>();
-  private extensions = [livePreviewExtension, EditorView.theme({}), mathNavigation, renderOptions.of({ previews: true, enabled: true }), compositionState, compositionEvents, vimSourceState, vimSourceObserver, calloutCaretObserver];
+  private extensions = [livePreviewExtension, EditorView.theme({}), mathNavigation, renderOptions.of({ previews: true, enabled: true }), compositionState, compositionEvents, vimSourceState, vimSourceObserver, calloutCaretObserver, embeddedWidgetObserver, refreshEmbedded.of(() => this.refreshEmbeddedMath())];
 
   async saveColors(): Promise<void> {
     await this.saveData({ colors: this.colors, editingPreviews: this.editingPreviews, renderingMode: this.renderingMode });
@@ -746,7 +800,7 @@ export default class LatexDelimiterRenderer extends Plugin {
       if (this.rendererEnabled) return renderReadingView(element, context, this);
     });
     this.registerEditorExtension(this.extensions);
-    this.registerInterval(window.setInterval(() => { void this.checkRendererConflict(); this.refreshEmbeddedMath(); }, 2000));
+    this.registerInterval(window.setInterval(() => { void this.checkRendererConflict(); }, 2000));
     this.registerEvent(this.app.workspace.on("layout-change", () => this.refreshEmbeddedMath()));
 
     this.app.workspace.onLayoutReady(() => {
@@ -801,7 +855,7 @@ export default class LatexDelimiterRenderer extends Plugin {
       if (!(leaf.view instanceof MarkdownView) || !leaf.view.file) return;
       const sourcePath = leaf.view.file.path;
       for (const element of Array.from(leaf.view.containerEl.querySelectorAll<HTMLElement>(".cm-table-widget td, .cm-table-widget th, .cm-callout .callout-title-inner, .cm-callout .callout-content"))) {
-        if (this.embeddedChildren.has(element) || element.querySelector(".lsd-math")) continue;
+        if (this.embeddedChildren.has(element) || embeddedElements.has(element) || element.querySelector(".lsd-math")) continue;
         const context: MarkdownPostProcessorContext = {
           docId: sourcePath, sourcePath, frontmatter: null,
           addChild: child => { this.addChild(child); }, getSectionInfo: () => null

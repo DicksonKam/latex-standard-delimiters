@@ -1,8 +1,8 @@
-# Verification — 0.4.0
+# Verification — 0.4.1
 
-Desktop GitHub beta candidate, tested on macOS in Obsidian 1.13.7 using a disposable TestVault. Mobile and Community directory publication are outside scope. Production does not write Markdown or change another plugin’s settings. Developer scripts intentionally exercise and restore disposable fixtures/preferences.
+Desktop GitHub beta, tested on macOS in Obsidian 1.13.7 using a disposable TestVault. Mobile and Community directory publication are outside scope. Production does not write Markdown or change another plugin’s settings. Developer scripts intentionally exercise and restore disposable fixtures/preferences.
 
-npm run check passes 27 unit tests, version consistency, TypeScript and build, with zero lint errors and three owner-document DOM creation advisories. The final actual-app suite records 239 passing assertions across 17 suites. suite-report.json records host/version and binds the JavaScript/CSS hashes to the run. Container editing checks cover list/callout rendering, original source visibility, selection, previews, typing, undo/redo, ArrowUp and Reading View. Variant checks include ordered-list continuations, nested quotes and quoted lists.
+npm run check passes 28 unit tests, version consistency, TypeScript and build, with zero lint errors and three owner-document DOM creation advisories. The final 18-suite run passes all 258 assertions, with the production bundle and CSS hashes recorded in suite-report.json. The added Euler suite checks aligned underbrace subscripts and the align corollary inside callouts, four warm mount times, Reading View and exact fixture preservation.
 
 The existing suites recheck native math, comments/malformed delimiters, selections/multiple cursors, clipboard, undo/redo, rapid preview updates, composition lifecycle, rendering ownership, panes/popouts, embeds, reload/unload cleanup, Vim, named math plugins, preferences, themes and source preservation. Synthetic pointer/composition events are explicitly synthetic.
 
@@ -10,7 +10,9 @@ Source projection removes only recognized container prefixes from the TeX sent t
 
 ## Performance
 
-The final candidate benchmark used 76,780 characters and 1,000 equations, with 40 insertion/deletion dispatches. Mean 14.71 ms; maximum 24.50 ms. These are synchronous dispatch/decoration/viewport-DOM measurements on this machine, not end-to-end keyboard latency or full-document typesetting. Exact source was restored and one active preview remained. Minimal stylesheet/narrow-pane checks cover light/dark classes and horizontally scrolling long previews; they do not certify every theme or custom color’s contrast.
+The final candidate benchmark used 76,780 characters and 1,000 equations, with 40 insertion/deletion dispatches. Mean 14.56 ms; maximum 29.80 ms. These are synchronous dispatch/decoration/viewport-DOM measurements on this machine, not end-to-end keyboard latency or full-document typesetting. Exact source was restored and one active preview remained. Minimal stylesheet/narrow-pane checks cover light/dark classes and horizontally scrolling long previews; they do not certify every theme or custom color’s contrast.
+
+The exact reported Euler examples pass Live Preview and Reading View, including even/odd underbraces. Four warm callout mounts took 48.6–70.9 ms including note opening and Markdown/MathJax work, compared with 26.9–37.1 ms for the outside equation. These local warm timings demonstrate removal of the two-second polling wait; cold MathJax loading can take longer. Concurrent embedded rendering is deduplicated and partial mappings require unique visible text in both source and destination.
 
 ## Desktop and IME evidence
 
@@ -26,4 +28,4 @@ Inline math remains single-line. Coloring is a tokenizer, not a TeX compiler. Ex
 
 Historical BRAT install/upgrade/recovery evidence is in brat-update-report.json and brat-recovery-report.json: public 0.3.0 → 0.3.1 preserved nondefault preferences and fixture bytes; a broken local bundle was recovered through a version rollback, then Latest. This is historical recovery evidence, not a claimed 0.4.0 upgrade test. Keep data.json when replacing plugin files, and use files from one release. See UPDATING.md.
 
-Public 0.4.0 assets were independently downloaded and match the tested JavaScript, manifest and CSS exactly; checksums and ZIP/license attribution pass (public-release-check-report.json). Actual BRAT 1.3.0 updated the clean disposable vault from 0.3.1 to 0.4.0, preserving saved preference bytes, loaded custom colors/preview/Off settings, and both fixture notes after re-enable. BRAT reformats manifest JSON; every parsed field remains identical. See brat-040-update-report.json.
+Previous public asset and BRAT reports retain their truthful 0.4.0 version. Current 0.4.1 public verification is pending.

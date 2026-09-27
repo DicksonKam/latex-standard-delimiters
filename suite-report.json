@@ -1,10 +1,15 @@
 {
-  "version": "0.4.0",
-  "timestamp": "2026-09-27T07:29:52.611Z",
+  "version": "0.4.1",
+  "timestamp": "2026-09-27T08:31:14.230Z",
   "obsidianVersion": "1.13.7",
   "stylesSha256": "e80df64d07c2a4ade9b8ac34d4d9db6c41de19b3bd1e8b5f1a82c59bee59cfd9",
-  "mainJsSha256": "f933ca33152044c88a1b353d53f12a09324d76eeca84dc8a43038105c8fe2763",
+  "mainJsSha256": "63d5b0e75eb58364d525cafa727233ab2bfb450732b5482bf77977f56b06e834",
   "reports": [
+    {
+      "name": "euler-callout",
+      "count": 19,
+      "failures": []
+    },
     {
       "name": "container-editing",
       "count": 33,

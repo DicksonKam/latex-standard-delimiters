@@ -8,7 +8,7 @@ version = manifest["version"]
 suite = json.loads((root / "suite-report.json").read_text())
 def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
-required = {"navigation", "runtime", "editing-preview", "beta-audit", "typing-compatibility", "compatibility", "input-comfort", "composition-ownership", "panes-comfort", "upstream-coexistence", "popout", "swift-coexistence", "vim", "edit-performance", "theme-narrow", "container-editing", "container-variants"}
+required = {"navigation", "runtime", "editing-preview", "beta-audit", "typing-compatibility", "compatibility", "input-comfort", "composition-ownership", "panes-comfort", "upstream-coexistence", "popout", "swift-coexistence", "vim", "edit-performance", "theme-narrow", "container-editing", "container-variants", "euler-callout"}
 checks = [
     (suite.get("passed") is True, "Runtime suite must pass"),
     (suite.get("version") == version, "Runtime suite version must match candidate"),

@@ -1,5 +1,12 @@
 # Changes
 
+## 0.4.1 — callout rendering fixes
+
+- Remove underscores from internal Markdown mapping markers so aligned equations with underbrace subscripts render inside callouts.
+- React to native callout/table widget insertion instead of a two-second embedded-rendering poll.
+- Deduplicate embedded render ownership and require unique partial mappings so literal parentheses remain literal.
+- Add complex Euler callout correctness and warm-mount latency checks in Live Preview and Reading View.
+
 ## 0.4.0 — beta
 
 - Project list/callout math to TeX while preserving original Markdown offsets and prefixes.

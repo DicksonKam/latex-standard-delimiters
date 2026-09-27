@@ -61,3 +61,17 @@ test('display equations on list continuation lines retain their owning indentati
   assert.equal(project('12. Explanation\n\n    \\[\n    x+y\n    \\]').source, '\nx+y\n');
   assert.equal(project('> - Explanation\n>   \\[\n>   x+y\n>   \\]').source, '\nx+y\n');
 });
+
+
+test('Euler aligned callout preserves underbrace subscripts and TeX row breaks', () => {
+  const text = String.raw`> [!NOTE] Title
+> \[\begin{aligned}
+> e^{i \theta} &= \underbrace{\cosh(i\theta)}_{\text{even}} + \underbrace{\sinh(i\theta)}_{\text{odd}} \\
+> &= \cos \theta + i \sin \theta
+> \end{aligned}\]`;
+  const result = project(text);
+  assert.equal(result.source, text.split('\n').slice(1).map(line => line.slice(2)).join('\n').slice(2, -2));
+  assert.equal(result.standalone, true);
+  assert.ok(result.source.includes(String.raw`}_{\text{even}}`));
+  assert.ok(result.source.includes(String.raw`\\`));
+});
