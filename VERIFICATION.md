@@ -8,6 +8,8 @@ The scripted popout test reproduced an in-memory edit that did not autosave; act
 
 The following 0.4.5 evidence is historical; current 0.4.6 counts and timings above supersede it.
 
+Public 0.4.6 was published after both GitHub workflows passed. All eight independent unauthenticated public-asset checks pass: JavaScript/manifest/CSS byte equality, checksum verification, ZIP integrity/attribution and desktop release identity. The release tag points to the tested 5693542 implementation.
+
 # Verification — 0.4.5
 
 Desktop GitHub beta, tested on macOS in Obsidian 1.13.7 using a disposable TestVault. Mobile and Community directory publication are outside scope. Production does not write Markdown or change another plugin’s settings. Developer scripts intentionally exercise and restore disposable fixtures/preferences.

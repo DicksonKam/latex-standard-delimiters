@@ -4,7 +4,7 @@ Self-review checked the new command registration and unload cleanup, stale-note/
 
 The missing bracketed vector is a MathJax optional-argument ambiguity; the corrected fixture uses an explicit group and independent glyph assertions. The source typography defect was reproduced on the pre-fix candidate (seven failures) and fixed with scoped line/token styling. Original source remains unchanged unless the user explicitly applies the proposed outer-delimiter repair.
 
-Local publication gates pass against the exact 0.4.6 bundle; historical platform and IME limitations remain applicable.
+Local publication gates, GitHub CI and eight public-asset checks pass against the exact 0.4.6 bundle; historical platform and IME limitations remain applicable.
 
 # Editing correctness review
 

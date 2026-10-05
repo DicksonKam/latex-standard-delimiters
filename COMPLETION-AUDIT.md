@@ -6,7 +6,7 @@ Local verification: complete
 
 Self-review: new commands, repair snapshot guards, modal cleanup, warning exclusions, source typography scope and semantic glyph checks were examined. No new renderer code was changed during release verification. Testing and plugin preference changes are confined to disposable TestVault. No main-vault width preference or plugin installation is changed by this release task.
 
-Publication: local packaging passes. GitHub CI and public asset verification are pending.
+Publication: local packaging, GitHub Checks #21 and Release #10 passed for 5693542. Public 0.4.6 is published; all eight independent public-asset checks pass in public-release-check-report.json. The release tag remains on the tested implementation.
 
 Historical platform, IME and third-party compatibility limits remain explicit in VERIFICATION.md. This is a desktop GitHub beta, not universal stability certification.
 

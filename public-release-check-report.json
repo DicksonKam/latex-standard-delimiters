@@ -1,24 +1,24 @@
 {
-  "version": "0.4.5",
-  "timestamp": "2026-09-27T12:27:26.389952+00:00",
-  "releaseUrl": "https://github.com/DicksonKam/latex-standard-delimiters/releases/tag/0.4.5",
-  "commit": "fefffd3e48de422caaa09b66d2a7d7917cadf807",
+  "version": "0.4.6",
+  "timestamp": "2026-10-05T15:49:29.506538+00:00",
+  "releaseUrl": "https://github.com/DicksonKam/latex-standard-delimiters/releases/tag/0.4.6",
+  "commit": "5693542b5476f487668fe6c6a4519807ff07e859",
   "scope": "Independent unauthenticated HTTPS downloads of published assets; exact bytes, checksums, ZIP integrity and attribution compared against locally verified candidate.",
   "results": [
     {
       "name": "Downloaded main.js matches locally verified candidate",
       "passed": true,
-      "sha256": "31395b9fd0eafeb04163b152905d3466e0de177761a6c9a0270f2e467dbbf415"
+      "sha256": "6ac2741debe73ccbd03f1c811dee294228ae975bfe388857ee0a242fa5c52dc3"
     },
     {
       "name": "Downloaded manifest.json matches locally verified candidate",
       "passed": true,
-      "sha256": "259080fb8768466424caca771a80ae3ec95ed49984abf34472b5c6ccde939b06"
+      "sha256": "9047c1cdd5ae9818c176b445a41fd2bdea34058202e214ac5634b586cfa738ee"
     },
     {
       "name": "Downloaded styles.css matches locally verified candidate",
       "passed": true,
-      "sha256": "e80df64d07c2a4ade9b8ac34d4d9db6c41de19b3bd1e8b5f1a82c59bee59cfd9"
+      "sha256": "42d916c60b3873b4ad5b8ac178a19e2a59871a6cfae515c43093382c250ddd7a"
     },
     {
       "name": "Published checksum matches main.js",
@@ -42,6 +42,6 @@
     }
   ],
   "passed": true,
-  "githubChecksUrl": "https://github.com/DicksonKam/latex-standard-delimiters/actions/runs/36318946087",
-  "githubReleaseUrl": "https://github.com/DicksonKam/latex-standard-delimiters/actions/runs/36318948742"
+  "githubChecksUrl": "https://github.com/DicksonKam/latex-standard-delimiters/actions/runs/37335508947",
+  "githubReleaseUrl": "https://github.com/DicksonKam/latex-standard-delimiters/actions/runs/37335508676"
 }
