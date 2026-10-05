@@ -6,6 +6,7 @@ import {
   finishRenderMath,
   loadMathJax,
   type MarkdownPostProcessorContext,
+  type Editor,
   MarkdownView,
   TFile,
   Plugin,
@@ -29,6 +30,9 @@ import {
   tableCellSources,
   type MathDelimiterMatch
 } from "./parser";
+
+import { diagnoseEquation } from "./diagnostics";
+import { EquationDiagnosticModal } from "./diagnostics-modal";
 
 import { mathTokens, matchingBraces } from "./highlight";
 import { mathPresentation, containerReplacementRanges } from "./presentation";
@@ -776,6 +780,17 @@ function buildLivePreviewDecorations(state: EditorState): DecorationSet {
           match.to
         )
       );
+      // Host Markdown can classify TeX rows as headings (notably a standalone
+      // '=' after \end{...}). Reset typography only on complete source lines,
+      // leaving Markdown before/after an inline or mixed-line equation alone.
+      const firstLine = state.doc.lineAt(match.from);
+      const lastLine = state.doc.lineAt(match.to);
+      for (let number = firstLine.number; number <= lastLine.number; number++) {
+        const line = state.doc.line(number);
+        if (line.from >= match.from && line.to <= match.to) {
+          ranges.push(Decoration.line({class: "lsd-math-source-line"}).range(line.from));
+        }
+      }
       for (const marker of composing ? [] : markdownFormattingMarkersInMath(state, match)) {
         ranges.push(
           Decoration.replace({
@@ -887,6 +902,7 @@ export default class LatexDelimiterRenderer extends Plugin {
     context: MarkdownPostProcessorContext; component: Component; children: Set<MarkdownRenderChild>;
     dispose: () => void; schedule: () => void;
   }>();
+  private diagnosticModals = new Set<EquationDiagnosticModal>();
   private extensions = [livePreviewExtension, EditorView.theme({}), mathNavigation, renderOptions.of({ previews: true, enabled: true }), compositionState, compositionEvents, vimSourceState, vimSourceObserver, calloutCaretObserver, embeddedWidgetObserver, refreshEmbedded.of(() => this.refreshEmbeddedMath())];
 
   async saveColors(): Promise<void> {
@@ -915,6 +931,14 @@ export default class LatexDelimiterRenderer extends Plugin {
     this.applyColors();
     this.addSettingTab(new MathColorsTab(this));
     await loadMathJax();
+    this.addCommand({
+      id: "diagnose-selected-equation", name: "Diagnose selected equation",
+      editorCallback: (editor, view) => this.openEquationDiagnostic(editor, view, false)
+    });
+    this.addCommand({
+      id: "preview-equation-repair", name: "Preview equation repair",
+      editorCallback: (editor, view) => this.openEquationDiagnostic(editor, view, true)
+    });
 
     this.registerMarkdownPostProcessor((element, context) => {
       if (this.rendererEnabled) {
@@ -946,6 +970,16 @@ export default class LatexDelimiterRenderer extends Plugin {
       this.app.workspace.updateOptions();
       this.refreshEmbeddedMath();
     });
+  }
+
+  private openEquationDiagnostic(editor: Editor, context: MarkdownView | import("obsidian").MarkdownFileInfo, repair: boolean): void {
+    if (!(context instanceof MarkdownView)) { new Notice("Open the equation in a Markdown editor first."); return; }
+    if (editor.listSelections().length !== 1) { new Notice("Select one equation block to diagnose."); return; }
+    const snapshot = editor.getValue();
+    const diagnosis = diagnoseEquation(snapshot, editor.posToOffset(editor.getCursor("from")), editor.posToOffset(editor.getCursor("to")));
+    const modal = new EquationDiagnosticModal(this.app, diagnosis, editor, context, snapshot, context.file?.path, this.renderingStatus, repair, () => this.diagnosticModals.delete(modal));
+    this.diagnosticModals.add(modal);
+    modal.open();
   }
 
   // The native virtualizer can remount a processed paragraph after unloading
@@ -1164,6 +1198,8 @@ export default class LatexDelimiterRenderer extends Plugin {
 
   onunload(): void {
     this.disposed = true; disabledRenderers.add(this);
+    for (const modal of this.diagnosticModals) modal.close();
+    this.diagnosticModals.clear();
     for (const record of this.readingRemounts.values()) record.dispose();
     this.readingRemounts.clear();
     for (const scope of renderScopes.get(this) ?? []) scope.unload();

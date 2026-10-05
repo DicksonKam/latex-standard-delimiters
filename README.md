@@ -30,6 +30,8 @@ Click or tap a rendered equation to reveal source. Up/Down enters a display equa
 
 During IME composition, previews and source-marker replacement widgets are suppressed until composition ends. Synthetic lifecycle checks pass; real OS input-method composition remains unverified. See DESKTOP-TESTING.md. In built-in Vim normal mode, standard-delimiter math stays as source so native motions and counts retain logical lines. Insert mode restores ordinary rendering. This uses Obsidian's observed cm-vimMode DOM indicator, which must be rechecked on future host versions.
 
+In version 0.4.6, select a failing equation and run “LaTeX Standard Delimiters: Diagnose selected equation” from the command palette to inspect exact source, recognized delimiters, exclusions and a MathJax preview. “Preview equation repair” proposes restoring missing outer display-delimiter backslashes for a complete plain/blockquote block. Apply explicitly edits only those delimiters in one undoable operation; cancel leaves the note intact. It rejects stale previews and never guesses matrix row breaks or subscripts. Diagnostics warn when a square-bracket expression immediately after aligned/gathered may disappear as an optional alignment argument. Group literal bracket expressions, for example `{[\mathbf r]}_{\mathrm{cyl}}`. Equation source stays at normal text size and weight even if Markdown sees heading/emphasis syntax.
+
 Source mode stays raw. Inline math must fit on one line. Version 0.4.0 adds multiline displays on complete math lines inside lists and callouts. Markdown prefixes stay outside the math replacements; projections remove only container syntax before typesetting. Unrecognized container syntax is retained in projected TeX rather than silently stripped. Incomplete equations remain editable literal text. Malformed complete math uses MathJax's visible error feedback. Coloring is a tokenizer, not a TeX compiler.
 
 Version 0.4.1 fixes aligned equations with underbrace subscripts in callouts and renders newly inserted native callout/table widgets without the previous two-second scan delay.
@@ -42,13 +44,13 @@ Extended MathJax supplies shared macros/configuration and remains compatible in 
 
 ## Platform and source preservation
 
-Current releases target desktop, with isDesktopOnly=true. Mobile support and testing are outside the current scope. Production uses host/browser APIs, no Node or Electron imports, no note-write APIs, no telemetry and no remote rendering service. It saves only its own preferences. Earlier mobile checklists are retained as historical development material, not supported-platform commitments. See PLATFORM-AUDIT.md.
+Current releases target desktop, with isDesktopOnly=true. Mobile support and testing are outside the current scope. Rendering uses host/browser APIs and preserves note source. Production has no Node/Electron imports, telemetry or remote rendering service. The optional repair command edits the selected delimiters only after you click Apply; it uses the editor’s undo history. Preferences remain local to this plugin. Earlier mobile checklists are retained as historical development material, not supported-platform commitments. See PLATFORM-AUDIT.md.
 
 CSS uses the plugin's own lsd-math namespace. Theme variables supply default token colors; settings allow six-digit hex overrides. Exporters that bypass Obsidian's rendered DOM do not automatically gain support.
 
 ## Development and verification
 
-Use supported Node 22 or 24. npm ci followed by npm run check validates versions, lint, tests, TypeScript and the production bundle. The final source passed 35 unit tests and 2,007 actual-app checks across the runtime and stress suites, including editing performance and Minimal/narrow-pane verification. VERIFICATION.md describes exact scope and outstanding gates.
+Use supported Node 22 or 24. npm ci followed by npm run check validates versions, lint, tests, TypeScript and the production bundle. Historical released builds passed 35 unit tests and 2,007 actual-app checks across the runtime and stress suites, including editing performance and Minimal/narrow-pane verification. VERIFICATION.md describes exact scope and outstanding gates.
 
 The stress suite adds 40 adversarial cases repeated in both views, rapid lifecycle races, 1,000 edit dispatches and dense callout benchmarks. Unit tests cover 7,000 seeded generated inputs. See [Repeatable stress testing](STRESS-TESTING.md). Version 0.4.2 fixed quadratic source mapping in dense callouts. Version 0.4.3 fixed multiline displays beside prose/punctuation and active callout quote leakage. Version 0.4.4 fixes list displays with trailing prose/punctuation and displays containing blank rows, including source-bound cross-paragraph Reading View rendering. The daily suite checks rendered numeric identities, undo, folding, structure moves and two-pane updates; nine additional native keyboard/paste checks pass.
 
@@ -66,4 +68,4 @@ The runner locks against overlapping runs and records plugin/host versions and m
 
 Derived from [LaTeX Delimiter Renderer by Andreas Burger](https://github.com/BurgerAndreas/latex-delimiter-renderer), under MIT. LICENSE and NOTICE.md retain attribution.
 
-Version 0.4.5 fixes stale cross-paragraph Reading View equations after edits and recovers equations when cached sections return from offscreen. Current verification separates scripted semantic regressions from trusted native keyboard checks; see [Verification](VERIFICATION.md) and [Review findings](REVIEW-MILESTONE.md).
+Version 0.4.6 adds equation diagnostics, explicit outer-delimiter repairs and consistent equation source typography. It retains the 0.4.5 fixes for stale cross-paragraph Reading View equations and offscreen recovery. Current verification separates scripted semantic regressions from trusted native keyboard checks; see [Verification](VERIFICATION.md) and [Review findings](REVIEW-MILESTONE.md).

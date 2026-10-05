@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-09-27T12:19:51.263Z",
+  "timestamp": "2026-10-05T15:28:49.237Z",
   "upstreamVersion": "1.0.4",
   "upstreamBuild": "Local build of original upstream source in work/upstream",
   "observations": {
     "navigationReadingEquationCount": 2
   },
-  "mainJsSha256": "31395b9fd0eafeb04163b152905d3466e0de177761a6c9a0270f2e467dbbf415",
+  "mainJsSha256": "6ac2741debe73ccbd03f1c811dee294228ae975bfe388857ee0a242fa5c52dc3",
   "results": [
     {
       "name": "Actual upstream 1.0.4 loads",

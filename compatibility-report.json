@@ -1,5 +1,5 @@
 {
-  "version": "0.4.5",
+  "version": "0.4.6",
   "results": [
     {
       "name": "Extended MathJax 0.4.1 loaded",
@@ -9,7 +9,7 @@
     {
       "name": "source: custom macro and chemistry render",
       "passed": true,
-      "detail": "CompatibilityInvalid propertiesShow sourcePropertiesAdd propertyInline: . Native: ."
+      "detail": "CompatibilityPropertiesAdd propertyInline: . Native: ."
     },
     {
       "name": "source: standard and native macro agree",
@@ -19,7 +19,7 @@
     {
       "name": "preview: custom macro and chemistry render",
       "passed": true,
-      "detail": "CompatibilityInvalid propertiesShow sourcePropertiesAdd propertyInline: . Native: ."
+      "detail": "CompatibilityPropertiesAdd propertyInline: . Native: ."
     },
     {
       "name": "preview: standard and native macro agree",

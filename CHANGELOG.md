@@ -1,3 +1,11 @@
+# 0.4.6
+
+- Add selected-equation diagnosis with exact source, context exclusions, rendering status and shared MathJax validation.
+- Add an explicit preview/apply command for missing outer bracket delimiter backslashes. Preserve interior TeX, reject stale proposals, and support undo.
+- Keep active equation source at normal editor typography even when Markdown classifies its lines as headings or emphasis. Preserve ordinary surrounding headings.
+- Warn when a leading square-bracket expression after aligned/gathered can be consumed as an optional argument. The warning does not rewrite TeX.
+- Correct the cylindrical example by grouping its leading bracket expression. Add independent bracket, bold-r, Greek-symbol and equals-count assertions, plus computed-style regressions.
+
 # 0.4.5
 
 - Refresh cross-paragraph Reading View equations when any participating section changes, including external file updates and rapid edits.

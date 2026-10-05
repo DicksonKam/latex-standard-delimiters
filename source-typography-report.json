@@ -1,0 +1,125 @@
+{
+  "timestamp": "2026-10-05T15:37:07.860Z",
+  "version": "0.4.6",
+  "hostVersion": "1.13.7",
+  "mainJsSha256": "6ac2741debe73ccbd03f1c811dee294228ae975bfe388857ee0a242fa5c52dc3",
+  "stylesSha256": "42d916c60b3873b4ad5b8ac178a19e2a59871a6cfae515c43093382c250ddd7a",
+  "scope": "Actual computed math-source typography, ordinary/mixed headings, emphasis, invisible blank rows, source and disk bytes in disposable TestVault; synthetic caret placement, not all themes/platforms.",
+  "results": [
+    {
+      "name": "boxed Setext heading: source size matches editor text",
+      "passed": true
+    },
+    {
+      "name": "boxed Setext heading: source has normal weight and style",
+      "passed": true
+    },
+    {
+      "name": "boxed Setext heading: exact editor source remains intact",
+      "passed": true
+    },
+    {
+      "name": "boxed Setext heading: ordinary heading stays a heading",
+      "passed": true
+    },
+    {
+      "name": "invisible blank rows: source size matches editor text",
+      "passed": true
+    },
+    {
+      "name": "invisible blank rows: source has normal weight and style",
+      "passed": true
+    },
+    {
+      "name": "invisible blank rows: exact editor source remains intact",
+      "passed": true
+    },
+    {
+      "name": "invisible blank rows: ordinary heading stays a heading",
+      "passed": true
+    },
+    {
+      "name": "Markdown emphasis: source size matches editor text",
+      "passed": true
+    },
+    {
+      "name": "Markdown emphasis: source has normal weight and style",
+      "passed": true
+    },
+    {
+      "name": "Markdown emphasis: exact editor source remains intact",
+      "passed": true
+    },
+    {
+      "name": "Markdown emphasis: ordinary heading stays a heading",
+      "passed": true
+    },
+    {
+      "name": "TeX heading-like text: source size matches editor text",
+      "passed": true
+    },
+    {
+      "name": "TeX heading-like text: source has normal weight and style",
+      "passed": true
+    },
+    {
+      "name": "TeX heading-like text: exact editor source remains intact",
+      "passed": true
+    },
+    {
+      "name": "TeX heading-like text: ordinary heading stays a heading",
+      "passed": true
+    },
+    {
+      "name": "Inline math does not reset its surrounding heading",
+      "passed": true
+    },
+    {
+      "name": "Inline heading exact source is preserved",
+      "passed": true
+    },
+    {
+      "name": "Saved exact bytes: Typography-1791214626499.md",
+      "passed": true
+    },
+    {
+      "name": "Saved exact bytes: Typography-1791214626801.md",
+      "passed": true
+    },
+    {
+      "name": "Saved exact bytes: Typography-1791214627084.md",
+      "passed": true
+    },
+    {
+      "name": "Saved exact bytes: Typography-1791214627351.md",
+      "passed": true
+    },
+    {
+      "name": "Saved exact bytes: Typography-inline-1791214627620.md",
+      "passed": true
+    }
+  ],
+  "observations": [
+    {
+      "name": "boxed Setext heading",
+      "base": 16,
+      "styles": []
+    },
+    {
+      "name": "invisible blank rows",
+      "base": 16,
+      "styles": []
+    },
+    {
+      "name": "Markdown emphasis",
+      "base": 16,
+      "styles": []
+    },
+    {
+      "name": "TeX heading-like text",
+      "base": 16,
+      "styles": []
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,43 @@
+{
+  "version": "0.4.6",
+  "timestamp": "2026-10-04T14:26:55.115Z",
+  "mainJsSha256": "6ac2741debe73ccbd03f1c811dee294228ae975bfe388857ee0a242fa5c52dc3",
+  "stylesSha256": "42d916c60b3873b4ad5b8ac178a19e2a59871a6cfae515c43093382c250ddd7a",
+  "hostVersion": "1.13.7",
+  "scope": "Native command-palette repair, trusted Apply click and Cmd-Z, editor and saved bytes in disposable TestVault. Does not certify every platform or input method.",
+  "results": [
+    {
+      "name": "Trusted native Apply edits only delimiter bytes",
+      "passed": true
+    },
+    {
+      "name": "Trusted native Cmd-Z restores original source",
+      "passed": true
+    },
+    {
+      "name": "Final editor source is exact",
+      "passed": true
+    },
+    {
+      "name": "Apply closes the diagnostic dialog",
+      "passed": true
+    },
+    {
+      "name": "Saved source matches original after native undo",
+      "passed": true
+    }
+  ],
+  "records": [
+    {
+      "kind": "apply",
+      "trusted": true,
+      "source": "Before\n\n\\[\n\\boxed{\\begin{pmatrix}A_\\rho\\\\A_\\phi\\\\A_z\\end{pmatrix}}\n\\]\n\nAfter\n"
+    },
+    {
+      "kind": "undo",
+      "trusted": true,
+      "source": "Before\n\n[\n\\boxed{\\begin{pmatrix}A_\\rho\\\\A_\\phi\\\\A_z\\end{pmatrix}}\n]\n\nAfter\n"
+    }
+  ],
+  "passed": true
+}

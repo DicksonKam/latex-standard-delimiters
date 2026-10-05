@@ -12,8 +12,11 @@
   await popup.setViewState({type:'markdown',state:{file:'ReadingRevisionPopout.md',mode:'preview'}});await wait(350);
   check('Popout Reading View uses separate document',popup.view.containerEl.ownerDocument!==document);
   check('Initial popout split display renders',popup.view.previewMode.containerEl.querySelectorAll('.lsd-math mjx-math').length===1);
+  // Opening the popout activates its Reading View. Reactivate the editor
+  // before the scripted edit so the host treats it as an editing action.
+  app.workspace.setActiveLeaf(main,{focus:true});cm.focus();
   const view=popup.view,at=text.indexOf('4\\]');text=text.slice(0,at)+'5'+text.slice(at+1);
-  cm.dispatch({changes:{from:at,to:at+1,insert:'5'},selection:{anchor:0},userEvent:'input.type'});
+  main.view.editor.replaceRange('5',main.view.editor.offsetToPos(at),main.view.editor.offsetToPos(at+1));
   check('Popout has owned queued revision',app.plugins.plugins['latex-standard-delimiters'].pendingReadingRefresh.has(view));
   popup.detach();popup=null;await wait(400);
   check('Closing popout releases queued work',app.plugins.plugins['latex-standard-delimiters'].pendingReadingRefresh.size===0);
@@ -24,6 +27,6 @@
  finally{
   if(popup)popup.detach();await main.setViewState(original);app.workspace.setActiveLeaf(main,{focus:false});window.lsdRuntimeChecksRunning=false;
   const report={version:app.plugins.plugins['latex-standard-delimiters'].manifest.version,timestamp:new Date().toISOString(),mainJsSha256:crypto.createHash('sha256').update(fs.readFileSync(root+'/.obsidian/plugins/latex-standard-delimiters/main.js')).digest('hex'),scope:'Actual desktop popout closed while a cross-section Reading View refresh is queued.',passed:results.every(r=>r.passed),results};
-  fs.writeFileSync(root+'/reading-revision-popout-report.json',JSON.stringify(report,null,2));console.log('READING_REVISION_POPOUT_DONE',report.passed);
+  fs.writeFileSync(root+'/scripted-reading-revision-popout-report.json',JSON.stringify(report,null,2));console.log('READING_REVISION_POPOUT_DONE',report.passed);
  }
 })();

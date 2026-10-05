@@ -1,0 +1,23 @@
+[
+  {
+    "name": "cylindrical-aligned",
+    "tex": "\n\\begin{aligned}\n{[\\mathbf r]}_{\\mathrm{cyl}}\n&=M(x,y)\n\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix}\\\\\n&=\n\\begin{pmatrix}\n\\dfrac{x^2+y^2}{\\sqrt{x^2+y^2}}\\\\\n\\dfrac{-yx+xy}{\\sqrt{x^2+y^2}}\\\\\nz\n\\end{pmatrix}\\\\\n&=\n\\begin{pmatrix}\\rho\\\\0\\\\z\\end{pmatrix}\n\\end{aligned}\n",
+    "requiredGlyphs": [
+      "mjx-c5B",
+      "mjx-c1D42B",
+      "mjx-c5D",
+      "mjx-c1D70C"
+    ],
+    "equalsCount": 3
+  },
+  {
+    "name": "boxed-transformation",
+    "tex": "\n\\boxed{\n\\begin{pmatrix}\nA_\\rho\\\\\nA_\\phi\\\\\nA_z\n\\end{pmatrix}\n=\n\\underbrace{\n\\begin{pmatrix}\n\\dfrac{x}{\\sqrt{x^2+y^2}}&\\dfrac{y}{\\sqrt{x^2+y^2}}&0\\\\\n-\\dfrac{y}{\\sqrt{x^2+y^2}}&\\dfrac{x}{\\sqrt{x^2+y^2}}&0\\\\\n0&0&1\n\\end{pmatrix}\n}_{M(x,y)}\n\\begin{pmatrix}\nA_x\\\\\nA_y\\\\\nA_z\n\\end{pmatrix}\n}\n",
+    "requiredGlyphs": [
+      "mjx-c1D434",
+      "mjx-c1D70C",
+      "mjx-c1D719"
+    ],
+    "equalsCount": 1
+  }
+]

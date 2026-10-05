@@ -1,3 +1,11 @@
+# 0.4.6 publication review
+
+Self-review checked the new command registration and unload cleanup, stale-note/editor guards before repair, exact selection replacement and undo behavior, warning token exclusions and the CSS scope preserving ordinary Markdown headings. No rendering-time source rewrite was added. This is a self-review, not independent certification.
+
+The missing bracketed vector is a MathJax optional-argument ambiguity; the corrected fixture uses an explicit group and independent glyph assertions. The source typography defect was reproduced on the pre-fix candidate (seven failures) and fixed with scoped line/token styling. Original source remains unchanged unless the user explicitly applies the proposed outer-delimiter repair.
+
+Local publication gates pass against the exact 0.4.6 bundle; historical platform and IME limitations remain applicable.
+
 # Editing correctness review
 
 This is a separate self-review pass of the implementation and evidence, not external certification.

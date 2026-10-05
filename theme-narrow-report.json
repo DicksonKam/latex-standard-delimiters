@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-27T12:19:59.442Z",
+  "timestamp": "2026-10-05T15:33:07.349Z",
   "scope": "Actual Minimal stylesheet in desktop document at 360px editor width; no real mobile or touch keyboard certification",
   "observations": [
     {
@@ -19,7 +19,7 @@
       "mathWidth": 3919
     }
   ],
-  "mainJsSha256": "31395b9fd0eafeb04163b152905d3466e0de177761a6c9a0270f2e467dbbf415",
+  "mainJsSha256": "6ac2741debe73ccbd03f1c811dee294228ae975bfe388857ee0a242fa5c52dc3",
   "results": [
     {
       "name": "theme-light: Minimal source tokens visible",

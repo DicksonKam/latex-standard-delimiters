@@ -1,7 +1,7 @@
 {
   "id": "latex-standard-delimiters",
   "name": "LaTeX Standard Delimiters",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "minAppVersion": "1.13.7",
   "description": "Render standard LaTeX delimiters and highlight math source without rewriting notes.",
   "author": "DicksonKam",

@@ -6,7 +6,7 @@ Extended MathJax 0.4.1: custom preamble macros and chemistry work with standard/
 
 Quick Latex 2.6.5: native-dollar auto-fractions work alongside our standard-delimiter rendering/preview. Our plugin does not make Quick Latex recognize alternative math contexts. Its dollar assumptions occur in several handlers; see TYPING-INTEGRATION.md for a maintainable integration route and boundaries.
 
-SwiftLaTeX Render 0.6.0: the embedded engine initializes with a loopback-only package endpoint in TestVault. Standard-delimiter math and editing previews render while it is enabled, and source is preserved. Full TeX/PDF/SVG compilation, package downloads and every settings combination were not tested. Its own manifest declares desktop-only; it is not needed on mobile.
+SwiftLaTeX Render 0.6.0: the embedded engine initializes with a loopback-only package endpoint in TestVault. Standard-delimiter math and editing previews render while it is enabled, and source is preserved. Startup also fetches the public TeX Live package index; the loopback setting does not prevent that request. Full TeX/PDF/SVG compilation, TeX package downloads and every settings combination were not tested. Its own manifest declares desktop-only; it is not needed on mobile.
 
 Upstream LaTeX Delimiter Renderer 1.0.4: an original-source local build was actually loaded in TestVault. Our known-ID guard pauses; upstream handles Reading View/Live Preview equations without competing source markers. Removing it resumes our rendering without residual upstream widgets. Upstream preferences were not written. The guard is not universal detection of every renderer and may take up to the polling interval after a configuration change.
 

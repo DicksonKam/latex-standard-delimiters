@@ -1,3 +1,7 @@
+# API changes — 0.4.6
+
+Rendering still preserves note bytes and uses the host MathJax engine. Two editor commands add diagnosis and an optional delimiter repair. The diagnostic is read-only; clicking Apply performs one editor.replaceRange operation for the reviewed selection and supports undo. A whole-note snapshot guard rejects stale proposals. Production still has no Node/Electron imports, network requests or telemetry. The older audit below describes the released 0.4.4 renderer before this explicit editor action existed.
+
 # Platform and API audit — 0.4.4 beta
 
 Desktop-only by owner decision, with isDesktopOnly=true. Production imports Obsidian, CodeMirror and local parser/highlighting/source-projection modules. It has no Node/Electron, network, telemetry or note-write APIs. It reads hidden vault plugin configuration for the known renderer guard and saves only its own preferences. Node APIs appear solely in developer scripts.

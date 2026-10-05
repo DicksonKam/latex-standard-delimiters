@@ -1,3 +1,7 @@
+# 0.4.6 release refresh
+
+All 18 runtime suites and six stress suites were rerun on the 0.4.6 bundle: 258 and 1,943 assertions respectively pass. The current hash-bound reports also include the new source typography/matrix/diagnostic checks and trusted native daily/cross-section edits. For queued popout closure, run native-reading-popout-setup.js, type 5 through native UI, then run native-reading-popout-finish.js. Its eight assertions require trusted input, a pending refresh, cleanup and natural disk autosave. The older scripted popout check does not reliably exercise host autosave and now writes a separate report; the retained first-attempt failure documents that limitation.
+
 # Repeatable stress testing
 
 Run developer scripts only in the disposable work/TestVault, never a personal vault. The scripts deliberately write Stress.md, StressLifecycle.md and StressVolume.md. They restore the original active view and check the supplied fixtures remain unchanged. Editing dispatches and lifecycle events are synthetic; this does not certify every OS, input method or third-party plugin.
@@ -37,3 +41,25 @@ For a cross-section fix, test opening, middle and closing edits, command/operato
 Run `reading-revision-performance-check.js` separately while the native TestVault window is focused. It measures six warm Reading View changes on a 200-paragraph note, checks a local 1800ms upper bound, preserves the logical scroll anchor and verifies the newest equation after returning from offscreen. The measurement is host rendering after synthetic editor dispatch, not OS keyboard latency.
 
 For `native-cross-section-setup.js`, drive actual typing of 9, Cmd-Z and Cmd-Shift-Z through the native UI; then run `native-cross-section-finish.js`. Trusted event capture checks Reading View updates and exact intended source. Re-enable checks in the semantic suite also run without manual refresh or reopening. Packaging requires current performance/scroll and native cross-section reports in addition to the original native daily keyboard probe.
+
+## Reported matrix layouts (investigation pending)
+
+Set lsdTestScriptsPath as above and evaluate scripts/matrix-rendering-check.js in disposable work/TestVault. It compares the cylindrical aligned and boxed-underbrace matrix examples against the host MathJax semantic tree in Reading View and Live Preview, including callouts, lists, one-space indentation, blank rows, and ordinary editing previews. The 22 checks pass on the 0.4.6 candidate, recorded in matrix-rendering-report.json. Two added pure regressions preserve exact projected TeX and check row-spacing brackets.
+
+These fixtures reconstruct intended valid LaTeX from a formatted chat paste. The cylindrical fixture now groups its leading bracket expression and requires both bracket glyphs and bold r, in addition to comparing the host MathJax tree. Matching MathJax alone missed the optional-argument ambiguity. New screenshots and computed styles confirmed heading/emphasis leakage in active source. The main vault's running plugin is enabled and matches the 0.4.5 tested binary; it resides in a version-suffixed folder. The 0.4.6 candidate adds diagnosis and an explicit delimiter-loss repair; it does not claim to resolve the exact original note or to be a published release.
+
+Examples-Matrices.md contains the reconstructed equations with standard display delimiters, double-backslash row breaks, and correct subscripts. Bare bracket blocks remain ordinary Markdown.
+
+## Selected-equation diagnostics and repair (0.4.6 candidate)
+
+Run equation-diagnostics-check.js separately in disposable TestVault. It creates distinct EquationDiagnostics-*.md notes so pending editor saves cannot race fixture replacement. Twenty-six assertions cover exact source previews, explicit delimiter-only Apply, scripted undo, newer-edit protection, code exclusions, MathJax errors, dialog teardown, and saved bytes. MathJax acceptance is a preview result, not a guarantee of mathematical correctness or of the original note’s rendering.
+
+For native interaction, evaluate native-equation-diagnostics-setup.js, close DevTools, use Cmd-P to choose Preview equation repair, click Apply delimiter repair and press Cmd-Z. Evaluate native-equation-diagnostics-finish.js to record trusted events and exact editor/disk source. Five checks pass. The scripts restore the original leaf and leave only disposable test notes. Run these probes separately from other suites; their reports bind to the installed candidate bundle.
+
+The twelve diagnostic/matrix unit tests exercise delimiter loss, byte-preserving proposals, CRLF/quote prefixes, blank-line selections, partial/multiple-block rejection, code/native-dollar exclusions and damaged row breaks. Rendering semantics remain unchanged: ordinary bare brackets are not implicitly converted to math. Release packaging also requires these current reports. This candidate has targeted verification, not refreshed full release-gate evidence.
+
+## Source typography regression
+
+Run source-typography-check.js separately in disposable TestVault. Twenty-three assertions check computed font size/weight/style, ordinary headings, inline math inside a heading, emphasis-like TeX, invisible blank rows, and editor/disk bytes. The pre-fix candidate fails seven style assertions; the fixed candidate passes all. The baseline is retained as source-typography-baseline-report.json. These checks cover the installed desktop theme, not every third-party stylesheet. The heading-like invalid-TeX fixture deliberately exercises source editing typography, not successful typesetting.
+
+Source line decorations reset typography only on complete equation lines. Math source spans suppress Markdown emphasis/heading decoration while token colors and unmatched-brace feedback remain available. Surrounding prose/inline-heading line formatting remains unchanged. Diagnosis warns about suspicious optional arguments without changing the note; corrected examples group the literal bracket expression explicitly.

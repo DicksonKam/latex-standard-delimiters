@@ -1,3 +1,15 @@
+# 0.4.6 equation diagnostics and source typography audit
+
+Local verification: complete
+
+47 automated tests, including 7,000 deterministic inputs, and 2,320 actual-app assertions pass on the exact candidate bundle. This total includes repeated checks: 258 runtime, 1,943 stress, 20 refresh/scroll, 76 focused equation/source diagnostics and 23 native daily/cross-section/popout checks. Source and CSS hashes match the installed TestVault candidate. The release gate now requires trusted popout input and exact disk persistence; the earlier synthetic autosave failure is preserved and does not count as passing evidence.
+
+Self-review: new commands, repair snapshot guards, modal cleanup, warning exclusions, source typography scope and semantic glyph checks were examined. No new renderer code was changed during release verification. Testing and plugin preference changes are confined to disposable TestVault. No main-vault width preference or plugin installation is changed by this release task.
+
+Publication: local packaging passes. GitHub CI and public asset verification are pending.
+
+Historical platform, IME and third-party compatibility limits remain explicit in VERIFICATION.md. This is a desktop GitHub beta, not universal stability certification.
+
 # 0.4.5 editing correctness audit
 
 Status: complete — desktop GitHub beta

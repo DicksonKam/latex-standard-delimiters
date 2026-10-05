@@ -1,7 +1,7 @@
 {
-  "version": "0.4.5",
-  "timestamp": "2026-09-27T12:24:21.661Z",
-  "mainJsSha256": "31395b9fd0eafeb04163b152905d3466e0de177761a6c9a0270f2e467dbbf415",
+  "version": "0.4.6",
+  "timestamp": "2026-10-05T15:39:33.848Z",
+  "mainJsSha256": "6ac2741debe73ccbd03f1c811dee294228ae975bfe388857ee0a242fa5c52dc3",
   "scope": "Actual native UI Down/Right, typing, undo/redo, Backspace, LaTeX paste and undo in disposable NativeDaily.md; trusted input/keydown capture. Does not certify every OS keyboard, IME or callout interaction.",
   "results": [
     {

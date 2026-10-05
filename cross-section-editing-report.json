@@ -1,7 +1,7 @@
 {
-  "version": "0.4.5",
-  "mainJsSha256": "31395b9fd0eafeb04163b152905d3466e0de177761a6c9a0270f2e467dbbf415",
-  "timestamp": "2026-09-27T12:20:41.718Z",
+  "version": "0.4.6",
+  "mainJsSha256": "6ac2741debe73ccbd03f1c811dee294228ae975bfe388857ee0a242fa5c52dc3",
+  "timestamp": "2026-10-05T15:34:36.698Z",
   "passed": true,
   "results": [
     {
@@ -14,7 +14,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c33\"],[\"MJX-C\",\"mjx-c32\"],[\"MJX-C\",\"mjx-c31\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c34\"]]]"
         ],
-        "settleMs": 51.599999994039536
+        "settleMs": 50.40000003576279
       }
     },
     {
@@ -27,7 +27,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c33\"],[\"MJX-C\",\"mjx-c32\"],[\"MJX-C\",\"mjx-c31\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c34\"]]]"
         ],
-        "settleMs": 51.599999994039536
+        "settleMs": 50.40000003576279
       }
     },
     {
@@ -72,7 +72,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c33\"],[\"MJX-C\",\"mjx-c32\"],[\"MJX-C\",\"mjx-c31\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 50.79999998211861
+        "settleMs": 156.70000004768372
       }
     },
     {
@@ -85,7 +85,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c33\"],[\"MJX-C\",\"mjx-c32\"],[\"MJX-C\",\"mjx-c31\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 50.79999998211861
+        "settleMs": 156.70000004768372
       }
     },
     {
@@ -130,7 +130,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 51.10000002384186
+        "settleMs": 2050.300000011921
       }
     },
     {
@@ -143,7 +143,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 51.20000001788139
+        "settleMs": 2050.300000011921
       }
     },
     {
@@ -188,7 +188,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 51.099999994039536
+        "settleMs": 51.30000001192093
       }
     },
     {
@@ -201,7 +201,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 51.099999994039536
+        "settleMs": 51.30000001192093
       }
     },
     {
@@ -246,7 +246,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MI\",\"mjx-i\",[\"MJX-C\",\"mjx-c1D6FC TEX-I\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 2117.7000000178814
+        "settleMs": 159.60000002384186
       }
     },
     {
@@ -259,7 +259,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MI\",\"mjx-i\",[\"MJX-C\",\"mjx-c1D6FC TEX-I\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 2117.7000000178814
+        "settleMs": 159.60000002384186
       }
     },
     {
@@ -304,7 +304,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MI\",\"mjx-i\",[\"MJX-C\",\"mjx-c1D6FD TEX-I\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 50.599999994039536
+        "settleMs": 153.0999999642372
       }
     },
     {
@@ -317,7 +317,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MI\",\"mjx-i\",[\"MJX-C\",\"mjx-c1D6FD TEX-I\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 50.599999994039536
+        "settleMs": 153.19999998807907
       }
     },
     {
@@ -358,7 +358,7 @@
       "detail": {
         "expected": [],
         "actual": [],
-        "settleMs": 107.30000001192093
+        "settleMs": 108.69999998807907
       }
     },
     {
@@ -367,7 +367,7 @@
       "detail": {
         "expected": [],
         "actual": [],
-        "settleMs": 107.30000001192093
+        "settleMs": 108.69999998807907
       }
     },
     {
@@ -408,7 +408,7 @@
       "detail": {
         "expected": [],
         "actual": [],
-        "settleMs": 51.400000005960464
+        "settleMs": 51.5
       }
     },
     {
@@ -462,7 +462,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MI\",\"mjx-i\",[\"MJX-C\",\"mjx-c1D6FD TEX-I\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 53
+        "settleMs": 51.19999998807907
       }
     },
     {
@@ -475,7 +475,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MI\",\"mjx-i\",[\"MJX-C\",\"mjx-c1D6FD TEX-I\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 53
+        "settleMs": 51.19999998807907
       }
     },
     {
@@ -516,7 +516,7 @@
       "detail": {
         "expected": [],
         "actual": [],
-        "settleMs": 107
+        "settleMs": 2043.8999999761581
       }
     },
     {
@@ -525,7 +525,7 @@
       "detail": {
         "expected": [],
         "actual": [],
-        "settleMs": 107
+        "settleMs": 2043.8999999761581
       }
     },
     {
@@ -570,7 +570,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MI\",\"mjx-i\",[\"MJX-C\",\"mjx-c1D6FD TEX-I\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 55.900000005960464
+        "settleMs": 50.60000002384186
       }
     },
     {
@@ -583,7 +583,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MI\",\"mjx-i\",[\"MJX-C\",\"mjx-c1D6FD TEX-I\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 55.900000005960464
+        "settleMs": 50.60000002384186
       }
     },
     {
@@ -624,7 +624,7 @@
       "detail": {
         "expected": [],
         "actual": [],
-        "settleMs": 51.19999998807907
+        "settleMs": 51.10000002384186
       }
     },
     {
@@ -633,7 +633,7 @@
       "detail": {
         "expected": [],
         "actual": [],
-        "settleMs": 51.19999998807907
+        "settleMs": 51.10000002384186
       }
     },
     {
@@ -678,7 +678,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MI\",\"mjx-i\",[\"MJX-C\",\"mjx-c1D6FD TEX-I\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 50.5
+        "settleMs": 51.5
       }
     },
     {
@@ -691,7 +691,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MI\",\"mjx-i\",[\"MJX-C\",\"mjx-c1D6FD TEX-I\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 50.5
+        "settleMs": 51.5
       }
     },
     {
@@ -736,7 +736,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-MFRAC\",\"\",[\"MJX-FRAC\",\"\",[\"MJX-NUM\",\"\",[\"MJX-NSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c31\"]]],[\"MJX-DBOX\",\"\",[\"MJX-DTABLE\",\"\",[\"MJX-LINE\",\"\"],[\"MJX-ROW\",\"\",[\"MJX-DEN\",\"\",[\"MJX-DSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c32\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-MO\",\"mjx-n\",[\"MJX-STRETCHY-H\",\"mjx-c23DF\",[\"MJX-BEG\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-MID\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-END\",\"\",[\"MJX-C\",\"\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MTEXT\",\"mjx-n\",[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c76\"],[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c6E\"]]]]]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 52.10000002384186
+        "settleMs": 155
       }
     },
     {
@@ -749,7 +749,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-MFRAC\",\"\",[\"MJX-FRAC\",\"\",[\"MJX-NUM\",\"\",[\"MJX-NSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c31\"]]],[\"MJX-DBOX\",\"\",[\"MJX-DTABLE\",\"\",[\"MJX-LINE\",\"\"],[\"MJX-ROW\",\"\",[\"MJX-DEN\",\"\",[\"MJX-DSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c32\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-MO\",\"mjx-n\",[\"MJX-STRETCHY-H\",\"mjx-c23DF\",[\"MJX-BEG\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-MID\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-END\",\"\",[\"MJX-C\",\"\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MTEXT\",\"mjx-n\",[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c76\"],[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c6E\"]]]]]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 52.10000002384186
+        "settleMs": 155
       }
     },
     {
@@ -794,7 +794,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-MFRAC\",\"\",[\"MJX-FRAC\",\"\",[\"MJX-NUM\",\"\",[\"MJX-NSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c31\"]]],[\"MJX-DBOX\",\"\",[\"MJX-DTABLE\",\"\",[\"MJX-LINE\",\"\"],[\"MJX-ROW\",\"\",[\"MJX-DEN\",\"\",[\"MJX-DSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c32\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-MO\",\"mjx-n\",[\"MJX-STRETCHY-H\",\"mjx-c23DF\",[\"MJX-BEG\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-MID\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-END\",\"\",[\"MJX-C\",\"\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MTEXT\",\"mjx-n\",[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c76\"],[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c6E\"]]]]]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 52.5
+        "settleMs": 51.30000001192093
       }
     },
     {
@@ -807,7 +807,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-MFRAC\",\"\",[\"MJX-FRAC\",\"\",[\"MJX-NUM\",\"\",[\"MJX-NSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c31\"]]],[\"MJX-DBOX\",\"\",[\"MJX-DTABLE\",\"\",[\"MJX-LINE\",\"\"],[\"MJX-ROW\",\"\",[\"MJX-DEN\",\"\",[\"MJX-DSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c32\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-MO\",\"mjx-n\",[\"MJX-STRETCHY-H\",\"mjx-c23DF\",[\"MJX-BEG\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-MID\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-END\",\"\",[\"MJX-C\",\"\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MTEXT\",\"mjx-n\",[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c76\"],[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c6E\"]]]]]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 52.5
+        "settleMs": 51.40000003576279
       }
     },
     {
@@ -852,7 +852,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-MFRAC\",\"\",[\"MJX-FRAC\",\"\",[\"MJX-NUM\",\"\",[\"MJX-NSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c31\"]]],[\"MJX-DBOX\",\"\",[\"MJX-DTABLE\",\"\",[\"MJX-LINE\",\"\"],[\"MJX-ROW\",\"\",[\"MJX-DEN\",\"\",[\"MJX-DSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c32\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-MO\",\"mjx-n\",[\"MJX-STRETCHY-H\",\"mjx-c23DF\",[\"MJX-BEG\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-MID\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-END\",\"\",[\"MJX-C\",\"\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MTEXT\",\"mjx-n\",[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c76\"],[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c6E\"]]]]]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c37\"]]]"
         ],
-        "settleMs": 51
+        "settleMs": 101.80000001192093
       }
     },
     {
@@ -865,7 +865,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-MFRAC\",\"\",[\"MJX-FRAC\",\"\",[\"MJX-NUM\",\"\",[\"MJX-NSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c31\"]]],[\"MJX-DBOX\",\"\",[\"MJX-DTABLE\",\"\",[\"MJX-LINE\",\"\"],[\"MJX-ROW\",\"\",[\"MJX-DEN\",\"\",[\"MJX-DSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c32\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-MO\",\"mjx-n\",[\"MJX-STRETCHY-H\",\"mjx-c23DF\",[\"MJX-BEG\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-MID\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-END\",\"\",[\"MJX-C\",\"\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MTEXT\",\"mjx-n\",[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c76\"],[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c6E\"]]]]]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c37\"]]]"
         ],
-        "settleMs": 51
+        "settleMs": 101.80000001192093
       }
     },
     {
@@ -910,7 +910,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-MFRAC\",\"\",[\"MJX-FRAC\",\"\",[\"MJX-NUM\",\"\",[\"MJX-NSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c31\"]]],[\"MJX-DBOX\",\"\",[\"MJX-DTABLE\",\"\",[\"MJX-LINE\",\"\"],[\"MJX-ROW\",\"\",[\"MJX-DEN\",\"\",[\"MJX-DSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c32\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-MO\",\"mjx-n\",[\"MJX-STRETCHY-H\",\"mjx-c23DF\",[\"MJX-BEG\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-MID\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-END\",\"\",[\"MJX-C\",\"\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MTEXT\",\"mjx-n\",[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c76\"],[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c6E\"]]]]]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c38\"]]]"
         ],
-        "settleMs": 50.900000005960464
+        "settleMs": 51.19999998807907
       }
     },
     {
@@ -923,7 +923,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-MFRAC\",\"\",[\"MJX-FRAC\",\"\",[\"MJX-NUM\",\"\",[\"MJX-NSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c31\"]]],[\"MJX-DBOX\",\"\",[\"MJX-DTABLE\",\"\",[\"MJX-LINE\",\"\"],[\"MJX-ROW\",\"\",[\"MJX-DEN\",\"\",[\"MJX-DSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c32\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-MO\",\"mjx-n\",[\"MJX-STRETCHY-H\",\"mjx-c23DF\",[\"MJX-BEG\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-MID\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-END\",\"\",[\"MJX-C\",\"\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MTEXT\",\"mjx-n\",[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c76\"],[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c6E\"]]]]]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c38\"]]]"
         ],
-        "settleMs": 51
+        "settleMs": 51.19999998807907
       }
     },
     {
@@ -968,7 +968,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-MFRAC\",\"\",[\"MJX-FRAC\",\"\",[\"MJX-NUM\",\"\",[\"MJX-NSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c31\"]]],[\"MJX-DBOX\",\"\",[\"MJX-DTABLE\",\"\",[\"MJX-LINE\",\"\"],[\"MJX-ROW\",\"\",[\"MJX-DEN\",\"\",[\"MJX-DSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c32\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-MO\",\"mjx-n\",[\"MJX-STRETCHY-H\",\"mjx-c23DF\",[\"MJX-BEG\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-MID\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-END\",\"\",[\"MJX-C\",\"\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MTEXT\",\"mjx-n\",[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c76\"],[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c6E\"]]]]]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c39\"]]]"
         ],
-        "settleMs": 50.69999998807907
+        "settleMs": 50.39999997615814
       }
     },
     {
@@ -981,7 +981,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-MFRAC\",\"\",[\"MJX-FRAC\",\"\",[\"MJX-NUM\",\"\",[\"MJX-NSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c31\"]]],[\"MJX-DBOX\",\"\",[\"MJX-DTABLE\",\"\",[\"MJX-LINE\",\"\"],[\"MJX-ROW\",\"\",[\"MJX-DEN\",\"\",[\"MJX-DSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c32\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-MO\",\"mjx-n\",[\"MJX-STRETCHY-H\",\"mjx-c23DF\",[\"MJX-BEG\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-MID\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-END\",\"\",[\"MJX-C\",\"\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MTEXT\",\"mjx-n\",[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c76\"],[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c6E\"]]]]]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c39\"]]]"
         ],
-        "settleMs": 50.80000001192093
+        "settleMs": 50.39999997615814
       }
     },
     {
@@ -1022,7 +1022,7 @@
       "detail": {
         "expected": [],
         "actual": [],
-        "settleMs": 51.400000005960464
+        "settleMs": 50.40000003576279
       }
     },
     {
@@ -1031,7 +1031,7 @@
       "detail": {
         "expected": [],
         "actual": [],
-        "settleMs": 51.400000005960464
+        "settleMs": 50.40000003576279
       }
     },
     {
@@ -1116,7 +1116,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-MFRAC\",\"\",[\"MJX-FRAC\",\"\",[\"MJX-NUM\",\"\",[\"MJX-NSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c31\"]]],[\"MJX-DBOX\",\"\",[\"MJX-DTABLE\",\"\",[\"MJX-LINE\",\"\"],[\"MJX-ROW\",\"\",[\"MJX-DEN\",\"\",[\"MJX-DSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c32\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-MO\",\"mjx-n\",[\"MJX-STRETCHY-H\",\"mjx-c23DF\",[\"MJX-BEG\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-MID\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-END\",\"\",[\"MJX-C\",\"\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MTEXT\",\"mjx-n\",[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c76\"],[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c6E\"]]]]]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"]]]"
         ],
-        "settleMs": 51.29999998211861
+        "settleMs": 51.19999998807907
       }
     },
     {
@@ -1129,7 +1129,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-MFRAC\",\"\",[\"MJX-FRAC\",\"\",[\"MJX-NUM\",\"\",[\"MJX-NSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c31\"]]],[\"MJX-DBOX\",\"\",[\"MJX-DTABLE\",\"\",[\"MJX-LINE\",\"\"],[\"MJX-ROW\",\"\",[\"MJX-DEN\",\"\",[\"MJX-DSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c32\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-MO\",\"mjx-n\",[\"MJX-STRETCHY-H\",\"mjx-c23DF\",[\"MJX-BEG\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-MID\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-END\",\"\",[\"MJX-C\",\"\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MTEXT\",\"mjx-n\",[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c76\"],[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c6E\"]]]]]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"]]]"
         ],
-        "settleMs": 51.29999998211861
+        "settleMs": 51.19999998807907
       }
     },
     {
@@ -1174,7 +1174,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MUNDER\",\"\",[\"MJX-ROW\",\"\",[\"MJX-BASE\",\"\",[\"MJX-MFRAC\",\"\",[\"MJX-FRAC\",\"\",[\"MJX-NUM\",\"\",[\"MJX-NSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c31\"]]],[\"MJX-DBOX\",\"\",[\"MJX-DTABLE\",\"\",[\"MJX-LINE\",\"\"],[\"MJX-ROW\",\"\",[\"MJX-DEN\",\"\",[\"MJX-DSTRUT\",\"\"],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c32\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-MO\",\"mjx-n\",[\"MJX-STRETCHY-H\",\"mjx-c23DF\",[\"MJX-BEG\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-MID\",\"\",[\"MJX-C\",\"\"]],[\"MJX-EXT\",\"\",[\"MJX-C\",\"\"]],[\"MJX-END\",\"\",[\"MJX-C\",\"\"]]]]]]]]]],[\"MJX-ROW\",\"\",[\"MJX-UNDER\",\"\",[\"MJX-TEXATOM\",\"\",[\"MJX-MTEXT\",\"mjx-n\",[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c76\"],[\"MJX-C\",\"mjx-c65\"],[\"MJX-C\",\"mjx-c6E\"]]]]]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c37\"]]]"
         ],
-        "settleMs": 51.900000005960464
+        "settleMs": 51.69999998807907
       }
     },
     {
@@ -1213,7 +1213,7 @@
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c31\"],[\"MJX-C\",\"mjx-c32\"],[\"MJX-C\",\"mjx-c33\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c34\"]]]",
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 51
+        "settleMs": 51.39999997615814
       }
     },
     {
@@ -1250,7 +1250,7 @@
         "actual": [
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c31\"],[\"MJX-C\",\"mjx-c32\"],[\"MJX-C\",\"mjx-c33\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c34\"]]]"
         ],
-        "settleMs": 107.69999998807907
+        "settleMs": 106.29999995231628
       }
     },
     {
@@ -1289,7 +1289,7 @@
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c31\"],[\"MJX-C\",\"mjx-c32\"],[\"MJX-C\",\"mjx-c33\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c34\"]]]",
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 110.10000002384186
+        "settleMs": 153.69999998807907
       }
     },
     {
@@ -1322,7 +1322,7 @@
       "detail": {
         "expected": [],
         "actual": [],
-        "settleMs": 51.099999994039536
+        "settleMs": 50.39999997615814
       }
     },
     {
@@ -1361,7 +1361,7 @@
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c31\"],[\"MJX-C\",\"mjx-c32\"],[\"MJX-C\",\"mjx-c33\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2B\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c34\"]]]",
           "[\"MJX-MATH\",\"MJX-TEX\",[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c36\"],[\"MJX-C\",\"mjx-c35\"],[\"MJX-C\",\"mjx-c34\"]],[\"MJX-MO\",\"mjx-n\",[\"MJX-C\",\"mjx-c2212\"]],[\"MJX-MN\",\"mjx-n\",[\"MJX-C\",\"mjx-c35\"]]]"
         ],
-        "settleMs": 51.599999994039536
+        "settleMs": 51
       }
     },
     {

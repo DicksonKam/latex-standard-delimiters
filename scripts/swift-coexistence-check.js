@@ -3,6 +3,7 @@
  const fs=require('node:fs'),root=app.vault.adapter.getBasePath(),leaf=app.workspace.activeLeaf,results=[],check=(name,passed)=>results.push({name,passed});
  const before=fs.readFileSync(root+'/Typing.md','utf8');const wait=()=>new Promise(r=>setTimeout(r,250));
  // The test copy has cache disabled and a loopback-only package endpoint.
+ // Startup still downloads the public TeX Live package index.
  // This exercises coexistence, not full TeX/PDF compilation.
  try{
   await leaf.setViewState({type:'markdown',state:{file:'Typing.md',mode:'source',source:false}});
@@ -22,5 +23,5 @@
   check('Editing preview coexists with SwiftLaTeX',!!view.dom.querySelector('.lsd-editing-preview mjx-math'));
   check('Note source unchanged',view.state.doc.toString()===before&&fs.readFileSync(root+'/Typing.md','utf8')===before);
  }finally{await app.plugins.disablePlugin('swiftlatex-render');await leaf.setViewState({type:'markdown',state:{file:'Examples.md',mode:'source',source:false}});}
- const report={timestamp:new Date().toISOString(),scope:'Engine initialization and standard math coexistence with offline package endpoint; TeX/PDF/SVG compilation not tested',mainJsSha256:require('node:crypto').createHash('sha256').update(fs.readFileSync(root+'/.obsidian/plugins/latex-standard-delimiters/main.js')).digest('hex'),results};fs.writeFileSync(root+'/swift-coexistence-report.json',JSON.stringify(report,null,2));console.log('SWIFT COEXISTENCE',results.filter(x=>!x.passed));
+ const report={timestamp:new Date().toISOString(),scope:'Engine initialization and standard math coexistence with loopback package endpoint (startup downloads public TeX Live index); TeX/PDF/SVG compilation not tested',mainJsSha256:require('node:crypto').createHash('sha256').update(fs.readFileSync(root+'/.obsidian/plugins/latex-standard-delimiters/main.js')).digest('hex'),results};fs.writeFileSync(root+'/swift-coexistence-report.json',JSON.stringify(report,null,2));console.log('SWIFT COEXISTENCE',results.filter(x=>!x.passed));
 })();
