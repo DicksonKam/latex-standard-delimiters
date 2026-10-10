@@ -39,4 +39,4 @@ Requirement audit: baseline reproduction, implementation fixes, semantic edits/u
 
 Local verification: complete
 
-Current 0.4.7 hash-bound runtime, stress, focused equation, native keyboard, popout and source-preservation checks pass. Packaging now requires the 102-check layout suite. See VERIFICATION.md and validation for first-attempt failures and successful retests. GitHub publication and public asset verification are the remaining release steps.
+Current 0.4.7 hash-bound runtime, stress, focused equation, native keyboard, popout and source-preservation checks pass. Packaging now requires the 102-check layout suite. See VERIFICATION.md and validation for first-attempt failures and successful retests. GitHub Checks #23 and Release #11 passed for dbb8250. Public 0.4.7 assets were independently downloaded; eight byte/checksum/ZIP/manifest/attribution checks pass. Both main and disposable TestVault run 0.4.7 with matching installed files, and main-vault source and plugin preferences were preserved.
