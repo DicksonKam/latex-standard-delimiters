@@ -1,11 +1,11 @@
 {
-  "version": "0.4.6",
-  "timestamp": "2026-10-05T15:36:59.491Z",
-  "mainJsSha256": "6ac2741debe73ccbd03f1c811dee294228ae975bfe388857ee0a242fa5c52dc3",
+  "version": "0.4.7",
+  "timestamp": "2026-10-10T17:25:59.691Z",
+  "mainJsSha256": "752dc17f48caa692d2e0dc94f553d40082451d07f07919b6482ae0f7494253d5",
   "scope": "Visible Reading View refresh after synthetic editor changes on a 200-paragraph note; scroll stability and return from offscreen. Not OS input latency.",
   "characters": 63118,
-  "meanMs": 165.14999999602637,
-  "maxMs": 205.79999995231628,
+  "meanMs": 165.43333331743875,
+  "maxMs": 212.69999992847443,
   "passed": true,
   "results": [
     {
@@ -16,7 +16,7 @@
       "name": "Warm revision 5 is current",
       "passed": true,
       "detail": {
-        "ms": 205.79999995231628,
+        "ms": 212.69999992847443,
         "digits": "3215",
         "scroll": 0
       }
@@ -25,14 +25,14 @@
       "name": "Warm revision 5 within 1800ms",
       "passed": true,
       "detail": {
-        "ms": 205.79999995231628
+        "ms": 212.69999992847443
       }
     },
     {
       "name": "Warm revision 6 is current",
       "passed": true,
       "detail": {
-        "ms": 155.69999998807907,
+        "ms": 149.60000002384186,
         "digits": "3216",
         "scroll": 0
       }
@@ -41,14 +41,14 @@
       "name": "Warm revision 6 within 1800ms",
       "passed": true,
       "detail": {
-        "ms": 155.69999998807907
+        "ms": 149.60000002384186
       }
     },
     {
       "name": "Warm revision 7 is current",
       "passed": true,
       "detail": {
-        "ms": 145.4000000357628,
+        "ms": 174.79999995231628,
         "digits": "3217",
         "scroll": 0
       }
@@ -57,14 +57,14 @@
       "name": "Warm revision 7 within 1800ms",
       "passed": true,
       "detail": {
-        "ms": 145.4000000357628
+        "ms": 174.79999995231628
       }
     },
     {
       "name": "Warm revision 8 is current",
       "passed": true,
       "detail": {
-        "ms": 154.80000001192093,
+        "ms": 148.20000004768372,
         "digits": "3218",
         "scroll": 0
       }
@@ -73,14 +73,14 @@
       "name": "Warm revision 8 within 1800ms",
       "passed": true,
       "detail": {
-        "ms": 154.80000001192093
+        "ms": 148.20000004768372
       }
     },
     {
       "name": "Warm revision 9 is current",
       "passed": true,
       "detail": {
-        "ms": 181.89999997615814,
+        "ms": 160.79999995231628,
         "digits": "3219",
         "scroll": 0
       }
@@ -89,14 +89,14 @@
       "name": "Warm revision 9 within 1800ms",
       "passed": true,
       "detail": {
-        "ms": 181.89999997615814
+        "ms": 160.79999995231628
       }
     },
     {
       "name": "Warm revision 4 is current",
       "passed": true,
       "detail": {
-        "ms": 147.30000001192093,
+        "ms": 146.5,
         "digits": "3214",
         "scroll": 0
       }
@@ -105,7 +105,7 @@
       "name": "Warm revision 4 within 1800ms",
       "passed": true,
       "detail": {
-        "ms": 147.30000001192093
+        "ms": 146.5
       }
     },
     {

@@ -1,14 +1,14 @@
 {
-  "version": "0.4.6",
-  "timestamp": "2026-10-05T15:36:54.112Z",
-  "mainJsSha256": "6ac2741debe73ccbd03f1c811dee294228ae975bfe388857ee0a242fa5c52dc3",
+  "version": "0.4.7",
+  "timestamp": "2026-10-10T17:23:44.087Z",
+  "mainJsSha256": "752dc17f48caa692d2e0dc94f553d40082451d07f07919b6482ae0f7494253d5",
   "scope": "Single large native callout with 25, 100 and 250 inline underbrace equations, Live Preview and Reading View. End-to-end warm mount/typesetting wall time, not typing latency.",
   "results": [
     {
       "name": "25/source avoids quadratic delay",
       "passed": true,
       "detail": {
-        "elapsedMs": 67.39999997615814
+        "elapsedMs": 94.30000007152557
       }
     },
     {
@@ -30,7 +30,7 @@
       "name": "25/preview avoids quadratic delay",
       "passed": true,
       "detail": {
-        "elapsedMs": 105.40000003576279
+        "elapsedMs": 100.30000007152557
       }
     },
     {
@@ -52,7 +52,7 @@
       "name": "100/source avoids quadratic delay",
       "passed": true,
       "detail": {
-        "elapsedMs": 267.30000001192093
+        "elapsedMs": 245
       }
     },
     {
@@ -74,7 +74,7 @@
       "name": "100/preview avoids quadratic delay",
       "passed": true,
       "detail": {
-        "elapsedMs": 372.30000001192093
+        "elapsedMs": 381.2999999523163
       }
     },
     {
@@ -96,7 +96,7 @@
       "name": "250/source avoids quadratic delay",
       "passed": true,
       "detail": {
-        "elapsedMs": 445.19999998807907
+        "elapsedMs": 437.39999997615814
       }
     },
     {
@@ -118,7 +118,7 @@
       "name": "250/preview avoids quadratic delay",
       "passed": true,
       "detail": {
-        "elapsedMs": 838
+        "elapsedMs": 801
       }
     },
     {
@@ -141,37 +141,37 @@
     {
       "count": 25,
       "mode": "source",
-      "elapsedMs": 67.39999997615814,
+      "elapsedMs": 94.30000007152557,
       "actual": 25
     },
     {
       "count": 25,
       "mode": "preview",
-      "elapsedMs": 105.40000003576279,
+      "elapsedMs": 100.30000007152557,
       "actual": 25
     },
     {
       "count": 100,
       "mode": "source",
-      "elapsedMs": 267.30000001192093,
+      "elapsedMs": 245,
       "actual": 100
     },
     {
       "count": 100,
       "mode": "preview",
-      "elapsedMs": 372.30000001192093,
+      "elapsedMs": 381.2999999523163,
       "actual": 100
     },
     {
       "count": 250,
       "mode": "source",
-      "elapsedMs": 445.19999998807907,
+      "elapsedMs": 437.39999997615814,
       "actual": 250
     },
     {
       "count": 250,
       "mode": "preview",
-      "elapsedMs": 838,
+      "elapsedMs": 801,
       "actual": 250
     }
   ]

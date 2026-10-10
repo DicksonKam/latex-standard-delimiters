@@ -1,7 +1,7 @@
 {
-  "version": "0.4.6",
-  "timestamp": "2026-10-05T15:42:36.919Z",
-  "mainJsSha256": "6ac2741debe73ccbd03f1c811dee294228ae975bfe388857ee0a242fa5c52dc3",
+  "version": "0.4.7",
+  "timestamp": "2026-10-10T17:28:53.869Z",
+  "mainJsSha256": "752dc17f48caa692d2e0dc94f553d40082451d07f07919b6482ae0f7494253d5",
   "inputTrusted": true,
   "queuedBeforeClose": true,
   "scope": "Trusted native keyboard input into the main editor, immediately closing a desktop Reading View popout while its refresh is queued. Disk persistence uses the host autosave path.",
@@ -39,7 +39,7 @@
       "name": "Disk source remains exact after closing popout",
       "passed": true,
       "detail": {
-        "saveMs": 1.399999976158142
+        "saveMs": 0.20000004768371582
       }
     }
   ]

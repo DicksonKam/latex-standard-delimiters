@@ -1,7 +1,7 @@
 {
-  "version": "0.4.6",
-  "timestamp": "2026-10-05T15:39:33.848Z",
-  "mainJsSha256": "6ac2741debe73ccbd03f1c811dee294228ae975bfe388857ee0a242fa5c52dc3",
+  "version": "0.4.7",
+  "timestamp": "2026-10-10T17:32:29.243Z",
+  "mainJsSha256": "752dc17f48caa692d2e0dc94f553d40082451d07f07919b6482ae0f7494253d5",
   "scope": "Actual native UI Down/Right, typing, undo/redo, Backspace, LaTeX paste and undo in disposable NativeDaily.md; trusted input/keydown capture. Does not certify every OS keyboard, IME or callout interaction.",
   "results": [
     {
@@ -89,7 +89,7 @@
     },
     {
       "type": "keydown",
-      "key": "z",
+      "key": "Z",
       "trusted": true,
       "source": "Above\n\\[2946+1\\]\nBelow\n",
       "head": 10,
@@ -134,7 +134,7 @@
     },
     {
       "type": "keydown",
-      "key": "Dead",
+      "key": "i",
       "trusted": true,
       "source": "Above\n\\[246+1\\]\nBelow\n",
       "head": 9,

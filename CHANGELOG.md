@@ -1,3 +1,10 @@
+# 0.4.7
+
+- Remove the height of replaced multiline equation rows in lists, quotes and indented displays while preserving container prefixes and note bytes.
+- Reset Markdown heading wrappers, margins, dividers and fold indicators within active equation source.
+- Enter display equations with vertical arrow keys when the cursor lands on list indentation at a delimiter boundary.
+- Add actual-editor geometry checks for list variants, callouts, trailing hard-break spaces, surrounding prose and Minimal heading dividers.
+
 # 0.4.6
 
 - Add selected-equation diagnosis with exact source, context exclusions, rendering status and shared MathJax validation.

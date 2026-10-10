@@ -34,3 +34,9 @@ Current evidence (Obsidian 1.13.7, macOS):
 - Publication: packaging passed; Checks #19 and Release #9 succeeded for fefffd3. Public 0.4.5 was published and independently downloaded; public-release-check-report.json records eight passing byte/checksum/ZIP/attribution/manifest checks. The release tag matches the tested implementation.
 
 Requirement audit: baseline reproduction, implementation fixes, semantic edits/undo/delimiters/multiple panes, cleanup/source preservation, existing MathJax coexistence, separate self-review and evidence boundaries, all named local/native/performance gates, packaging, CI and public release verification are satisfied by the current reports. Universal stability and external reviewer certification are not claimed.
+
+## 0.4.7 equation layout release
+
+Local verification: complete
+
+Current 0.4.7 hash-bound runtime, stress, focused equation, native keyboard, popout and source-preservation checks pass. Packaging now requires the 102-check layout suite. See VERIFICATION.md and validation for first-attempt failures and successful retests. GitHub publication and public asset verification are the remaining release steps.

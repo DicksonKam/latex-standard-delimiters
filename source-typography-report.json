@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-10-05T15:37:07.860Z",
-  "version": "0.4.6",
+  "timestamp": "2026-10-10T17:25:53.343Z",
+  "version": "0.4.7",
   "hostVersion": "1.13.7",
-  "mainJsSha256": "6ac2741debe73ccbd03f1c811dee294228ae975bfe388857ee0a242fa5c52dc3",
-  "stylesSha256": "42d916c60b3873b4ad5b8ac178a19e2a59871a6cfae515c43093382c250ddd7a",
+  "mainJsSha256": "752dc17f48caa692d2e0dc94f553d40082451d07f07919b6482ae0f7494253d5",
+  "stylesSha256": "cc5fb0e49aef2c95f38466e47cf138cab84c810957e50691221652e6cd7c2845",
   "scope": "Actual computed math-source typography, ordinary/mixed headings, emphasis, invisible blank rows, source and disk bytes in disposable TestVault; synthetic caret placement, not all themes/platforms.",
   "results": [
     {
@@ -79,23 +79,23 @@
       "passed": true
     },
     {
-      "name": "Saved exact bytes: Typography-1791214626499.md",
+      "name": "Saved exact bytes: Typography-1791653151905.md",
       "passed": true
     },
     {
-      "name": "Saved exact bytes: Typography-1791214626801.md",
+      "name": "Saved exact bytes: Typography-1791653152274.md",
       "passed": true
     },
     {
-      "name": "Saved exact bytes: Typography-1791214627084.md",
+      "name": "Saved exact bytes: Typography-1791653152559.md",
       "passed": true
     },
     {
-      "name": "Saved exact bytes: Typography-1791214627351.md",
+      "name": "Saved exact bytes: Typography-1791653152824.md",
       "passed": true
     },
     {
-      "name": "Saved exact bytes: Typography-inline-1791214627620.md",
+      "name": "Saved exact bytes: Typography-inline-1791653153086.md",
       "passed": true
     }
   ],

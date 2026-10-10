@@ -825,6 +825,16 @@ function buildLivePreviewDecorations(state: EditorState): DecorationSet {
           widget: i === 0 ? new MathWidget(presentation.source, true, false, match.from + 2) : undefined
         }).range(range.from, range.to));
       }
+      // Prefix-preserving replacements retain the host's list/callout grammar,
+      // but their now-empty source rows must not retain editor line height.
+      // Keep a closing row with following prose visible.
+      if (contentRanges.length) {
+        for (let number = startLine.number + 1; number <= endLine.number; number++) {
+          const line = state.doc.line(number);
+          if (number === endLine.number && line.text.slice(match.to - line.from).trim()) continue;
+          ranges.push(Decoration.line({class: "lsd-math-hidden-line"}).range(line.from));
+        }
+      }
       continue;
     }
 
@@ -868,8 +878,13 @@ function enterMathVertically(view: EditorView, forward: boolean): boolean {
   const target = view.moveVertically(state.selection.main, forward).head;
   const documentText = state.doc.toString();
   const candidates = matches.filter(match => match.display &&
-    mathPresentation(documentText, match).standalone &&
-    (forward ? match.from >= head && match.from <= target : match.to <= head && match.to >= target));
+    (mathPresentation(documentText, match).standalone ||
+      (state.doc.lineAt(match.from).number !== state.doc.lineAt(match.to).number &&
+        mathPresentation(documentText, match).projected)) &&
+    // Vertical movement may land on preserved list indentation rather than
+    // the delimiter itself. Treat the whole boundary row as the entry target.
+    (forward ? match.from >= head && state.doc.lineAt(match.from).from <= target
+      : match.to <= head && state.doc.lineAt(match.to).to >= target));
   const match = forward ? candidates[0] : candidates[candidates.length - 1];
   if (!match) return false;
   const anchor = forward ? match.from + 2 : match.to - 2;

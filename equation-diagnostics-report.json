@@ -1,8 +1,8 @@
 {
-  "version": "0.4.6",
-  "timestamp": "2026-10-05T15:37:22.871Z",
-  "mainJsSha256": "6ac2741debe73ccbd03f1c811dee294228ae975bfe388857ee0a242fa5c52dc3",
-  "stylesSha256": "42d916c60b3873b4ad5b8ac178a19e2a59871a6cfae515c43093382c250ddd7a",
+  "version": "0.4.7",
+  "timestamp": "2026-10-10T17:25:27.227Z",
+  "mainJsSha256": "752dc17f48caa692d2e0dc94f553d40082451d07f07919b6482ae0f7494253d5",
+  "stylesSha256": "cc5fb0e49aef2c95f38466e47cf138cab84c810957e50691221652e6cd7c2845",
   "hostVersion": "1.13.7",
   "scope": "Actual Obsidian diagnostic/repair commands, source preservation, explicit Apply, scripted undo, stale preview, code exclusions, MathJax errors and unload. TestVault only.",
   "results": [
@@ -47,7 +47,7 @@
       "passed": true
     },
     {
-      "name": "Saved fixture bytes match the editor: EquationDiagnostics-1791214640527-1.md",
+      "name": "Saved fixture bytes match the editor: EquationDiagnostics-1791653124920-1.md",
       "passed": true
     },
     {
@@ -59,7 +59,7 @@
       "passed": true
     },
     {
-      "name": "Saved fixture bytes match the editor: EquationDiagnostics-1791214641745-2.md",
+      "name": "Saved fixture bytes match the editor: EquationDiagnostics-1791653126104-2.md",
       "passed": true
     },
     {
@@ -71,7 +71,7 @@
       "passed": true
     },
     {
-      "name": "Saved fixture bytes match the editor: EquationDiagnostics-1791214641881-3.md",
+      "name": "Saved fixture bytes match the editor: EquationDiagnostics-1791653126248-3.md",
       "passed": true
     },
     {
@@ -83,7 +83,7 @@
       "passed": true
     },
     {
-      "name": "Saved fixture bytes match the editor: EquationDiagnostics-1791214642109-4.md",
+      "name": "Saved fixture bytes match the editor: EquationDiagnostics-1791653126561-4.md",
       "passed": true
     },
     {
@@ -95,7 +95,7 @@
       "passed": true
     },
     {
-      "name": "Saved fixture bytes match the editor: EquationDiagnostics-1791214642363-5.md",
+      "name": "Saved fixture bytes match the editor: EquationDiagnostics-1791653126797-5.md",
       "passed": true
     },
     {
@@ -107,7 +107,7 @@
       "passed": true
     },
     {
-      "name": "Saved fixture bytes match the editor: EquationDiagnostics-1791214642616-6.md",
+      "name": "Saved fixture bytes match the editor: EquationDiagnostics-1791653127049-6.md",
       "passed": true
     }
   ],

@@ -1,7 +1,7 @@
 {
-  "version": "0.4.6",
-  "timestamp": "2026-10-05T15:40:12.824Z",
-  "mainJsSha256": "6ac2741debe73ccbd03f1c811dee294228ae975bfe388857ee0a242fa5c52dc3",
+  "version": "0.4.7",
+  "timestamp": "2026-10-10T17:28:19.612Z",
+  "mainJsSha256": "752dc17f48caa692d2e0dc94f553d40082451d07f07919b6482ae0f7494253d5",
   "scope": "Trusted native typing, undo and redo in an editor with the same note open in Reading View. Closing-section edits without reopening.",
   "passed": true,
   "results": [
@@ -55,7 +55,7 @@
     },
     {
       "kind": "keydown",
-      "key": "z",
+      "key": "Z",
       "shift": true,
       "trusted": true,
       "source": "Before\n\n\\[321+\n\n9\\].\n\nAfter\n",
@@ -63,7 +63,7 @@
     },
     {
       "kind": "keydown",
-      "key": "Dead",
+      "key": "i",
       "shift": false,
       "trusted": true,
       "source": "Before\n\n\\[321+\n\n9\\].\n\nAfter\n",

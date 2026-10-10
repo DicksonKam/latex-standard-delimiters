@@ -15,13 +15,16 @@ baseline = json.loads((root / "cross-section-baseline-report.json").read_text())
 reading_perf = json.loads((root / "reading-revision-performance-report.json").read_text())
 native_cross = json.loads((root / "native-cross-section-report.json").read_text())
 reading_popout = json.loads((root / "reading-revision-popout-report.json").read_text())
+native_layout = json.loads((root / "native-layout-report.json").read_text())
 equation_reports = [
+    ("equation-layout", 102),
     ("equation-diagnostics", 26),
     ("native-equation-diagnostics", 5),
     ("matrix-rendering", 22),
     ("source-typography", 23),
 ]
 checks = [
+    (native_layout.get("version") == version and native_layout.get("mainJsSha256") == digest(root / "main.js") and native_layout.get("stylesSha256") == digest(root / "styles.css") and {r.get("key") for r in native_layout.get("results", []) if r.get("trusted") and r.get("entered") and r.get("sourcePreserved")} == {"ArrowUp", "ArrowDown"}, "Trusted native list navigation must match and pass"),
     (reading_popout.get("inputTrusted") is True and reading_popout.get("queuedBeforeClose") is True and reading_popout.get("passed") is True and reading_popout.get("version") == version and reading_popout.get("mainJsSha256") == digest(root / "main.js") and len(reading_popout["results"]) >= 8 and all(item["passed"] for item in reading_popout["results"]), "Trusted queued popout-close evidence must match and pass"),
     (reading_perf.get("passed") is True and reading_perf.get("version") == version and reading_perf.get("mainJsSha256") == digest(root / "main.js") and len(reading_perf["results"]) >= 17 and all(item["passed"] for item in reading_perf["results"]), "Reading revision performance and scroll evidence must match and pass"),
     (native_cross.get("passed") is True and native_cross.get("version") == version and native_cross.get("mainJsSha256") == digest(root / "main.js") and len(native_cross["results"]) >= 6 and all(item["passed"] for item in native_cross["results"]), "Trusted native cross-section edits must match and pass"),
@@ -54,6 +57,7 @@ for passed, message in checks:
         raise SystemExit("Packaging blocked: " + message)
 release_files = ["main.js", "manifest.json", "styles.css", "README.md", "LICENSE", "NOTICE.md", "Examples.md", "CHANGELOG.md", "VERIFICATION.md", "COMPATIBILITY.md", "PLATFORM-AUDIT.md", "DESKTOP-TESTING.md", "TYPING-INTEGRATION.md", "COMPLETION-AUDIT.md", "suite-report.json", "stress-suite-report.json", "STRESS-TESTING.md", "daily-editing-report.json", "boundary-stress-report.json", "cross-section-editing-report.json", "cross-section-baseline-report.json", "reading-revision-performance-report.json", "reading-revision-popout-report.json", "native-cross-section-report.json", "REVIEW-MILESTONE.md", "native-daily-keyboard-report.json"]
 release_files += ["Examples-Matrices.md", "reading-revision-popout-first-attempt-report.json", "source-typography-baseline-report.json"] + [name + "-report.json" for name, _ in equation_reports]
+release_files += ["native-layout-report.json"]
 archives = []
 for source in [False, True]:
     target = root.parent / ("latex-standard-delimiters-" + version + ("-source" if source else "") + ".zip")

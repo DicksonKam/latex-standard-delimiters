@@ -1,7 +1,7 @@
 {
-  "version": "0.4.6",
-  "timestamp": "2026-10-05T15:36:50.000Z",
-  "mainJsSha256": "6ac2741debe73ccbd03f1c811dee294228ae975bfe388857ee0a242fa5c52dc3",
+  "version": "0.4.7",
+  "timestamp": "2026-10-10T17:23:38.602Z",
+  "mainJsSha256": "752dc17f48caa692d2e0dc94f553d40082451d07f07919b6482ae0f7494253d5",
   "scope": "30 rapid view/note switching rounds with 10 unload/reload races; 1000 edit dispatches in 20 bursts; exact counts, literal lookalikes, source restoration and uncaught error capture. Synthetic editor dispatches, not real keyboard/IME.",
   "results": [
     {
@@ -704,102 +704,102 @@
     {
       "batch": 0,
       "dispatches": 50,
-      "including30msWait": 90
+      "including30msWait": 98.19999992847443
     },
     {
       "batch": 1,
       "dispatches": 50,
-      "including30msWait": 118.29999995231628
+      "including30msWait": 92.70000004768372
     },
     {
       "batch": 2,
       "dispatches": 50,
-      "including30msWait": 85.5
+      "including30msWait": 92.70000004768372
     },
     {
       "batch": 3,
       "dispatches": 50,
-      "including30msWait": 82.20000004768372
+      "including30msWait": 91.29999995231628
     },
     {
       "batch": 4,
       "dispatches": 50,
-      "including30msWait": 92.29999995231628
+      "including30msWait": 78.79999995231628
     },
     {
       "batch": 5,
       "dispatches": 50,
-      "including30msWait": 85.70000004768372
+      "including30msWait": 87.40000009536743
     },
     {
       "batch": 6,
       "dispatches": 50,
-      "including30msWait": 84
+      "including30msWait": 84.19999992847443
     },
     {
       "batch": 7,
       "dispatches": 50,
-      "including30msWait": 83.19999998807907
+      "including30msWait": 88.39999997615814
     },
     {
       "batch": 8,
       "dispatches": 50,
-      "including30msWait": 78.69999998807907
+      "including30msWait": 91
     },
     {
       "batch": 9,
       "dispatches": 50,
-      "including30msWait": 82.69999998807907
+      "including30msWait": 84.20000004768372
     },
     {
       "batch": 10,
       "dispatches": 50,
-      "including30msWait": 79.80000001192093
+      "including30msWait": 85
     },
     {
       "batch": 11,
       "dispatches": 50,
-      "including30msWait": 79.80000001192093
+      "including30msWait": 78.20000004768372
     },
     {
       "batch": 12,
       "dispatches": 50,
-      "including30msWait": 74.80000001192093
+      "including30msWait": 80
     },
     {
       "batch": 13,
       "dispatches": 50,
-      "including30msWait": 82.89999997615814
+      "including30msWait": 83.09999990463257
     },
     {
       "batch": 14,
       "dispatches": 50,
-      "including30msWait": 79.19999998807907
+      "including30msWait": 82.90000009536743
     },
     {
       "batch": 15,
       "dispatches": 50,
-      "including30msWait": 80.19999998807907
+      "including30msWait": 81.29999995231628
     },
     {
       "batch": 16,
       "dispatches": 50,
-      "including30msWait": 83.20000004768372
+      "including30msWait": 80
     },
     {
       "batch": 17,
       "dispatches": 50,
-      "including30msWait": 82.19999998807907
+      "including30msWait": 73.89999997615814
     },
     {
       "batch": 18,
       "dispatches": 50,
-      "including30msWait": 81.80000001192093
+      "including30msWait": 79.70000004768372
     },
     {
       "batch": 19,
       "dispatches": 50,
-      "including30msWait": 76
+      "including30msWait": 76.89999997615814
     }
   ],
   "errors": []

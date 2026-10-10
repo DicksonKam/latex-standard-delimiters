@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-10-05T15:28:39.728Z",
+  "timestamp": "2026-10-10T17:14:26.585Z",
   "scope": "Synthetic desktop composition lifecycle and actual rendering ownership settings; not OS IME certification",
-  "mainJsSha256": "6ac2741debe73ccbd03f1c811dee294228ae975bfe388857ee0a242fa5c52dc3",
+  "mainJsSha256": "752dc17f48caa692d2e0dc94f553d40082451d07f07919b6482ae0f7494253d5",
   "results": [
     {
       "name": "Preview exists before composition",

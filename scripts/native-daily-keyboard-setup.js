@@ -6,6 +6,9 @@
 Below
 `;
  await app.vault.adapter.write('NativeDaily.md',text);await new Promise(r=>setTimeout(r,50));await leaf.setViewState({type:'markdown',state:{file:'NativeDaily.md',mode:'source',source:false}});
+ // Let the host restore this reused fixture's saved selection before assigning
+ // the starting caret. Otherwise the restore can overwrite it after setup.
+ await new Promise(r=>setTimeout(r,500));
  const cm=leaf.view.editor.cm;cm.dispatch({selection:{anchor:5}});
  const probe={original,leaf,cm,text,records:[],timers:new Set()};
  const record=e=>{

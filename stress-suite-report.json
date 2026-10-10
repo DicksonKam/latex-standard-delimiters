@@ -1,8 +1,8 @@
 {
-  "version": "0.4.6",
+  "version": "0.4.7",
   "obsidianVersion": "1.13.7",
-  "timestamp": "2026-10-05T15:36:54.117Z",
-  "mainJsSha256": "6ac2741debe73ccbd03f1c811dee294228ae975bfe388857ee0a242fa5c52dc3",
+  "timestamp": "2026-10-10T17:23:44.094Z",
+  "mainJsSha256": "752dc17f48caa692d2e0dc94f553d40082451d07f07919b6482ae0f7494253d5",
   "reports": [
     {
       "name": "cross-section-editing",
@@ -35,5 +35,7 @@
       "failures": []
     }
   ],
-  "passed": true
+  "passed": true,
+  "reaggregatedAt": "2026-10-10T17:33:32.810516+00:00",
+  "retestNote": "SwiftLaTeX startup and cross-section checks rerun successfully after initial environmental failures; first attempts retained under validation."
 }

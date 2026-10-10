@@ -45,7 +45,7 @@
 
 /* TeX source is editable text even when the Markdown grammar sees a heading.
    Scope line resets to complete equation lines, preserving surrounding prose. */
-.cm-editor .cm-line.lsd-math-source-line {
+.markdown-source-view.mod-cm6 .cm-editor .cm-line.lsd-math-source-line {
   --lsd-source-font-size: var(--font-text-size, 16px);
   font-size: var(--lsd-source-font-size) !important;
   font-weight: var(--font-normal, 400) !important;
@@ -56,6 +56,30 @@
   text-transform: none !important;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+  margin-block: 0 !important;
+  border-block: 0 !important;
+}
+.markdown-source-view.mod-cm6 .cm-editor .cm-line.lsd-math-source-line .cm-header {
+  font-size: inherit !important;
+  font-weight: var(--font-normal, 400) !important;
+  font-style: normal !important;
+  line-height: inherit !important;
+}
+.markdown-source-view.mod-cm6 .cm-editor .cm-line.lsd-math-source-line > .cm-fold-indicator {
+  display: none;
+}
+
+/* Preserve container prefixes in the document while removing the vertical
+   footprint of replaced TeX rows. Selection reveals the original rows again. */
+.markdown-source-view.mod-cm6 .cm-editor .cm-line.lsd-math-hidden-line {
+  height: 0 !important;
+  min-height: 0 !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
+  padding-block: 0 !important;
+  margin-block: 0 !important;
+  border-block: 0 !important;
+  overflow: hidden !important;
 }
 .cm-editor .lsd-math-source,
 .cm-editor .lsd-math-source *,

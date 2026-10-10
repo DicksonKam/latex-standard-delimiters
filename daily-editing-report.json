@@ -1,7 +1,7 @@
 {
-  "version": "0.4.6",
-  "timestamp": "2026-10-05T15:35:37.143Z",
-  "mainJsSha256": "6ac2741debe73ccbd03f1c811dee294228ae975bfe388857ee0a242fa5c52dc3",
+  "version": "0.4.7",
+  "timestamp": "2026-10-10T17:22:26.633Z",
+  "mainJsSha256": "752dc17f48caa692d2e0dc94f553d40082451d07f07919b6482ae0f7494253d5",
   "scope": "Numeric glyph identities across original/edited math, undo, delimiter removal, structure moves, folding, repeated vertical entry, and same-note editor/Reading View updates. Scripted editor/key/pointer events, not OS keyboard certification.",
   "results": [
     {
